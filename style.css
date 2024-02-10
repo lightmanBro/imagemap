@@ -4,7 +4,17 @@ body {
     width: 100vw;
     position: absolute;
 }
-
+/* Apply to the entire document */
+html, body {
+    touch-action: manipulation;
+}
+.header{
+    background-color: purple;
+    padding: 1rem;
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+}
 input {
     border: .2rem solid purple;
     width: 100%;
@@ -76,14 +86,18 @@ button {
 /* Media query for mobile devices */
 @media only screen and (max-width: 768px) {
     /* Adjust styles for mobile devices here */
+    .header{
+        width: 100vw;
+        font-size: 1.25rem;
+    }
     .inpt-group {
         width: 100vw; /* Example adjustment */
         padding: 0;
         height: fit-content;
         bottom: .5rem;
-        margin: auto;
         left: 0;
         right: 0;
+        margin: auto;
         border: none;
     }
     input{

@@ -33,12 +33,15 @@ function zoomIn() {
 
 function zoomOut() {
     // Decrease the zoom level
-    zoomLevel -= 0.25;
-    // Apply the zoom level to the myCanvas
-    document.getElementById('myCanvas').classList.add('zoomed');
-    document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
-    console.log("zoom out ",zoomLevel)
-}
+    if(zoomLevel - 0.1 >= 1) {
+        zoomLevel -= 0.25;
+        // Apply the zoom level to the myCanvas
+        document.getElementById('myCanvas').classList.add('zoomed');
+        document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
+        console.log("zoom out ",zoomLevel)
+    } 
+};
+
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
@@ -190,49 +193,49 @@ function centerImage() {
     ctx.drawImage(image, x, y);
 }
 
-// Change line color
-// List of allowed colors
-const allowedColors = ['red', 'navy', 'orange', 'green'];
+// // Change line color
+// // List of allowed colors
+// const allowedColors = ['red', 'navy', 'orange', 'green'];
 
-// Function to generate a random color from the allowed colors
-function getRandomColor() {
-    return allowedColors[Math.floor(Math.random() * allowedColors.length)];
-}
+// // Function to generate a random color from the allowed colors
+// function getRandomColor() {
+//     return allowedColors[Math.floor(Math.random() * allowedColors.length)];
+// }
 
-// Event listener for the button to randomize the line color
-document.getElementById('line-color').addEventListener('click', () => {
-    // Get a random color from the allowed colors
-    const randomColor = getRandomColor();
-    // Change the line color to the random color
-    changeLineColor(randomColor);
-});
+// // Event listener for the button to randomize the line color
+// document.getElementById('line-color').addEventListener('click', () => {
+//     // Get a random color from the allowed colors
+//     const randomColor = getRandomColor();
+//     // Change the line color to the random color
+//     changeLineColor(randomColor);
+// });
 
-// Function to change the line color
-function changeLineColor(color) {
-    ctx.strokeStyle = color; // Set the canvas stroke style to the selected color
-}
+// // Function to change the line color
+// function changeLineColor(color) {
+//     ctx.strokeStyle = color; // Set the canvas stroke style to the selected color
+// }
 
 
-let rotateInterval;
-let rotateValue = 0;
-const rotationIncrement = 1; // Change the increment value as needed
+// let rotateInterval;
+// let rotateValue = 0;
+// const rotationIncrement = 1; // Change the increment value as needed
 
-document.getElementById('rotate').addEventListener('click', () => {
-    // Start rotating the canvas when the button is held down
-    rotateInterval = setInterval(() => {
-        rotateCanvas(rotateValue += rotationIncrement);
-    }, 100); // Adjust the rotation speed as needed
-});
+// document.getElementById('rotate').addEventListener('click', () => {
+//     // Start rotating the canvas when the button is held down
+//     rotateInterval = setInterval(() => {
+//         rotateCanvas(rotateValue += rotationIncrement);
+//     }, 100); // Adjust the rotation speed as needed
+// });
 
-document.getElementById('rotate').addEventListener('mouseup', () => {
-    // Stop rotating the canvas when the button is released
-    clearInterval(rotateInterval);
-});
+// document.getElementById('rotate').addEventListener('mouseup', () => {
+//     // Stop rotating the canvas when the button is released
+//     clearInterval(rotateInterval);
+// });
 
-document.getElementById('rotate').addEventListener('mouseout', () => {
-    // Stop rotating the canvas when the mouse moves out of the button area
-    clearInterval(rotateInterval);
-});
+// document.getElementById('rotate').addEventListener('mouseout', () => {
+//     // Stop rotating the canvas when the mouse moves out of the button area
+//     clearInterval(rotateInterval);
+// });
 
 
 // // Define the zoom level
