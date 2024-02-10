@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Image Line with User Input</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Define a CSS class for zooming */
+        .zoomed {
+          transform-origin: 0 0;
+          transition: transform 0.3s ease;
+        }
+      </style>
+</head>
+<!-- So the map will have a backend where the office space owner or office space name will be enterd,
+    so users can search offices based on owner's name or office name.
+ -->
+<body>
+    <canvas id="myCanvas"></canvas>
+    <div class="inpt-group">
+        <div>
+            <div class="flex">
+                <input type="text" id="from" placeholder="Start point" />
+                <input type="text" id="to" placeholder="Destination" />
+            </div>
+            <button id="drawLine">Go</button>
+        </div>
+        <div class="flex">
+            <button onclick="zoomIn() " id="zoom-in">Zoom In</button>
+            <button onclick="zoomOut()" id="zoom-out">Zoom Out</button>
+        </div>
+    </div>
+
+   <script src="script.js"></script>
+</body>
+
+</html>
