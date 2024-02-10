@@ -89,6 +89,7 @@ button {
         height: 2rem;
         width: 50%;
         font-size: 1rem;
+        margin-bottom: .5rem;
     }
     input::placeholder{
         font-size: 1rem;

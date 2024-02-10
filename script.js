@@ -1,5 +1,8 @@
 // Define the zoom level
-let zoomLevel = 2;
+let zoomLevel = 3;
+window.addEventListener('load',(e)=>{
+    // document.getElementById('myCanvas').style.transform = `scale(${zoomLevel/2})`;
+})
 document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
 if (typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -21,18 +24,20 @@ if (typeof DeviceMotionEvent.requestPermission === 'function') {
 
 function zoomIn() {
     // Increase the zoom level
-    zoomLevel += 0.1;
+    zoomLevel += 0.25;
     // Apply the zoom level to the content
     document.getElementById('myCanvas').classList.add('zoomed');
     document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
+    console.log("zoom in ",zoomLevel)
 }
 
 function zoomOut() {
     // Decrease the zoom level
-    zoomLevel -= 0.1;
+    zoomLevel -= 0.25;
     // Apply the zoom level to the myCanvas
     document.getElementById('myCanvas').classList.add('zoomed');
     document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
+    console.log("zoom out ",zoomLevel)
 }
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
