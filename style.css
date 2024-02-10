@@ -75,7 +75,29 @@ button {
 @media only screen and (max-width: 768px) {
     /* Adjust styles for mobile devices here */
     .inpt-group {
-        width: 80vw; /* Example adjustment */
+        width: 100vw; /* Example adjustment */
+        padding: 0;
+        height: fit-content;
+        bottom: 0;
+    }
+    input{
+        height: 2rem;
+        width: 50%;
+        font-size: 1rem;
+    }
+    input::placeholder{
+        font-size: 1rem;
+    }
+    button{
+        padding: .5rem;
+        width: fit-content;
+        font-size: 1rem;
+    }
+     #drawLine{
+        width: 100%;
+    }
+    canvas{
+        width: 100%;
     }
 }
 
