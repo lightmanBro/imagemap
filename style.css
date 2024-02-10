@@ -63,10 +63,10 @@ input::placeholder {
 
 canvas {
     width: auto;
-    height: inherit;
+    height: auto;
     transform: rotate(0deg);
     margin: auto;
-    position: relative;
+    /* position: relative; */
     left: auto;
     right: auto;
 }
@@ -89,6 +89,7 @@ button {
     .header{
         width: 100vw;
         font-size: 1.25rem;
+        margin: auto;
     }
     .inpt-group {
         width: 100vw; /* Example adjustment */
