@@ -79,7 +79,11 @@ button {
         width: 100vw; /* Example adjustment */
         padding: 0;
         height: fit-content;
-        bottom: 0;
+        bottom: .5rem;
+        margin: auto;
+        left: 0;
+        right: 0;
+        border: none;
     }
     input{
         height: 2rem;

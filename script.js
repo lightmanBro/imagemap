@@ -148,16 +148,33 @@ drawLineButton.addEventListener("click", () => {
 });
 
 // Rotate function for canvas
-// Rotate function for canvas
 function rotateCanvas(degrees) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-    ctx.save(); // Save the current state of the canvas
-    ctx.translate(canvas.width / 2, canvas.height / 2); // Translate to the center of the canvas
-    ctx.rotate(degrees * Math.PI / 180); // Rotate the canvas
-    ctx.translate(-canvas.width / 2, -canvas.height / 2); // Translate back to the original position
-    ctx.drawImage(image, 0, 0); // Draw the image
-    ctx.restore(); // Restore the saved state (removes the rotation)
+    // Convert degrees to radians
+    const radians = degrees * Math.PI / 180;
+
+    // Calculate the center of the canvas
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Save the current transformation matrix
+    ctx.save();
+
+    // Translate to the center of the canvas
+    ctx.translate(centerX, centerY);
+
+    // Rotate the canvas
+    ctx.rotate(radians);
+
+    // Draw the image
+    ctx.drawImage(image, -image.width / 2, -image.height / 2); // Offset by half the image dimensions to center it
+
+    // Restore the previous transformation matrix
+    ctx.restore();
 }
+
 
 
 // Center the image inside the canvas
@@ -191,26 +208,26 @@ function changeLineColor(color) {
 }
 
 
-// let rotateInterval;
-// let rotateValue = 0;
-// const rotationIncrement = 1; // Change the increment value as needed
+let rotateInterval;
+let rotateValue = 0;
+const rotationIncrement = 1; // Change the increment value as needed
 
-// document.getElementById('rotate').addEventListener('mousedown', () => {
-//     // Start rotating the canvas when the button is held down
-//     rotateInterval = setInterval(() => {
-//         rotateCanvas(rotateValue += rotationIncrement);
-//     }, 100); // Adjust the rotation speed as needed
-// });
+document.getElementById('rotate').addEventListener('click', () => {
+    // Start rotating the canvas when the button is held down
+    rotateInterval = setInterval(() => {
+        rotateCanvas(rotateValue += rotationIncrement);
+    }, 100); // Adjust the rotation speed as needed
+});
 
-// document.getElementById('rotate').addEventListener('mouseup', () => {
-//     // Stop rotating the canvas when the button is released
-//     clearInterval(rotateInterval);
-// });
+document.getElementById('rotate').addEventListener('mouseup', () => {
+    // Stop rotating the canvas when the button is released
+    clearInterval(rotateInterval);
+});
 
-// document.getElementById('rotate').addEventListener('mouseout', () => {
-//     // Stop rotating the canvas when the mouse moves out of the button area
-//     clearInterval(rotateInterval);
-// });
+document.getElementById('rotate').addEventListener('mouseout', () => {
+    // Stop rotating the canvas when the mouse moves out of the button area
+    clearInterval(rotateInterval);
+});
 
 
 // // Define the zoom level
