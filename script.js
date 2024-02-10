@@ -1,5 +1,5 @@
 // Define the zoom level
-let zoomLevel = 0;
+let zoomLevel = 2;
 document.getElementById('zoom-in').addEventListener('click', zoomIn);
 document.getElementById('zoom-out').addEventListener('click', zoomOut);
 if (typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -148,13 +148,17 @@ drawLineButton.addEventListener("click", () => {
 });
 
 // Rotate function for canvas
+// Rotate function for canvas
 function rotateCanvas(degrees) {
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-    ctx.rotate(degrees * Math.PI / 180);
-    ctx.translate(-canvas.width / 2, -canvas.height / 2);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(image, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+    ctx.save(); // Save the current state of the canvas
+    ctx.translate(canvas.width / 2, canvas.height / 2); // Translate to the center of the canvas
+    ctx.rotate(degrees * Math.PI / 180); // Rotate the canvas
+    ctx.translate(-canvas.width / 2, -canvas.height / 2); // Translate back to the original position
+    ctx.drawImage(image, 0, 0); // Draw the image
+    ctx.restore(); // Restore the saved state (removes the rotation)
 }
+
 
 // Center the image inside the canvas
 function centerImage() {
@@ -165,18 +169,49 @@ function centerImage() {
 }
 
 // Change line color
-function changeLineColor(color) {
-    ctx.strokeStyle = color;
+// List of allowed colors
+const allowedColors = ['red', 'navy', 'orange', 'green'];
+
+// Function to generate a random color from the allowed colors
+function getRandomColor() {
+    return allowedColors[Math.floor(Math.random() * allowedColors.length)];
 }
 
-document.getElementById('line-color').addEventListener('change',(e)=>{
-    changeLineColor(e.target.value);
-})
+// Event listener for the button to randomize the line color
+document.getElementById('line-color').addEventListener('click', () => {
+    // Get a random color from the allowed colors
+    const randomColor = getRandomColor();
+    // Change the line color to the random color
+    changeLineColor(randomColor);
+});
 
-let rotateValue = 0;
-document.getElementById('rotate').addEventListener('click',(e)=>{
-    rotateCanvas(rotateValue+=1)
-})
+// Function to change the line color
+function changeLineColor(color) {
+    ctx.strokeStyle = color; // Set the canvas stroke style to the selected color
+}
+
+
+// let rotateInterval;
+// let rotateValue = 0;
+// const rotationIncrement = 1; // Change the increment value as needed
+
+// document.getElementById('rotate').addEventListener('mousedown', () => {
+//     // Start rotating the canvas when the button is held down
+//     rotateInterval = setInterval(() => {
+//         rotateCanvas(rotateValue += rotationIncrement);
+//     }, 100); // Adjust the rotation speed as needed
+// });
+
+// document.getElementById('rotate').addEventListener('mouseup', () => {
+//     // Stop rotating the canvas when the button is released
+//     clearInterval(rotateInterval);
+// });
+
+// document.getElementById('rotate').addEventListener('mouseout', () => {
+//     // Stop rotating the canvas when the mouse moves out of the button area
+//     clearInterval(rotateInterval);
+// });
+
 
 // // Define the zoom level
 // let zoomLevel = 1;
@@ -197,63 +232,44 @@ document.getElementById('rotate').addEventListener('click',(e)=>{
 //   ctx.drawImage(image, 0, 0);
 // };
 
-// // Add event listener for devicemotion
-// if (typeof DeviceMotionEvent.requestPermission === "function") {
-//   DeviceMotionEvent.requestPermission()
-//     .then((permissionState) => {
-//       if (permissionState === "granted") {
-//         window.addEventListener("devicemotion", handleMotionEvent);
-//       } else {
-//         console.error("Motion sensor access denied");
-//       }
-//     })
-//     .catch(console.error);
-// } else {
-//   console.error("Motion sensor not supported on this device");
-// }
+// Add event listener for devicemotion
+if (typeof DeviceMotionEvent.requestPermission === "function") {
+  DeviceMotionEvent.requestPermission()
+    .then((permissionState) => {
+      if (permissionState === "granted") {
+        window.addEventListener("devicemotion", handleMotionEvent);
+        window.alert('motion activated')
+      } else {
+        window.alert("Motion sensor access denied");
+      }
+    })
+    .catch(console.error);
+} else {
+  console.error("Motion sensor not supported on this device");
+}
 
-// // Function to handle motion events
-// function handleMotionEvent(event) {
-//   // Update position based on device acceleration
-//   x += event.accelerationIncludingGravity.x;
-//   y += event.accelerationIncludingGravity.y;
+// Function to handle motion events
+function handleMotionEvent(event) {
+  // Update position based on device acceleration
+  x += event.accelerationIncludingGravity.x;
+  y += event.accelerationIncludingGravity.y;
+window.alert(event.accelerationIncludingGravity.x," : ", event.accelerationIncludingGravity.y)
+  // Draw the updated position on the canvas
+  drawPosition();
+}
 
-//   // Draw the updated position on the canvas
-//   drawPosition();
-// }
+// Function to draw the user's current position on the canvas
+function drawPosition() {
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-// // Function to draw the user's current position on the canvas
-// function drawPosition() {
-//   // Clear the canvas
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Draw the background image
+  ctx.drawImage(image, 0, 0);
 
-//   // Draw the background image
-//   ctx.drawImage(image, 0, 0);
-
-//   // Draw a circle at the current position
-//   ctx.beginPath();
-//   ctx.arc(x, y, 10, 0, Math.PI * 2);
-//   ctx.fillStyle = "blue";
-//   ctx.fill();
-//   ctx.closePath();
-// }
-
-// // Function to zoom in
-// function zoomIn() {
-//   // Increase the zoom level
-//   zoomLevel += 0.1;
-//   // Apply the zoom level to the canvas
-//   canvas.style.transform = `scale(${zoomLevel})`;
-// }
-
-// // Function to zoom out
-// function zoomOut() {
-//   // Decrease the zoom level
-//   zoomLevel -= 0.1;
-//   // Apply the zoom level to the canvas
-//   canvas.style.transform = `scale(${zoomLevel})`;
-// }
-
-// // Add event listeners for zoom buttons
-// document.getElementById("zoom-in").addEventListener("click", zoomIn);
-// document.getElementById("zoom-out").addEventListener("click", zoomOut);
+  // Draw a circle at the current position
+  ctx.beginPath();
+  ctx.arc(x, y, 10, 0, Math.PI * 2);
+  ctx.fillStyle = "blue";
+  ctx.fill();
+  ctx.closePath();
+}
