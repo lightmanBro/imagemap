@@ -152,6 +152,7 @@ button {
         padding: .5rem;
         width: 50%;
         font-size: 1rem;
+        border-radius: 5rem;
     }
      #drawLine{
         width: 100%;

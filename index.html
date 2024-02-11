@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas Image Line with User Input</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         /* Define a CSS class for zooming */
         .zoomed {
@@ -20,7 +21,7 @@
 <body>
     <div class="header">Floor 5: 5100 - 5594 offices and workplaces</div>
     <canvas id="myCanvas"></canvas>
-    <div class="inpt-group" id="inpt-group">
+    <div class="none inpt-group" id="inpt-group">
         <div>
             <div class="flex">
                 <input type="text" id="from" placeholder="Start point" />
@@ -29,15 +30,15 @@
             <button id="drawLine">Go</button>
         </div>
         <div class="flex">
-            <button onclick="zoomIn() " id="zoom-in">Zoom In</button>
-            <button onclick="zoomOut()" id="zoom-out">Zoom Out</button>
-        </div>
-        <div class="flex">
-            <button id="line-color">Color</button>
-            <button id="rotate">Rotate</button>
+            <button onclick="zoomIn() " id="zoom-in"><span class="material-symbols-outlined">
+                zoom_in
+                </span></button>
+            <button onclick="zoomOut()" id="zoom-out"><span class="material-symbols-outlined">
+                zoom_out
+                </span></button>
         </div>
     </div>
-    <button class="open" id="inpt-group-btn">Close</button>
+    <button class="open" id="inpt-group-btn"><span class="material-symbols-outlined"> keyboard </span></button>
    <script src="script.js"></script>
 </body>
 

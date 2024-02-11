@@ -1,16 +1,16 @@
-// Define the zoom level
 document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
     document.getElementById('inpt-group').classList.toggle('none')
     document.getElementById('inpt-group').style.transition = `transform 0.5s ease`;
     if(document.getElementById('inpt-group').classList.contains('none')){
-        document.getElementById('inpt-group-btn').innerHTML = 'Open'
+        document.getElementById('inpt-group-btn').innerHTML = '<span class="material-symbols-outlined"> keyboard </span>'
         document.getElementById('inpt-group-btn').style.bottom = `1rem`
     }else{
-        document.getElementById('inpt-group-btn').innerHTML = 'Close';
+        document.getElementById('inpt-group-btn').innerHTML = '<span class="material-symbols-outlined">\
+        keyboard_hide\
+        </span>';
         document.getElementById('inpt-group-btn').style.bottom = `12rem`
     }
 })
-
 
 
 let zoomLevel = 3;
