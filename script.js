@@ -3,8 +3,8 @@ let zoomLevel = 3;
 window.addEventListener('load',(e)=>{
     // document.getElementById('myCanvas').style.transform = `scale(${zoomLevel/2})`;
 })
-document.getElementById('zoom-in').addEventListener('click', zoomIn);
-document.getElementById('zoom-out').addEventListener('click', zoomOut);
+document.getElementById('zoom-in').addEventListener('pointerdown', zoomIn);
+document.getElementById('zoom-out').addEventListener('pointerdown', zoomOut);
 if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
         .then(permissionState => {
@@ -160,28 +160,41 @@ function rotateCanvas(degrees) {
     // Convert degrees to radians
     const radians = degrees * Math.PI / 180;
 
-    // Calculate the center of the canvas
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Save the current transformation matrix
+    // Save the current canvas state
     ctx.save();
 
     // Translate to the center of the canvas
-    ctx.translate(centerX, centerY);
+    ctx.translate(canvas.width / 2, canvas.height / 2);
 
     // Rotate the canvas
     ctx.rotate(radians);
 
-    // Draw the image
-    ctx.drawImage(image, -image.width / 2, -image.height / 2); // Offset by half the image dimensions to center it
+    // Clear the entire canvas
+    // ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
 
-    // Restore the previous transformation matrix
+    // Redraw the image at the rotated position
+    ctx.drawImage(image, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+
+    // Optionally, redraw any other content or drawings on the canvas
+
+    // Rotate each coordinate and redraw them
+    drawingPath.forEach(({x, y}) => {
+        const rotatedX = Math.cos(radians) * (x - canvas.width / 2) - Math.sin(radians) * (y - canvas.height / 2) + canvas.width / 2;
+        const rotatedY = Math.sin(radians) * (x - canvas.width / 2) + Math.cos(radians) * (y - canvas.height / 2) + canvas.height / 2;
+        drawCoordinate(rotatedX, rotatedY);
+    });
+
+    // Restore the canvas state
     ctx.restore();
 }
+
+function drawCoordinate(x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = 'red';
+    ctx.fill();
+}
+
 
 
 
@@ -235,21 +248,21 @@ window.visualViewport.addEventListener('resize', adjustViewport);
 // }
 
 
-// let rotateInterval;
-// let rotateValue = 0;
-// const rotationIncrement = 1; // Change the increment value as needed
+let rotateInterval;
+let rotateValue = 0;
+const rotationIncrement = 1; // Change the increment value as needed
 
-// document.getElementById('rotate').addEventListener('click', () => {
-//     // Start rotating the canvas when the button is held down
-//     rotateInterval = setInterval(() => {
-//         rotateCanvas(rotateValue += rotationIncrement);
-//     }, 100); // Adjust the rotation speed as needed
-// });
+document.getElementById('rotate').addEventListener('pointerdown', () => {
+    // Start rotating the canvas when the button is held down
+    rotateInterval = setInterval(() => {
+        rotateCanvas(rotateValue += rotationIncrement);
+    }, 100); // Adjust the rotation speed as needed
+});
 
-// document.getElementById('rotate').addEventListener('mouseup', () => {
-//     // Stop rotating the canvas when the button is released
-//     clearInterval(rotateInterval);
-// });
+document.getElementById('rotate').addEventListener('pointerleave', () => {
+    // Stop rotating the canvas when the button is released
+    clearInterval(rotateInterval);
+});
 
 // document.getElementById('rotate').addEventListener('mouseout', () => {
 //     // Stop rotating the canvas when the mouse moves out of the button area

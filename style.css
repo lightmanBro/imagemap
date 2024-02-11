@@ -15,6 +15,9 @@ html, body {
     left: 0;
     padding: 1rem;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: 2rem;
     margin: auto;
@@ -69,12 +72,12 @@ input::placeholder {
 }
 
 canvas {
-    width: auto;
+    width: 100vw;
     height: auto;
     transform: rotate(0deg);
     margin: auto;
     position: absolute;
-    top: 7.5rem;
+    top: 5.5rem;
     left: auto;
     right: auto;
 }
@@ -100,6 +103,9 @@ button {
         margin: auto;
         text-align: center;
         margin-top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .inpt-group {
         position: fixed;
@@ -132,7 +138,7 @@ button {
     }
     canvas{
         margin-top: 0;
-        width: 100%;
+        width: 100dvw;
     }
     .flex{
         margin-top: .25rem;
