@@ -25,6 +25,11 @@ html, body {
     margin-bottom: 2rem;
     z-index: 1;
 }
+
+.open{
+    /* display: none; */
+}
+
 input {
     border: .2rem solid purple;
     width: 100%;
@@ -107,7 +112,22 @@ button {
         align-items: center;
         justify-content: center;
     }
+    .open{
+        display: block;
+        position:fixed;
+        width: fit-content;
+        right: 1rem;
+        bottom:12rem;
+
+        border-radius: .5rem;
+    }
+    .none{
+        display: none;
+        transform-origin: 0 0;
+        transition: transform 0.3s ease;
+    }
     .inpt-group {
+        
         position: fixed;
         width: 100vw; /* Example adjustment */
         padding: 0;

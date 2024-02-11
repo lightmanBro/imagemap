@@ -1,4 +1,18 @@
 // Define the zoom level
+document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
+    document.getElementById('inpt-group').classList.toggle('none')
+    document.getElementById('inpt-group').style.transition = `transform 0.5s ease`;
+    if(document.getElementById('inpt-group').classList.contains('none')){
+        document.getElementById('inpt-group-btn').innerHTML = 'Open'
+        document.getElementById('inpt-group-btn').style.bottom = `1rem`
+    }else{
+        document.getElementById('inpt-group-btn').innerHTML = 'Close';
+        document.getElementById('inpt-group-btn').style.bottom = `12rem`
+    }
+})
+
+
+
 let zoomLevel = 3;
 window.addEventListener('load',(e)=>{
     // document.getElementById('myCanvas').style.transform = `scale(${zoomLevel/2})`;
