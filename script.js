@@ -39,6 +39,7 @@ if (typeof DeviceMotionEvent.requestPermission === 'function') {
 function zoomIn() {
     // Increase the zoom level
     zoomLevel += 0.25;
+    document.getElementById('header').classList.add('none');
     // Apply the zoom level to the content
     document.getElementById('myCanvas').classList.add('zoomed');
     document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
@@ -53,8 +54,14 @@ function zoomOut() {
         document.getElementById('myCanvas').classList.add('zoomed');
         document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
         console.log("zoom out ",zoomLevel)
-    } 
+        if(zoomLevel == 1){
+            setTimeout(() => {
+                document.getElementById('header').classList.remove('none')
+            }, 500);
+        }
+    }
 };
+
 
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
@@ -169,39 +176,6 @@ drawLineButton.addEventListener("click", () => {
     console.log("Draw line button clicked");
 });
 
-// Rotate function for canvas
-function rotateCanvas(degrees) {
-    // Convert degrees to radians
-    const radians = degrees * Math.PI / 180;
-
-    // Save the current canvas state
-    ctx.save();
-
-    // Translate to the center of the canvas
-    ctx.translate(canvas.width / 2, canvas.height / 2);
-
-    // Rotate the canvas
-    ctx.rotate(radians);
-
-    // Clear the entire canvas
-    // ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
-
-    // Redraw the image at the rotated position
-    ctx.drawImage(image, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
-
-    // Optionally, redraw any other content or drawings on the canvas
-
-    // Rotate each coordinate and redraw them
-    drawingPath.forEach(({x, y}) => {
-        const rotatedX = Math.cos(radians) * (x - canvas.width / 2) - Math.sin(radians) * (y - canvas.height / 2) + canvas.width / 2;
-        const rotatedY = Math.sin(radians) * (x - canvas.width / 2) + Math.cos(radians) * (y - canvas.height / 2) + canvas.height / 2;
-        drawCoordinate(rotatedX, rotatedY);
-    });
-
-    // Restore the canvas state
-    ctx.restore();
-}
-
 function drawCoordinate(x, y) {
     ctx.beginPath();
     ctx.arc(x, y, 5, 0, Math.PI * 2);
@@ -225,11 +199,11 @@ function centerImage() {
 
 function adjustViewport() {
     const currentScale = window.visualViewport.scale;
-
     // Check if the scale is greater than 1 (zoomed in)
     if (currentScale > 1) {
         // Prevent the browser from scaling beyond the initial scale
         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+        document.getElementById('header').classList.add('none')
     } else {
         // Revert to default viewport settings
         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
@@ -239,69 +213,6 @@ function adjustViewport() {
 // Event listener to detect changes in visual viewport scale (e.g., zooming)
 window.visualViewport.addEventListener('resize', adjustViewport);
 
-// // Change line color
-// // List of allowed colors
-// const allowedColors = ['red', 'navy', 'orange', 'green'];
-
-// // Function to generate a random color from the allowed colors
-// function getRandomColor() {
-//     return allowedColors[Math.floor(Math.random() * allowedColors.length)];
-// }
-
-// // Event listener for the button to randomize the line color
-// document.getElementById('line-color').addEventListener('click', () => {
-//     // Get a random color from the allowed colors
-//     const randomColor = getRandomColor();
-//     // Change the line color to the random color
-//     changeLineColor(randomColor);
-// });
-
-// // Function to change the line color
-// function changeLineColor(color) {
-//     ctx.strokeStyle = color; // Set the canvas stroke style to the selected color
-// }
-
-
-let rotateInterval;
-let rotateValue = 0;
-const rotationIncrement = 1; // Change the increment value as needed
-
-document.getElementById('rotate').addEventListener('pointerdown', () => {
-    // Start rotating the canvas when the button is held down
-    rotateInterval = setInterval(() => {
-        rotateCanvas(rotateValue += rotationIncrement);
-    }, 100); // Adjust the rotation speed as needed
-});
-
-document.getElementById('rotate').addEventListener('pointerleave', () => {
-    // Stop rotating the canvas when the button is released
-    clearInterval(rotateInterval);
-});
-
-// document.getElementById('rotate').addEventListener('mouseout', () => {
-//     // Stop rotating the canvas when the mouse moves out of the button area
-//     clearInterval(rotateInterval);
-// });
-
-
-// // Define the zoom level
-// let zoomLevel = 1;
-
-// // Get the canvas element
-// const canvas = document.getElementById("myCanvas");
-// const ctx = canvas.getContext("2d");
-// const image = new Image();
-// image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
-
-// // Initialize variables for motion tracking
-// let x = canvas.width / 2;
-// let y = canvas.height / 2;
-
-// image.onload = function () {
-//   canvas.width = image.width;
-//   canvas.height = image.height;
-//   ctx.drawImage(image, 0, 0);
-// };
 
 // Add event listener for devicemotion
 if (typeof DeviceMotionEvent.requestPermission === "function") {

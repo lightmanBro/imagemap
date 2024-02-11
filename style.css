@@ -103,11 +103,12 @@ button {
 @media only screen and (min-width: 280px) and (max-width: 1040px) {
     /* Adjust styles for mobile devices here */
     .header{
+        position: fixed;
         width: 100vw;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         margin: auto;
         text-align: center;
-        margin-top: 0;
+        top: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -129,7 +130,7 @@ button {
     .inpt-group {
         
         position: fixed;
-        width: 100vw; /* Example adjustment */
+        width: 90vw; /* Example adjustment */
         padding: 0;
         height: fit-content;
         bottom: .5rem;
@@ -137,6 +138,7 @@ button {
         right: 0;
         margin: auto;
         border: none;
+        padding: 1rem;
     }
     input{
         height: 2rem;
@@ -149,13 +151,14 @@ button {
         font-size: 1rem;
     }
     button{
-        padding: .5rem;
+        padding: .25rem;
         width: 50%;
         font-size: 1rem;
         border-radius: 5rem;
     }
      #drawLine{
         width: 100%;
+        padding: 1rem;
     }
     canvas{
         margin-top: 0;
