@@ -9,7 +9,7 @@ html, body {
     touch-action: manipulation;
 }
 .header{
-    background-color: purple;
+    background-color: rgba(31, 120, 244, 0.753);
     position: fixed;
     width: 100vw;
     left: 0;
@@ -28,7 +28,8 @@ html, body {
 }
 
 input {
-    border: .2rem solid purple;
+    border: .2rem solid rgba(31, 120, 244, 0.753);
+    border-radius: 5rem;
     width: 100%;
     height: 5rem;
     outline: none;
@@ -39,6 +40,7 @@ input {
     font-size: 4rem;
     text-align: left;
     padding: .5rem;
+    margin: 1rem;
 }
 
 input::placeholder {
@@ -74,12 +76,12 @@ input::placeholder {
 }
 
 canvas {
-    width: 100vw;
+    /* width: 100vw; */
     height: auto;
     transform: rotate(0deg);
     margin: auto;
     position: absolute;
-    top: 5.5rem;
+    /* top: 5.5rem; */
     left: auto;
     right: auto;
 }
@@ -88,14 +90,17 @@ button {
     height: inherit;
     width: 100%;
     font-size: 3.5rem;
-    background-color: purple;
+    background-color: rgba(31, 120, 244, 0.753);
+    border-radius: 5rem;
     outline: none;
     border: none;
     color: white;
-    font-weight: 500;
+    font-weight: 600;
     padding: 1.5rem;
 }
-
+button span .material-symbols-outlined{
+    font-size: 3.5rem;
+}
 /* Media query for mobile devices */
 @media only screen and (min-width: 280px) and (max-width: 1040px) {
     /* Adjust styles for mobile devices here */
@@ -140,7 +145,8 @@ button {
         width: 50%;
         font-size: 1rem;
         margin-bottom: .5rem;
-        border: .1rem solid purple;
+        border-radius: 5rem;
+        border: .1rem solid grey;
     }
     input::placeholder{
         font-size: 1rem;
@@ -156,7 +162,7 @@ button {
         padding: 1rem;
     }
     canvas{
-        margin-top: 0;
+        /* margin-top: 0; */
         width: 100dvw;
     }
     .flex{
