@@ -138,7 +138,7 @@ function drawLine2(x1, y1, x2, y2) {
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
     console.log(drawingPath);
-    canvas.parentNode.appendChild(div);
+    // canvas.parentNode.appendChild(div);
     /*
     To implement the direction on the map we need to use
      (beginning)-> Where the user wants to move from.
