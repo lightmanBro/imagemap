@@ -1,9 +1,14 @@
 /* Default styles for all screen sizes */
-
+*{
+    margin: none;
+    padding: none;
+    box-sizing: border-box;
+}
 body {
     font-size: 62.6%; /* Setting base font size for rem units */
     width: fit-content;
     position: absolute;
+    margin: 0;/*To prevent user agent automatic margin*/
 }
 /* Apply to the entire document */
 html, body {
@@ -14,7 +19,7 @@ html, body {
     background-color: rgba(31, 120, 244, 0.753);
     position: fixed;
     width: 100%;
-    left: 0;
+    /* left: 0; */
     /* padding: 1rem; */
     color: white;
     text-align: left;
@@ -78,14 +83,12 @@ input::placeholder {
 }
 
 canvas {
-    width: 100vw;
+    width: auto;
     height: auto;
     transform: rotate(0deg);
-    margin: auto;
-    position: absolute;
-    /* top: 5.5rem; */
-    left: auto;
-    right: auto;
+    align-self: center;
+    position: relative;
+    right: 0;
 }
 
 button {
@@ -108,8 +111,8 @@ button span .material-symbols-outlined{
     width: 100vw;
     height: 100vh;
     background-color: rgba(31, 120, 244, 0.753);
-    right: 1rem;
-    left: 0;
+    /* right: 1rem; */
+    left: -1rem;
     top: 0;
     right: inherit;
     z-index: 10;
@@ -220,8 +223,13 @@ button span .material-symbols-outlined{
         padding: 1rem;
     }
     canvas{
-        /* margin-top: 0; */
-        width: 100dvw;
+       position: inherit;
+        width: 100vw;
+        height: 70vh;
+        margin: auto;
+        position: relative;
+        left: 0;
+        right: 0;
     }
     .flex{
         margin-top: .25rem;
