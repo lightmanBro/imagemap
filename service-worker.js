@@ -12,7 +12,7 @@
     event.waitUntil(
       caches.open(cacheName)
         .then((cache) => {
-          console.log('Opened cache');
+          console.log('Opened cache',filesToCache);
           return cache.addAll(filesToCache);
         })
     );
@@ -25,6 +25,7 @@
         .then((response) => {
           // Cache hit - return response
           if (response) {
+            console.log(response);
             return response;
           }
           return fetch(event.request);

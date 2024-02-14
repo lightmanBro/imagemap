@@ -1,6 +1,20 @@
 document.getElementById('inpt-group-btn').style.bottom = `1.5rem`
 document.querySelector('canvas').style.display = 'none';
 document.querySelector('.welcome').style.display = 'block';
+const open_welcome = document.querySelector('#open-welcome');
+const close_welcome = document.querySelector('#close-welcome')
+
+open_welcome.addEventListener('click',(e)=>{
+    document.querySelector('.welcome').style.display = 'block';    
+})
+close_welcome.addEventListener('click',(e)=>{
+    document.querySelector('.welcome').style.display = 'none';    
+})
+
+
+
+
+
 
 document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
     document.getElementById('inpt-group').classList.toggle('none')

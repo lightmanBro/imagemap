@@ -2,7 +2,7 @@
 
 body {
     font-size: 62.6%; /* Setting base font size for rem units */
-    width: 100vw;
+    width: fit-content;
     position: absolute;
 }
 /* Apply to the entire document */
@@ -10,20 +10,17 @@ html, body {
     touch-action: manipulation;
 }
 .header{
+    width: fit-content;
     background-color: rgba(31, 120, 244, 0.753);
     position: fixed;
     width: 100%;
     left: 0;
-    padding: 1rem;
+    /* padding: 1rem; */
     color: white;
     text-align: left;
-    font-size: 2rem;
     margin: auto;
     font-size: 2.5rem;
-    margin-bottom: 2rem;
     z-index: 1;
-    display: flex;align-items: center;
-    justify-content: center;
     gap: 1rem;
 }
 
@@ -81,7 +78,7 @@ input::placeholder {
 }
 
 canvas {
-    /* width: 100vw; */
+    width: 100vw;
     height: auto;
     transform: rotate(0deg);
     margin: auto;
@@ -107,9 +104,25 @@ button span .material-symbols-outlined{
     font-size: 3.5rem;
 };
 .welcome{
+    position: absolute;
     width: 100vw;
     height: 100vh;
     background-color: rgba(31, 120, 244, 0.753);
+    right: 1rem;
+    left: 0;
+    top: 0;
+    right: inherit;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+#close-welcome{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    color: white;
 }
 /* Media query for mobile devices */
 @media only screen and (min-width: 280px) and (max-width: 1040px) {
@@ -121,16 +134,19 @@ button span .material-symbols-outlined{
         margin: auto;
         position: absolute;
         text-align: center;
+        left: 0;
+        top: 0;
+        right: inherit;
         z-index: 10;
         display: flex;
         align-items: center;
-        justify-content: space-between;
         flex-direction: column;
+        justify-content: space-between;
     }
     .welcome-text{
         margin-top: 2rem;
         color: white;
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .welcome-instruction{
         height: 30vh;
@@ -145,11 +161,15 @@ button span .material-symbols-outlined{
     .header{
         position: fixed;
         width: 100vw;
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin: auto;
-        text-align: justify;
         top: 0;
+        right: 0;
         text-wrap: wrap;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-evenly;
+        /* flex-direction: column; */
     }
     .open{
         display: block;
