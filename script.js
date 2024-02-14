@@ -7,7 +7,7 @@ const close_welcome = document.querySelector('#close-welcome')
 open_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'block';
     document.querySelector('.logo').style.display = 'none';
-    document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this simple software';
+    document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this software';
 })
 close_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'none';    
