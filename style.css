@@ -225,9 +225,10 @@ button span .material-symbols-outlined{
     canvas{
        position: inherit;
         width: 100vw;
-        height: 70vh;
+        height: auto;
         margin: auto;
         position: relative;
+        margin-top: 3.5rem;
         left: 0;
         right: 0;
     }
