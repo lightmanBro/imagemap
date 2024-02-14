@@ -7,7 +7,7 @@ const close_welcome = document.querySelector('#close-welcome')
 open_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'block';
     document.querySelector('.logo').style.display = 'none';
-    document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this simple software';
+    document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this software';
 })
 close_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'none';    
@@ -41,7 +41,7 @@ function zoomIn() {
     document.getElementById('myCanvas').classList.add('zoomed');
     document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
     console.log("zoom in ",zoomLevel)
-    updateHTMLPosition();
+    // updateHTMLPosition();Stopped because the canvas translation is causing the page to zoom in too much
 }
 
 function zoomOut() {
@@ -57,7 +57,7 @@ function zoomOut() {
                 document.getElementById('header').classList.remove('none')
             }, 500);
         }
-        updateHTMLPosition()
+        // updateHTMLPosition()Stopped because the canvas translation is causing the page to zoom out too much
     }
 };
 
@@ -73,7 +73,9 @@ image.onload = function () {
     }, 2000);
 
     document.querySelector('canvas').style.display = 'block';
-
+    //Had to shut this down because its cutting the canvas to half.
+    // image.width = '100vw';
+    // canvas.height = window.clientY;
     canvas.width = image.width;
     canvas.height = image.height;
     centerImage();
@@ -153,13 +155,17 @@ function drawLine2(x1, y1, x2, y2) {
 // Function to update HTML content position
 function updateHTMLPosition() {
     // Calculate canvas position
-    const canvasRect = ctx.getBoundingClientRect();
+    const canvasRect = canvas.getBoundingClientRect();
     const canvasX = canvasRect.left;
     const canvasY = canvasRect.top;
 
     // Calculate HTML content position relative to canvas
     const htmlX = canvasX /* calculate X position based on zoom level */;
     const htmlY = canvasY /* calculate Y position based on zoom level */;
+    const element = document.getElementById('myCanvas');
+    element.style.left = htmlX + 'px';
+    element.style.top = htmlY + 'px';
+    // element.style.transform = `translate(${htmlX}px, ${htmlY}px)`;
 
 }
 

@@ -133,6 +133,7 @@ button span .material-symbols-outlined{
     .welcome{
         width: 100vw;
         height: 100vh;
+        padding: .5rem;
         background-color: rgba(31, 120, 244, 0.919);
         margin: auto;
         position: absolute;
@@ -153,11 +154,14 @@ button span .material-symbols-outlined{
     }
     .welcome-instruction{
         height: fit-content;
-        width: auto;
+        width: -moz-fit-content;
+        width: fit-content;
         /* position: absolute; */
-        border: .25rem solid grey;
+        border: .25rem solid white;
+        border-radius: .5rem;
+        background-color: rgba(31, 120, 244, 0.979);
         font-size: 1.2rem;
-        padding: 1rem;
+        padding: .275rem;
         color: white;
         bottom: 0;
     }
@@ -202,7 +206,7 @@ button span .material-symbols-outlined{
     }
     input{
         height: 2rem;
-        width: 70%;
+        width: 10rem;
         font-size: 1rem;
         margin-bottom: .5rem;
         border-radius: 5rem;
@@ -217,13 +221,20 @@ button span .material-symbols-outlined{
         font-size: 1rem;
         border-radius: 5rem;
     }
+    .inputs-btns{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
      #drawLine{
-        width: 100%;
+        width: 80%;
         padding: 1rem;
+        align-self: center;
     }
     canvas{
        position:relative;
-        width: 100vw;
+        width: 100%;
         height: auto;
         margin: auto;
         /* position: relative; */
