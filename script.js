@@ -1,3 +1,20 @@
+//Viewport fidelity
+function adjustViewport() {
+    const currentScale = window.visualViewport.scale;
+    // Check if the scale is greater than 1 (zoomed in)
+    if (currentScale > 1) {
+        // Prevent the browser from scaling beyond the initial scale
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+        document.getElementById('header').classList.add('none')
+    } else {
+        // Revert to default viewport settings
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
+    }
+}
+// Event listener to detect changes in visual viewport scale (e.g., zooming)
+window.visualViewport.addEventListener('resize', adjustViewport);
+
+
 document.getElementById('inpt-group-btn').style.bottom = `1.5rem`
 document.querySelector('canvas').style.display = 'none';
 document.querySelector('.welcome').style.display = 'block';
@@ -12,10 +29,6 @@ open_welcome.addEventListener('click',(e)=>{
 close_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'none';    
 })
-
-
-
-
 
 
 document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
@@ -268,23 +281,6 @@ function centerImage() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(image, x, y);
 }
-
-//Viewport fidelity
-function adjustViewport() {
-    const currentScale = window.visualViewport.scale;
-    // Check if the scale is greater than 1 (zoomed in)
-    if (currentScale > 1) {
-        // Prevent the browser from scaling beyond the initial scale
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
-        document.getElementById('header').classList.add('none')
-    } else {
-        // Revert to default viewport settings
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
-    }
-}
-
-// Event listener to detect changes in visual viewport scale (e.g., zooming)
-window.visualViewport.addEventListener('resize', adjustViewport);
 
 //sService worker
 
