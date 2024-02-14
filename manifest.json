@@ -1,0 +1,22 @@
+{
+    "name": "Office Navigator",
+    "short_name": "Office",
+    "description": "Description of your app",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "rgba(31, 120, 244, 0.919)",
+    "icons": [
+      {
+        "src": "/path/to/icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/path/to/icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

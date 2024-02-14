@@ -132,7 +132,7 @@ button span .material-symbols-outlined{
     .welcome-instruction{
         height: 30vh;
         width: auto;
-        position: absolute;
+        /* position: absolute; */
         border: .25rem solid grey;
         font-size: 1.2rem;
         padding: 1rem;

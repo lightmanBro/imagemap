@@ -85,21 +85,6 @@ canvas.addEventListener("mousedown", (e) => {
     drawingPath = [{ x: lastX, y: lastY }];
 });
 
-// function divOnPage(x,y){
-//     let div = document.createElement('div')
-//     div.textContent = 'office 204';
-//     div.style.width = 100+'px'
-//     div.style.height = 100+'px';
-//     div.style.backgroundColor = 'orangered';
-//     div.style.position = 'absolute';
-//     // Update HTML content position
-//     div.style.left = x + "px";
-//     div.style.top = y + "px";
-//     centerImage();
-//     canvas.parentNode.appendChild(div);
-
-// }
-
 
 canvas.addEventListener("mousemove", (e) => {
     if (isDrawing) {
@@ -285,3 +270,16 @@ function adjustViewport() {
 // Event listener to detect changes in visual viewport scale (e.g., zooming)
 window.visualViewport.addEventListener('resize', adjustViewport);
 
+//sService worker
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Service Worker registration failed:', error);
+        });
+    });
+  }
