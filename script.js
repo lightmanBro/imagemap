@@ -11,8 +11,6 @@ function adjustViewport() {
         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
     }
 }
-// Event listener to detect changes in visual viewport scale (e.g., zooming)
-window.visualViewport.addEventListener('resize', adjustViewport);
 
 
 document.getElementById('inpt-group-btn').style.bottom = `1.5rem`
@@ -83,6 +81,9 @@ const ctx = canvas.getContext("2d");
 const image = new Image();
 image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
+let originalCanvasWidth, originalCanvasHeight;
+
+// Inside the image.onload function
 image.onload = function () {
     setTimeout(() => {
         document.querySelector('.welcome').style.display = 'none';        
@@ -93,7 +94,29 @@ image.onload = function () {
     canvas.width = image.width;
     canvas.height = image.height;
     centerImage();
+
+    // Store original canvas dimensions
+    originalCanvasWidth = image.width;
+    originalCanvasHeight = image.height;
 };
+
+
+// Calculate scaling factors based on canvas size
+const scaleX = canvas.width / originalCanvasWidth; // originalCanvasWidth is the width of the canvas image
+const scaleY = canvas.height / originalCanvasHeight; // originalCanvasHeight is the height of the canvas image
+
+function adjustViewport() {
+    const currentScale = window.visualViewport.scale;
+    canvas.width = image.width * currentScale;
+    canvas.height = image.height * currentScale;
+    scaleX = canvas.width / originalCanvasWidth;
+    scaleY = canvas.height / originalCanvasHeight;
+    // Additional logic if needed
+}
+
+
+// Event listener to detect changes in visual viewport scale (e.g., zooming)
+window.visualViewport.addEventListener('resize', adjustViewport);
 
 image.loading = 'eager';
 let isDrawing = false;
@@ -106,11 +129,23 @@ ctx.lineJoin = "round";
 // Set line width
 const lineWidth = 15; // Adjust as needed
 
+
+
+// Function to convert absolute coordinates to relative coordinates
+function toRelativeCoords(x, y) {
+    return {
+        x: (x - canvas.offsetLeft) / scaleX,
+        y: (y - canvas.offsetTop) / scaleY
+    };
+}
+
+
 canvas.addEventListener("mousedown", (e) => {
     isDrawing = true;
+    const { x, y } = toRelativeCoords(e.clientX, e.clientY);
     // Calculate the mouse position relative to the document
-    lastX = e.clientX + window.scrollX;
-    lastY = e.clientY + window.scrollY;
+    lastX = x + window.scrollX;
+    lastY = y + window.scrollY;
     drawingPath = [{ x: lastX, y: lastY }];
 });
 
