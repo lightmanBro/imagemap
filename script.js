@@ -1,18 +1,3 @@
-//Viewport fidelity
-function adjustViewport() {
-    const currentScale = window.visualViewport.scale;
-    // Check if the scale is greater than 1 (zoomed in)
-    if (currentScale > 1) {
-        // Prevent the browser from scaling beyond the initial scale
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
-        document.getElementById('header').classList.add('none')
-    } else {
-        // Revert to default viewport settings
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
-    }
-}
-
-
 document.getElementById('inpt-group-btn').style.bottom = `1.5rem`
 document.querySelector('canvas').style.display = 'none';
 document.querySelector('.welcome').style.display = 'block';
@@ -22,11 +7,12 @@ const close_welcome = document.querySelector('#close-welcome')
 open_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'block';
     document.querySelector('.logo').style.display = 'none';
-    document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this software';
+    document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this simple software';
 })
 close_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'none';    
 })
+
 
 
 document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
@@ -81,9 +67,6 @@ const ctx = canvas.getContext("2d");
 const image = new Image();
 image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
-let originalCanvasWidth, originalCanvasHeight;
-
-// Inside the image.onload function
 image.onload = function () {
     setTimeout(() => {
         document.querySelector('.welcome').style.display = 'none';        
@@ -94,29 +77,7 @@ image.onload = function () {
     canvas.width = image.width;
     canvas.height = image.height;
     centerImage();
-
-    // Store original canvas dimensions
-    originalCanvasWidth = image.width;
-    originalCanvasHeight = image.height;
 };
-
-
-// Calculate scaling factors based on canvas size
-const scaleX = canvas.width / originalCanvasWidth; // originalCanvasWidth is the width of the canvas image
-const scaleY = canvas.height / originalCanvasHeight; // originalCanvasHeight is the height of the canvas image
-
-function adjustViewport() {
-    const currentScale = window.visualViewport.scale;
-    canvas.width = image.width * currentScale;
-    canvas.height = image.height * currentScale;
-    scaleX = canvas.width / originalCanvasWidth;
-    scaleY = canvas.height / originalCanvasHeight;
-    // Additional logic if needed
-}
-
-
-// Event listener to detect changes in visual viewport scale (e.g., zooming)
-window.visualViewport.addEventListener('resize', adjustViewport);
 
 image.loading = 'eager';
 let isDrawing = false;
@@ -129,23 +90,11 @@ ctx.lineJoin = "round";
 // Set line width
 const lineWidth = 15; // Adjust as needed
 
-
-
-// Function to convert absolute coordinates to relative coordinates
-function toRelativeCoords(x, y) {
-    return {
-        x: (x - canvas.offsetLeft) / scaleX,
-        y: (y - canvas.offsetTop) / scaleY
-    };
-}
-
-
 canvas.addEventListener("mousedown", (e) => {
     isDrawing = true;
-    const { x, y } = toRelativeCoords(e.clientX, e.clientY);
     // Calculate the mouse position relative to the document
-    lastX = x + window.scrollX;
-    lastY = y + window.scrollY;
+    lastX = e.clientX + window.scrollX;
+    lastY = e.clientY + window.scrollY;
     drawingPath = [{ x: lastX, y: lastY }];
 });
 
@@ -199,10 +148,6 @@ function drawLine2(x1, y1, x2, y2) {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
 }
-
-
-
-
 
 
 // Function to update HTML content position
@@ -316,6 +261,23 @@ function centerImage() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(image, x, y);
 }
+
+//Viewport fidelity
+function adjustViewport() {
+    const currentScale = window.visualViewport.scale;
+    // Check if the scale is greater than 1 (zoomed in)
+    if (currentScale > 1) {
+        // Prevent the browser from scaling beyond the initial scale
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+        document.getElementById('header').classList.add('none')
+    } else {
+        // Revert to default viewport settings
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
+    }
+}
+
+// Event listener to detect changes in visual viewport scale (e.g., zooming)
+window.visualViewport.addEventListener('resize', adjustViewport);
 
 //sService worker
 
