@@ -12,7 +12,7 @@ html, body {
 .header{
     background-color: rgba(31, 120, 244, 0.753);
     position: fixed;
-    width: 100vw;
+    width: 100%;
     left: 0;
     padding: 1rem;
     color: white;
@@ -22,6 +22,9 @@ html, body {
     font-size: 2.5rem;
     margin-bottom: 2rem;
     z-index: 1;
+    display: flex;align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .open{

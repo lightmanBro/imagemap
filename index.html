@@ -17,13 +17,23 @@
           transition: transform 0.3s ease;
         }
         
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 60
+        }
+          
       </style>
 </head>
 <!-- So the map will have a backend where the office space owner or office space name will be enterd,
     so users can search offices based on owner's name or office name.
  -->
 <body>
-    <div class="header" id="header">Floor 5: 5100 - 5594 offices and workplaces</div>
+    <div class="header" id="header">Floor 5: 5100 - 5594 offices and workplaces <span class="material-symbols-outlined">
+        help
+        </span></div>
     <canvas id="myCanvas"></canvas>
 
     <div class="none inpt-group" id="inpt-group">
