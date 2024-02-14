@@ -1,18 +1,11 @@
-// service-worker.js
-
-// Install service worker
-self.addEventListener('install', (event) => {
-    // Perform install steps
-  });
-  
   // Cache files
-  const cacheName = 'my-cache';
+  const cacheName = 'map-app-cache';
   const filesToCache = [
     '/',
     '/index.html',
     '/styles.css',
     '/app.js',
-    '/path/to/image.png'
+    '/icon/SP1-2-floor-plan-5th-floor.jpg'
   ];
   
   self.addEventListener('install', (event) => {

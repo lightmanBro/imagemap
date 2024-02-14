@@ -8,12 +8,12 @@
     "theme_color": "rgba(31, 120, 244, 0.919)",
     "icons": [
       {
-        "src": "/path/to/icon.png",
+        "src": "/icon/SP1-2-floor-plan-5th-floor.jpg",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/path/to/icon.png",
+        "src": "/icon/SP1-2-floor-plan-5th-floor.jpg",
         "sizes": "512x512",
         "type": "image/png"
       }
