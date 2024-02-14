@@ -1,5 +1,6 @@
 document.getElementById('inpt-group-btn').style.bottom = `1.5rem`
-
+document.querySelector('canvas').style.display = 'none';
+document.querySelector('.welcome').style.display = 'block';
 
 document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
     document.getElementById('inpt-group').classList.toggle('none')
@@ -15,28 +16,7 @@ document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
     }
 })
 
-
 let zoomLevel = 3;
-window.addEventListener('load',(e)=>{
-    // document.getElementById('myCanvas').style.transform = `scale(${zoomLevel/2})`;
-    // alert('welcome to office map');
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        DeviceMotionEvent.requestPermission()
-            .then(permissionState => {
-                if (permissionState === 'granted') {
-                    window.addEventListener('devicemotion', (e) => {
-                        console.log('AccelarationX ', e.acceleration.x)
-                        console.log('AccelarationY ', e.acceleration.y)
-                        console.log('AccelarationZ ', e.acceleration.z)
-                    })
-                } else {
-                    console.error('motion sensor access denied')
-                }
-            }).catch(console.error)
-    } else {
-        console.error('Motion sensor not supported on this device')
-    }
-})
 document.getElementById('zoom-in').addEventListener('pointerdown', zoomIn);
 document.getElementById('zoom-out').addEventListener('pointerdown', zoomOut);
 
@@ -48,6 +28,7 @@ function zoomIn() {
     document.getElementById('myCanvas').classList.add('zoomed');
     document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
     console.log("zoom in ",zoomLevel)
+    updateHTMLPosition();
 }
 
 function zoomOut() {
@@ -59,11 +40,11 @@ function zoomOut() {
         document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
         console.log("zoom out ",zoomLevel)
         if(zoomLevel == 1){
-
             setTimeout(() => {
                 document.getElementById('header').classList.remove('none')
             }, 500);
         }
+        updateHTMLPosition()
     }
 };
 
@@ -74,10 +55,17 @@ const image = new Image();
 image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
 image.onload = function () {
+    setTimeout(() => {
+        document.querySelector('.welcome').style.display = 'none';        
+    }, 2000);
+
+    document.querySelector('canvas').style.display = 'block';
+
     canvas.width = image.width;
     canvas.height = image.height;
     centerImage();
 };
+
 image.loading = 'eager';
 let isDrawing = false;
 let drawingPath = [];
@@ -97,16 +85,21 @@ canvas.addEventListener("mousedown", (e) => {
     drawingPath = [{ x: lastX, y: lastY }];
 });
 
-let x = 1134
-let y = 474
-let div = document.createElement('div')
-div.textContent = 'office 204';
-div.style.width = 100+'px'
-div.style.height = 100+'px';
-div.style.backgroundColor = 'orangered';
-div.style.position = 'absolute';
-div.style.left = x+'px'
-div.style.top = y+'px';
+// function divOnPage(x,y){
+//     let div = document.createElement('div')
+//     div.textContent = 'office 204';
+//     div.style.width = 100+'px'
+//     div.style.height = 100+'px';
+//     div.style.backgroundColor = 'orangered';
+//     div.style.position = 'absolute';
+//     // Update HTML content position
+//     div.style.left = x + "px";
+//     div.style.top = y + "px";
+//     centerImage();
+//     canvas.parentNode.appendChild(div);
+
+// }
+
 
 canvas.addEventListener("mousemove", (e) => {
     if (isDrawing) {
@@ -126,19 +119,62 @@ function drawLine(x1, y1, x2, y2) {
     ctx.lineTo(x2, y2);
     ctx.lineWidth = lineWidth; // Set line width
     ctx.stroke();
+    ctx.save()
 }
-
 function drawLine2(x1, y1, x2, y2) {
+    // Draw the line on the canvas
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.lineWidth = lineWidth; // Set line width
     ctx.stroke();
+
+    // Draw the rectangle representing the div
+    const divWidth = 100;
+    const divHeight = 100;
+    
+    // Add shadow to the div
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; // Shadow color
+    ctx.shadowBlur = 5; // Shadow blur radius
+    ctx.shadowOffsetX = 2; // Horizontal shadow offset
+    ctx.shadowOffsetY = 2; // Vertical shadow offset
+    
+    ctx.fillStyle = 'orangered';
+    ctx.fillRect(x1 - divWidth / 2, y1 - divHeight / 2, divWidth, divHeight);
+    ctx.fillStyle = 'black';
+    ctx.fillText('office 204', x1 - divWidth / 2 + 10, y1 + 5);
+
+    // Reset shadow to default
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
 }
+
+
+
+
+
+
+// Function to update HTML content position
+function updateHTMLPosition() {
+    // Calculate canvas position
+    const canvasRect = ctx.getBoundingClientRect();
+    const canvasX = canvasRect.left;
+    const canvasY = canvasRect.top;
+
+    // Calculate HTML content position relative to canvas
+    const htmlX = canvasX /* calculate X position based on zoom level */;
+    const htmlY = canvasY /* calculate Y position based on zoom level */;
+
+}
+
+
+
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
     console.log(drawingPath);
-    // canvas.parentNode.appendChild(div);
+    
     /*
     To implement the direction on the map we need to use
      (beginning)-> Where the user wants to move from.
@@ -205,11 +241,6 @@ canvas.addEventListener("mouseup", () => {
     //Corridor C5325,C5225,C5020
     drawLine2(2323,3988,3536, 4321.5999755859375);
 });
-let run = 0;
-setInterval(() => {
-    drawLine2(2900,6089,2992,6189.7998046875);
-    // console.log(run+=1)
-}, 2000);
 
 // Function to draw the path on the canvas
 function drawPath() {
@@ -228,15 +259,6 @@ drawLineButton.addEventListener("click", () => {
     console.log("Draw line button clicked");
 });
 
-function drawCoordinate(x, y) {
-    ctx.beginPath();
-    ctx.arc(x, y, 5, 0, Math.PI * 2);
-    ctx.fillStyle = 'red';
-    ctx.fill();
-}
-
-
-
 
 // Center the image inside the canvas
 function centerImage() {
@@ -246,9 +268,7 @@ function centerImage() {
     ctx.drawImage(image, x, y);
 }
 
-
 //Viewport fidelity
-
 function adjustViewport() {
     const currentScale = window.visualViewport.scale;
     // Check if the scale is greater than 1 (zoomed in)
@@ -265,45 +285,3 @@ function adjustViewport() {
 // Event listener to detect changes in visual viewport scale (e.g., zooming)
 window.visualViewport.addEventListener('resize', adjustViewport);
 
-
-// Add event listener for devicemotion
-if (typeof DeviceMotionEvent.requestPermission === "function") {
-  DeviceMotionEvent.requestPermission()
-    .then((permissionState) => {
-      if (permissionState === "granted") {
-        window.addEventListener("devicemotion", handleMotionEvent);
-        window.alert('motion activated')
-      } else {
-        window.alert("Motion sensor access denied");
-      }
-    })
-    .catch(console.error);
-} else {
-  console.error("Motion sensor not supported on this device");
-}
-
-// Function to handle motion events
-function handleMotionEvent(event) {
-  // Update position based on device acceleration
-  x += event.accelerationIncludingGravity.x;
-  y += event.accelerationIncludingGravity.y;
-window.alert(event.accelerationIncludingGravity.x," : ", event.accelerationIncludingGravity.y)
-  // Draw the updated position on the canvas
-  drawPosition();
-}
-
-// Function to draw the user's current position on the canvas
-function drawPosition() {
-  // Clear the canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Draw the background image
-  ctx.drawImage(image, 0, 0);
-
-  // Draw a circle at the current position
-  ctx.beginPath();
-  ctx.arc(x, y, 10, 0, Math.PI * 2);
-  ctx.fillStyle = "blue";
-  ctx.fill();
-  ctx.closePath();
-}

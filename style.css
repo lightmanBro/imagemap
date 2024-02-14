@@ -1,4 +1,5 @@
 /* Default styles for all screen sizes */
+
 body {
     font-size: 62.6%; /* Setting base font size for rem units */
     width: 100vw;
@@ -42,6 +43,7 @@ input {
     padding: .5rem;
     margin: 1rem;
 }
+
 
 input::placeholder {
     color: gray;
@@ -100,10 +102,43 @@ button {
 }
 button span .material-symbols-outlined{
     font-size: 3.5rem;
+};
+.welcome{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(31, 120, 244, 0.753);
 }
 /* Media query for mobile devices */
 @media only screen and (min-width: 280px) and (max-width: 1040px) {
     /* Adjust styles for mobile devices here */
+    .welcome{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(31, 120, 244, 0.919);
+        margin: auto;
+        position: absolute;
+        text-align: center;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    .welcome-text{
+        margin-top: 2rem;
+        color: white;
+        font-size: 3rem;
+    }
+    .welcome-instruction{
+        height: 30vh;
+        width: auto;
+        position: absolute;
+        border: .25rem solid grey;
+        font-size: 1.2rem;
+        padding: 1rem;
+        color: white;
+        bottom: 0;
+    }
     .header{
         position: fixed;
         width: 100vw;
