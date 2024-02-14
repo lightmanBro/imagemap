@@ -7,7 +7,7 @@
 body {
     font-size: 62.6%; /* Setting base font size for rem units */
     /* width: fit-content; */
-    position: absolute;
+    /* position: absolute; */
     margin: 0;/*To prevent user agent automatic margin*/
 }
 /* Apply to the entire document */
@@ -190,7 +190,7 @@ button span .material-symbols-outlined{
     }
     .inpt-group {
         position: fixed;
-        width: 90vw; /* Example adjustment */
+        width: auto; /* Example adjustment */
         padding: 0;
         height: auto;
         bottom: .5rem;
@@ -202,7 +202,7 @@ button span .material-symbols-outlined{
     }
     input{
         height: 2rem;
-        width: 50%;
+        width: 70%;
         font-size: 1rem;
         margin-bottom: .5rem;
         border-radius: 5rem;
@@ -222,7 +222,7 @@ button span .material-symbols-outlined{
         padding: 1rem;
     }
     canvas{
-       position: inherit;
+       position:relative;
         width: 100vw;
         height: auto;
         margin: auto;
