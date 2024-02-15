@@ -14,7 +14,6 @@ close_welcome.addEventListener('click',(e)=>{
 })
 
 
-
 document.getElementById('inpt-group-btn').addEventListener('click',(e)=>{
     document.getElementById('inpt-group').classList.toggle('none')
     document.getElementById('inpt-group').style.transition = `transform 0.5s ease`;
@@ -74,7 +73,7 @@ image.onload = function () {
 
     document.querySelector('canvas').style.display = 'block';
     //Had to shut this down because its cutting the canvas to half.
-    // image.width = '100vw';
+    // image.width = '100%';
     // canvas.height = window.clientY;
     canvas.width = image.width;
     canvas.height = image.height;
@@ -237,9 +236,40 @@ canvas.addEventListener("mouseup", () => {
     drawLine2(1164,3764.4000244140625,2374,3767.5999755859375);
 
     //
-    drawLine2(1144.400001525879,2755.800048828125,1164,3764.4000244140625)
+    // drawLine2(1144.400001525879,2755.800048828125,1164,3764.4000244140625)
     //Corridor C5325,C5225,C5020
     drawLine2(2323,3988,3536, 4321.5999755859375);
+    //
+    drawLine2(3097,3143.800048828125,3795,3348.800048828125);
+    //
+    drawLine2(2816,4119.199951171875,2163,6439.60009765625);
+    //
+    drawLine2(3267,4247.199951171875,2614,6561.199951171875);
+    //
+    drawLine2(2102,4743.60009765625,1654,6308.60009765625);
+    //
+    drawLine2(1414,5037.60009765625,2009,5041,);
+    //
+    drawLine2(1382,5325.800048828125,1929,5329.60009765625);
+    //
+    drawLine2(1382,5774,1801,5768);
+    //
+    drawLine2(1417,5975.60009765625,1747,5978.60009765625);
+    //
+    drawLine2(3392,4791.199951171875,3529,4318.199951171875);
+    //
+    drawLine2(2681,4596.60009765625,3539,4849);
+    //
+    drawLine2(3017,6676.800048828125,3539,4849);
+    //
+    drawLine2(1651,6298.800048828125,3017,6676.800048828125);
+    // Elevator lobby 2-5PE-3
+    drawLine2(2598,5697.60009765625,2838,5757.60009765625);
+    // Elevator lobby 2-5PE-2
+    drawLine2(3193,3389.5999755859375,3036,3348.5999755859375);
+    //Toilet Corridor 2 C5265
+    drawLine2(2659,5466.60009765625,2896,5556.60009765625);
+
 });
 
 // Function to draw the path on the canvas
