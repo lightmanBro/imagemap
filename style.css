@@ -36,7 +36,7 @@ html, body {
 input {
     border: .2rem solid rgba(31, 120, 244, 0.753);
     border-radius: 5rem;
-    width: 100%;
+    width: auto;
     height: 5rem;
     outline: none;
     background-color: white;
@@ -45,7 +45,7 @@ input {
     align-items: center;
     font-size: 4rem;
     text-align: left;
-    padding: 5rem;
+    padding: .27    5rem;
     margin: 1rem;
 }
 
