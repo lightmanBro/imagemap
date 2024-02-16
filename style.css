@@ -89,8 +89,8 @@ canvas {
     position: relative;
     z-index: auto;
     right: 0;
-    will-change: transform; /* Hint to the browser to use hardware acceleration */
-    transform: translateZ(0); /* Force hardware acceleration */
+    /* will-change: transform; Hint to the browser to use hardware acceleration */
+    /* transform: translateZ(0); Force hardware acceleration */
 }
 image{
     width: inherit;
