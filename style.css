@@ -83,14 +83,19 @@ input::placeholder {
 }
 
 canvas {
-    width: auto;
+    width: 100%;
     height: auto;
-    transform: rotate(0deg);
     align-self: center;
     position: relative;
+    z-index: auto;
     right: 0;
+    will-change: transform; /* Hint to the browser to use hardware acceleration */
+    transform: translateZ(0); /* Force hardware acceleration */
 }
-
+image{
+    width: inherit;
+    height: auto;
+}
 button {
     height: inherit;
     width: 100%;
@@ -153,9 +158,9 @@ button span .material-symbols-outlined{
         font-size: 2rem;
     }
     .welcome-instruction{
-        height: fit-content;
+        height: auto;
         width: -moz-fit-content;
-        width: fit-content;
+        width: auto;
         /* position: absolute; */
         border: .25rem solid white;
         border-radius: .5rem;
@@ -233,14 +238,16 @@ button span .material-symbols-outlined{
         align-self: center;
     }
     canvas{
-       position:relative;
         width: 100%;
         height: auto;
-        margin: auto;
-        /* position: relative; */
+        align-self: center;
+        position: relative;
+        z-index: auto;
         margin-top: 3.5rem;
         left: 0;
         right: 0;
+        will-change: transform; /* Hint to the browser to use hardware acceleration */
+        transform: translateZ(0); /* Force hardware acceleration */
     }
     .flex{
         margin-top: .25rem;
