@@ -39,8 +39,7 @@ function zoomIn() {
     // Apply the zoom level to the content
     document.getElementById('myCanvas').classList.add('zoomed');
     document.getElementById('myCanvas').style.transform = `scale(${zoomLevel})`;
-    console.log("zoom in ",zoomLevel);
-    console.log(window.clientX,window.clientY)
+    console.log("zoom in ",zoomLevel)
     // updateHTMLPosition();Stopped because the canvas translation is causing the page to zoom in too much
 }
 
@@ -66,7 +65,7 @@ const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
 
-image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
+image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
 image.onload = function () {
     setTimeout(() => {
@@ -171,9 +170,11 @@ function updateHTMLPosition() {
 }
 
 
+
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
     console.log(drawingPath);
+    
     /*
     To implement the direction on the map we need to use
      (beginning)-> Where the user wants to move from.
@@ -301,17 +302,14 @@ function centerImage() {
 //Viewport fidelity
 function adjustViewport() {
     const currentScale = window.visualViewport.scale;
-    console.log(currentScale);
     // Check if the scale is greater than 1 (zoomed in)
     if (currentScale > 1) {
         // Prevent the browser from scaling beyond the initial scale
         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
         document.getElementById('header').classList.add('none');
-        console.log(window.clientX,window.clientY)
     } else {
         // Revert to default viewport settings
         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
-        console.log(window.clientX,window.clientY)
     }
 }
 
