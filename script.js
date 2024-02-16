@@ -301,6 +301,7 @@ function centerImage() {
 //Viewport fidelity
 function adjustViewport() {
     const currentScale = window.visualViewport.scale;
+    console.log(currentScale);
     // Check if the scale is greater than 1 (zoomed in)
     if (currentScale > 1) {
         // Prevent the browser from scaling beyond the initial scale
