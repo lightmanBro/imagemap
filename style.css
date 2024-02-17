@@ -89,7 +89,7 @@ canvas {
     position: relative;
     z-index: auto;
     right: 0;
-    /* will-change: transform; Hint to the browser to use hardware acceleration */
+    will-change: transform; /*Hint to the browser to use hardware acceleration*/
     /* transform: translateZ(0); Force hardware acceleration */
 }
 image{
@@ -114,7 +114,7 @@ button span .material-symbols-outlined{
 .welcome{
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: fit-content;
     background-color: rgba(31, 120, 244, 0.753);
     /* right: 1rem; */
     left: -1rem;
@@ -123,7 +123,7 @@ button span .material-symbols-outlined{
     z-index: 10;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-direction: column;
 }
 #close-welcome{
@@ -132,6 +132,32 @@ button span .material-symbols-outlined{
     top: 1rem;
     color: white;
 }
+.loader-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 2rem;
+    height: fit-content;
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Media query for mobile devices */
 @media only screen and (min-width: 280px) and (max-width: 1040px) {
     /* Adjust styles for mobile devices here */
@@ -147,10 +173,7 @@ button span .material-symbols-outlined{
         top: 0;
         right: inherit;
         z-index: 10;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: space-between;
+        display: block;
     }
     .welcome-text{
         margin-top: 2rem;

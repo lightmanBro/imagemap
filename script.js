@@ -1,3 +1,40 @@
+window.addEventListener('DOMContentLoaded',(e)=>{
+    // Check if the browser supports the Notification API
+    if ("Notification" in window) {
+        // Request permission to display notifications
+        Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+                // Create a new notification
+                var notification = new Notification("Hello, World!", {
+                    body: "This is a notification message.",
+                    icon: "path/to/icon.png" // Optional icon
+                });
+    
+                // Handle click events on the notification
+                notification.onclick = function () {
+                    console.log("Notification clicked");
+                    // Add your custom click event handler here
+                };
+    
+                // Automatically close the notification after a specified duration (in milliseconds)
+                setTimeout(function () {
+                    notification.close();
+                }, 5000); // Close after 5 seconds (adjust as needed)
+            } else if (permission === "denied") {
+                console.log("Notification permission denied");
+                // You can inform the user that notifications are blocked
+            } else {
+                console.log("Notification permission has not been granted yet");
+                // You can inform the user to grant permission for notifications
+            }
+        });
+    } else {
+        console.log("Browser does not support notifications");
+        // Inform the user that their browser does not support notifications
+    }
+})
+
+
 document.getElementById('inpt-group-btn').style.bottom = `1.5rem`
 document.querySelector('canvas').style.display = 'none';
 document.querySelector('.welcome').style.display = 'block';
@@ -7,6 +44,7 @@ const close_welcome = document.querySelector('#close-welcome')
 open_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'block';
     document.querySelector('.logo').style.display = 'none';
+    document.querySelector('.loader-container').style.display = 'none';
     document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this software';
 })
 close_welcome.addEventListener('click',(e)=>{
@@ -66,6 +104,9 @@ const ctx = canvas.getContext("2d");
 const image = new Image();
 
 image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
+
+// Disable image smoothing to prevent blurriness
+ctx.imageSmoothingEnabled = false;
 
 image.onload = function () {
     setTimeout(() => {
@@ -288,6 +329,7 @@ const drawLineButton = document.getElementById("drawLine");
 drawLineButton.addEventListener("click", () => {
     // Do something when the button is clicked
     console.log("Draw line button clicked");
+    
 });
 
 
