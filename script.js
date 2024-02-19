@@ -134,7 +134,7 @@ image.onload = function () {
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         canvas.style.border = '2px solid purple'
-        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
+        // document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(canvas)
     } else {
