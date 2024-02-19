@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body {
-    font-size: 62.6%; /* Setting base font size for rem units */
+    font-size:100%; /* Setting base font size for rem units */
     /* width: fit-content; */
     /* position: absolute; */
     margin: 0;/*To prevent user agent automatic margin*/
