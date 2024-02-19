@@ -262,7 +262,7 @@ button span .material-symbols-outlined{
     }
     canvas{
         width: 100vw;
-        height: auto;
+        height: 100vh;
         position: relative;
         z-index: auto;
         margin-top: 3.5rem;
