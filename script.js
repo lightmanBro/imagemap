@@ -1,15 +1,3 @@
-if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
-    // Touch events are supported
-    screen.width;
-    console.log(navigator.platform)
-} else {
-    // Touch events are not supported
-    window.innerWidth;
-}
-
-
-
-
 
 window.addEventListener('DOMContentLoaded',(e)=>{
     // Check if the browser supports the Notification API
