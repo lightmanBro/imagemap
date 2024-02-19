@@ -134,12 +134,12 @@ image.onload = function () {
         // Touch events are supported
         canvas.width=screen.width;
         console.log(navigator.platform,canvas.width)
-        canvas.width =5400;
-        image.width = canvas.width;
+        canvas.width ='auto';
+        image.width = 5400;
 
-        canvas.height = 7200
-        image.height = canvas.height;
-        // document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
+        canvas.height = 'auto';
+        image.height = 7200;
+        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`)
     } else {
         // Touch events are not supported
