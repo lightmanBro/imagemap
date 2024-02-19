@@ -261,8 +261,8 @@ button span .material-symbols-outlined{
         align-self: center;
     }
     canvas{
-        width: 100vw;
-        height: auto;
+        width: 100%;
+        /* height: auto; */
         position: relative;
         z-index: auto;
         margin-top: 3.5rem;

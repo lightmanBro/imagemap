@@ -132,7 +132,7 @@ image.onload = function () {
     // canvas.height = window.clientY;
     if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
         // Touch events are supported
-        canvas.width=screen.width;
+        // canvas.width=screen.width;
         console.log(navigator.platform,canvas.width)
         canvas.width =5400;
         image.style.width =5400;
