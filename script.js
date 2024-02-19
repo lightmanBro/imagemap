@@ -140,12 +140,12 @@ image.onload = function () {
         canvas.width =5400;
         image.style.flex = '1 0 auto';
         image.style.objectFit = 'cover';
-        
+
         image.style.width =5400;
         canvas.height = 7200
         image.style.height = 7200;
 
-        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
+        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}, js css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`)
     } else {
         // Touch events are not supported
