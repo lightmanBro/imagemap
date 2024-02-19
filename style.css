@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body {
-    font-size:100%; /* Setting base font size for rem units */
+    font-size: 62.6%; /* Setting base font size for rem units */
     /* width: fit-content; */
     /* position: absolute; */
     margin: 0;/*To prevent user agent automatic margin*/
@@ -262,16 +262,15 @@ button span .material-symbols-outlined{
     }
     canvas{
         width: 100vw;
-        height: auto;
+        height: 100vh;
         position: relative;
         z-index: auto;
         margin-top: 3.5rem;
         left: 0;
         right: 0;
-        will-change: transform;/* Hint to the browser to use hardware acceleration */
+        will-change: transform;/*( Hint to the browser to use hardware acceleration */
         transform: translateZ(0); /* Force hardware acceleration */
     }
-    
     .flex{
         margin-top: .25rem;
     }

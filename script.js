@@ -110,6 +110,9 @@ image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image 
 ctx.imageSmoothingEnabled = false;
 
 image.onload = function () {
+    setTimeout(() => {
+        document.querySelector('.welcome').style.display = 'none';        
+    }, 2000);
     document.querySelector('canvas').style.display = 'block';
     //Had to shut this down because its cutting the canvas to half.
     // image.width = '100%';
@@ -126,10 +129,7 @@ image.onload = function () {
     canvas.width = image.width;
     canvas.height = image.height;
     centerImage();
-    setTimeout(() => {
-        document.querySelector('.welcome').style.display = 'none';        
-    }, 2000);
-    alert(`width:${screen.width}, height:${screen.height}`)
+    alert(`${screen.width},${screen.height}`)
 };
 
 image.loading = 'eager';
