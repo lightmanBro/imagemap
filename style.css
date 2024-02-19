@@ -83,7 +83,7 @@ input::placeholder {
 }
 
 canvas {
-    width: auto;/*Needs to be in auto because the drawing on the canvas needs to be accurate.*/
+    width: 100;/*Needs to be in auto because the drawing on the canvas needs to be accurate.*/
     height: auto;
     align-self: center;
     position: relative;
@@ -92,8 +92,8 @@ canvas {
     will-change: transform; /*Hint to the browser to use hardware acceleration*/
     transform: translateZ(0);/*Force hardware acceleration*/
 }
-image{
-    width: inherit;
+img{
+    width: 100%;
     height: auto;
 }
 button {

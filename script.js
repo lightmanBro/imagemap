@@ -115,9 +115,11 @@ function zoomOut() {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
-image.style.width =5400;
-image.style.height = 7200;
-
+canvas.width =5400;
+canvas.height = 7200
+image.width =canvas.width;
+image.height = canvas.height;
+console.log(image);
 image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
 // Disable image smoothing to prevent blurriness
@@ -136,9 +138,9 @@ image.onload = function () {
         console.log(navigator.platform,canvas.width)
         canvas.width =5400;
         canvas.height = 7200
-        // image.style.width
-        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} pos removed`
-        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height} pos removed`);
+        canvas.style.border = '2px solid purple'
+        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} border color`
+        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(canvas)
     } else {
         // Touch events are not supported
