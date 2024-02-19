@@ -376,6 +376,7 @@ function centerImage() {
     const y = (canvas.height - image.height) / 2;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(image, x, y);
+    console.log('from center Image',x," ",y," ",canvas.width," ",image.width)
 }
 
 //Viewport fidelity

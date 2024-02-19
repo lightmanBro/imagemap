@@ -262,12 +262,12 @@ button span .material-symbols-outlined{
     }
     canvas{
         width: 100vw;
-        height: fit-content;
-        position: relative;
-        z-index: auto;
+        height: auto;
+        /* position: relative; */
+        /* z-index: auto; */
         margin-top: 3.5rem;
-        left: 0;
-        right: 0;
+        /* left: 0;
+        right: 0; */
         /* will-change: transform; Hint to the browser to use hardware acceleration */
         /* transform: translateZ(0); Force hardware acceleration */
     }
