@@ -116,7 +116,7 @@ const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
 image.style.width =5400;
-image.style.height = 5400;
+image.style.height = 7200;
 
 image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
@@ -136,7 +136,7 @@ image.onload = function () {
         console.log(navigator.platform,canvas.width)
         canvas.width =5400;
         canvas.height = 7200
-        
+
         document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} pos removed`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height} pos removed`);
         console.log(canvas)
