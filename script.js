@@ -116,10 +116,10 @@ const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
 
-image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
+image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
 // Disable image smoothing to prevent blurriness
-ctx.imageSmoothingEnabled = false;
+// ctx.imageSmoothingEnabled = true;
 
 image.onload = function () {
     setTimeout(() => {
@@ -130,8 +130,25 @@ image.onload = function () {
     //Had to shut this down because its cutting the canvas to half.
     // image.width = '100%';
     // canvas.height = window.clientY;
-    canvas.width = image.width;
-    canvas.height = image.height;
+    if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
+        // Touch events are supported
+        canvas.width=screen.width;
+        console.log(navigator.platform,canvas.width)
+        canvas.width =5400;
+        image.width = 5400;
+
+        canvas.height = 7200
+        image.height = 7200;
+        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
+        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`)
+    } else {
+        // Touch events are not supported
+        canvas.width = window.innerWidth;
+        console.log(navigator.platform,canvas.width)
+        canvas.width = image.width;
+        canvas.height = image.height;
+        console.log(`1 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}`)
+    }
     centerImage();
 };
 
