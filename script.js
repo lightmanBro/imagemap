@@ -138,11 +138,11 @@ image.onload = function () {
         // canvas.style.maxWidth = '100vw';
         canvas.style.boxSizing = 'border-box';
         canvas.width =5400;
-        // image.style.flex = '1 0 auto';
+        image.style.flex = '1 0 auto';
         // image.style.objectFit = 'contain';
-        image.style.width ='inherit';
+        image.style.width =5400;
         canvas.height = 7200
-        image.style.height = 'inherit';
+        image.style.height = 5400;
         image.style.border = '12px solid green'
 
         document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
