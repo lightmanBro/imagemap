@@ -143,9 +143,11 @@ image.onload = function () {
         image.style.width ='inherit';
         canvas.height = 7200
         image.style.height = 'inherit';
+        image.style.border = '12px solid green'
 
         document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
-        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`)
+        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
+        console.log(canvas)
     } else {
         // Touch events are not supported
         canvas.width = window.innerWidth;
