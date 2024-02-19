@@ -109,6 +109,22 @@ image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image 
 // Disable image smoothing to prevent blurriness
 ctx.imageSmoothingEnabled = false;
 
+// //Viewport fidelity
+// function adjustViewport() {
+//     const currentScale = window.visualViewport.scale;
+//     // Check if the scale is greater than 1 (zoomed in)
+//     if (currentScale > 1) {
+//         // Prevent the browser from scaling beyond the initial scale
+//         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+//         document.getElementById('header').classList.add('none');
+//     } else {
+//         // Revert to default viewport settings
+//         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
+//     }
+// }
+
+// // Event listener to detect changes in visual viewport scale (e.g., zooming)
+// window.visualViewport.addEventListener('resize', adjustViewport);
 image.onload = function () {
     setTimeout(() => {
         document.querySelector('.welcome').style.display = 'none';        
@@ -121,13 +137,18 @@ image.onload = function () {
         // Touch events are supported
         canvas.width=screen.width;
         console.log(navigator.platform,canvas.width)
+        canvas.width = image.width;
+        canvas.height = image.height;
+        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}`
+        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}`)
     } else {
         // Touch events are not supported
         canvas.width = window.innerWidth;
         console.log(navigator.platform,canvas.width)
+        canvas.width = image.width;
+        canvas.height = image.height;
+        console.log(`1 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}`)
     }
-    canvas.width = image.width;
-    canvas.height = image.height;
     centerImage();
     alert(`${screen.width},${screen.height}`)
 };
@@ -350,23 +371,6 @@ function centerImage() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(image, x, y);
 }
-
-//Viewport fidelity
-function adjustViewport() {
-    const currentScale = window.visualViewport.scale;
-    // Check if the scale is greater than 1 (zoomed in)
-    if (currentScale > 1) {
-        // Prevent the browser from scaling beyond the initial scale
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
-        document.getElementById('header').classList.add('none');
-    } else {
-        // Revert to default viewport settings
-        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
-    }
-}
-
-// Event listener to detect changes in visual viewport scale (e.g., zooming)
-window.visualViewport.addEventListener('resize', adjustViewport);
 
 //sService worker
 
