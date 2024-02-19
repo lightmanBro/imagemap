@@ -83,7 +83,7 @@ input::placeholder {
 }
 
 canvas {
-    width: 100vw;/*Needs to be in auto because the drawing on the canvas needs to be accurate.*/
+    width: auto;/*Needs to be in auto because the drawing on the canvas needs to be accurate.*/
     height: auto;
     align-self: center;
     position: relative;

@@ -115,6 +115,8 @@ function zoomOut() {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
+image.style.width =5400;
+image.style.height = 5400;
 
 image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
@@ -131,20 +133,10 @@ image.onload = function () {
     // image.width = '100%';
     // canvas.height = window.clientY;
     if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
-        // Touch events are supported
-        // canvas.width=screen.width;
         console.log(navigator.platform,canvas.width)
-        canvas.style.display = 'flex';
-        // canvas.style.maxWidth = '100vw';
-        canvas.style.boxSizing = 'border-box';
         canvas.width =5400;
-        image.style.flex = '1 0 auto';
-        // image.style.objectFit = 'contain';
-        image.style.width =5400;
         canvas.height = 7200
-        image.style.height = 5400;
-        image.style.border = '12px solid green'
-
+        
         document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} pos removed`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height} pos removed`);
         console.log(canvas)
@@ -251,7 +243,7 @@ function updateHTMLPosition() {
 
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
-    console.log(drawingPath);
+    console.log(drawingPath,canvas,image);
     
     /*
     To implement the direction on the map we need to use
