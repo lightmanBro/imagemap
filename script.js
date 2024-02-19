@@ -133,7 +133,7 @@ image.onload = function () {
         canvas.height = maxHeight;
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        canvas.style.border = '2px solid purple'
+        // canvas.style.border = '2px solid purple'
         // document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(canvas)
@@ -141,7 +141,6 @@ image.onload = function () {
         // For non-touch devices, set canvas dimensions based on window size
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     }
 };
