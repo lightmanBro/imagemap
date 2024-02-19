@@ -271,6 +271,10 @@ button span .material-symbols-outlined{
         will-change: transform; /*Hint to the browser to use hardware acceleration*/
         /* transform: translateZ(0); Force hardware acceleration */
     }
+    image{
+        width: 5400;
+        height: 7200;
+    }
     .flex{
         margin-top: .25rem;
     }
