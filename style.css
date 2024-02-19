@@ -83,7 +83,7 @@ input::placeholder {
 }
 
 canvas {
-    width: auto;/*Needs to be in auto because the drawing on the canvas needs to be accurate.*/
+    width: 100vw;/*Needs to be in auto because the drawing on the canvas needs to be accurate.*/
     height: auto;
     align-self: center;
     position: relative;
@@ -262,7 +262,7 @@ button span .material-symbols-outlined{
     }
     canvas{
         width: 100vh;
-        /* height: auto; */
+        height: auto;
         position: relative;
         z-index: auto;
         margin-top: 3.5rem;
@@ -271,10 +271,10 @@ button span .material-symbols-outlined{
         will-change: transform; /*Hint to the browser to use hardware acceleration*/
         /* transform: translateZ(0); Force hardware acceleration */
     }
-    image{
+    /* image{
         width: 5400;
         height: 7200;
-    }
+    } */
     .flex{
         margin-top: .25rem;
     }

@@ -135,17 +135,16 @@ image.onload = function () {
         // canvas.width=screen.width;
         console.log(navigator.platform,canvas.width)
         canvas.style.display = 'flex';
-        canvas.style.maxWidth = '100vw';
+        // canvas.style.maxWidth = '100vw';
         canvas.style.boxSizing = 'border-box';
         canvas.width =5400;
-        image.style.flex = '1 0 auto';
-        image.style.objectFit = 'cover';
-
-        image.width =5400;
+        // image.style.flex = '1 0 auto';
+        // image.style.objectFit = 'contain';
+        image.style.width ='inherit';
         canvas.height = 7200
-        image.height = 7200;
+        image.style.height = 'inherit';
 
-        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}, js css 100vh imgwd=5400,ht=7200`
+        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`)
     } else {
         // Touch events are not supported
