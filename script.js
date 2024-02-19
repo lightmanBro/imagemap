@@ -135,10 +135,10 @@ image.onload = function () {
         canvas.width=screen.width;
         console.log(navigator.platform,canvas.width)
         canvas.width =5400;
-        image.width = 5400;
+        image.width = canvas.width;
 
         canvas.height = 7200
-        image.height = 7200;
+        image.height = canvas.height;
         document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`)
     } else {
