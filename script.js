@@ -1,3 +1,4 @@
+
 window.addEventListener('DOMContentLoaded',(e)=>{
     // Check if the browser supports the Notification API
     if ("Notification" in window) {
@@ -108,6 +109,21 @@ image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image 
 // Disable image smoothing to prevent blurriness
 ctx.imageSmoothingEnabled = false;
 
+if (/iPad|iPhone|iPod/.test(navigator.platform)) {
+    // Touch events are supported or the platform is iOS
+    // Then the canvas and image width should be the window width.
+    canvas.width = window.innerWidth;
+    image.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    image.height = window.innerHeight;
+} else {
+    // Touch events are not supported
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    image.width = window.innerWidth;
+    image.height = window.innerHeight;
+}
+
 image.onload = function () {
     setTimeout(() => {
         document.querySelector('.welcome').style.display = 'none';        
@@ -117,8 +133,8 @@ image.onload = function () {
     //Had to shut this down because its cutting the canvas to half.
     // image.width = '100%';
     // canvas.height = window.clientY;
-    canvas.width = image.width;
-    canvas.height = image.height;
+    // canvas.width = image.width;
+    // canvas.width = image.height;
     centerImage();
 };
 
