@@ -115,9 +115,6 @@ function zoomOut() {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
-canvas.width =5400;
-canvas.height = 7200
-console.log(image);
 image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
 image.onload = function () {
@@ -126,26 +123,27 @@ image.onload = function () {
     }, 2000);
 
     document.querySelector('canvas').style.display = 'block';
-    //Had to shut this down because its cutting the canvas to half.
-    // canvas.height = window.clientY;
     if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
-        console.log(navigator.platform,canvas.width)
-        canvas.width =5400;
-        canvas.height = 7200;
+        // For touch devices, set a fixed size
+        const aspectRatio = image.width / image.height;
+        const maxWidth = 5400; // Adjust as needed
+        const maxHeight = maxWidth / aspectRatio;
+        
+        canvas.width = maxWidth;
+        canvas.height = maxHeight;
+        
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         canvas.style.border = '2px solid purple'
         document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(canvas)
-        centerImage()
     } else {
-        // Touch events are not supported
+        // For non-touch devices, set canvas dimensions based on window size
         canvas.width = window.innerWidth;
-        console.log(navigator.platform,canvas.width)
-        canvas.width = image.width;
-        canvas.height = image.height;
-        console.log(`1 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}`)
+        canvas.height = window.innerHeight;
+        
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     }
-    centerImage();
 };
 
 image.loading = 'eager';
