@@ -117,7 +117,7 @@ const ctx = canvas.getContext("2d");
 const image = new Image();
 canvas.width =5400;
 canvas.height = 7200
-image.width =canvas.width;
+image.width ='100%';
 image.height = canvas.height;
 console.log(image);
 image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
@@ -139,7 +139,7 @@ image.onload = function () {
         canvas.width =5400;
         canvas.height = 7200
         canvas.style.border = '2px solid purple'
-        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} border color`
+        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(canvas)
     } else {
