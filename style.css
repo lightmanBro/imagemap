@@ -143,7 +143,11 @@ button span .material-symbols-outlined{
     height: 50px;
     animation: spin 2s linear infinite;
 }
-
+canvas{
+    position: relative;
+    width: auto;
+    height: auto;
+}
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

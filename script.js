@@ -127,8 +127,8 @@ image.onload = function () {
         console.log(canvas)
     } else {
         // For non-touch devices, set canvas dimensions based on window size
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = image.width;
+        canvas.height = image.height;
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     }
 };
