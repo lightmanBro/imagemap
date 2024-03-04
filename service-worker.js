@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         }
         // No cache match - fetch from network
-        console.log('Cache miss, fetching from network', event.request.url);
+        console.log('Cache miss, fetching from network immediately', event.request.url);
         return fetch(event.request);
       })
       .catch((error) => {
