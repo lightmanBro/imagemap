@@ -109,7 +109,7 @@ function zoomOut() {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
-image.src = "/SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
+image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
 image.onload = function () {
     setTimeout(() => {
