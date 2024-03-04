@@ -148,6 +148,33 @@ canvas{
     width: auto;
     height: auto;
 }
+select{
+    margin: auto;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    width: 50%;
+}
+option{
+    font-size: 2.5rem;
+}
+.alt-routes{
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    gap: .5rem;
+}
+.alternate{
+    display: inline-block;
+    background-color: rgba(31, 120, 244, 0.753);
+    color: white;
+    font-size: 2.5rem;
+    padding: 1.5rem;
+    border-radius: 2rem;
+}
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -237,6 +264,19 @@ canvas{
     }
     input::placeholder{
         font-size: 1rem;
+    }
+    select{
+        margin: auto;
+        margin-bottom: 1rem;
+        padding: .5rem;
+        border-radius: 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        width: fit-content;
+    }
+    option{
+        font-size: inherit;
     }
     button{
         padding: .25rem;

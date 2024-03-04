@@ -1,4 +1,7 @@
 
+// const username = sessionStorage.getItem('username');
+// console.log(username)
+
 window.addEventListener('DOMContentLoaded',(e)=>{
     // Check if the browser supports the Notification API
     if ("Notification" in window) {
@@ -42,12 +45,15 @@ document.querySelector('.welcome').style.display = 'block';
 const open_welcome = document.querySelector('#open-welcome');
 const close_welcome = document.querySelector('#close-welcome')
 
+
 open_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'block';
     document.querySelector('.logo').style.display = 'none';
     document.querySelector('.loader-container').style.display = 'none';
     document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this software';
 })
+
+//
 close_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'none';    
 })
@@ -103,7 +109,7 @@ function zoomOut() {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
-image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
+image.src = "../img/SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
 
 image.onload = function () {
     setTimeout(() => {
@@ -126,7 +132,6 @@ image.onload = function () {
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(canvas)
     } else {
-        // For non-touch devices, set canvas dimensions based on window size
         canvas.width = image.width;
         canvas.height = image.height;
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -155,7 +160,6 @@ canvas.addEventListener("mousedown", (e) => {
 
 canvas.addEventListener("mousemove", (e) => {
     if (isDrawing) {
-        // Calculate the mouse position relative to the document
         const currentX = e.clientX + window.scrollX;
         const currentY = e.clientY + window.scrollY;
         drawingPath.push({ x: currentX, y: currentY });
@@ -165,14 +169,15 @@ canvas.addEventListener("mousemove", (e) => {
     }
 });
 
+// Optimize canvas drawing functions for performance
 function drawLine(x1, y1, x2, y2) {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.lineWidth = lineWidth; // Set line width
     ctx.stroke();
-    ctx.save()
 }
+
 function drawLine2(x1, y1, x2, y2) {
     // Draw the line on the canvas
     ctx.beginPath();
@@ -194,7 +199,7 @@ function drawLine2(x1, y1, x2, y2) {
     ctx.fillStyle = 'orangered';
     ctx.fillRect(x1 - divWidth / 2, y1 - divHeight / 2, divWidth, divHeight);
     ctx.fillStyle = 'black';
-    ctx.fillText('office 204', x1 - divWidth / 2 + 10, y1 + 5);
+    ctx.fillText(`${x1}-${y1}`, x1 - divWidth / 2 + 10, y1 + 5);
 
     // Reset shadow to default
     ctx.shadowColor = 'transparent';
@@ -225,106 +230,45 @@ function updateHTMLPosition() {
 
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
-    console.log(drawingPath,canvas,image);
+    console.log(drawingPath,canvas,image); 
+    });
+// Get the select element
+const selectElement = document.querySelector("select");
+
+const goBtn = document.getElementById("drawLine");
+
+goBtn.addEventListener("click", (e) => {
     
-    /*
-    To implement the direction on the map we need to use
-     (beginning)-> Where the user wants to move from.
-      (via)-> [arrays of coordinates that the route is on]
-     (End)-> The final destination of the user, either the name of the office or the number of the office.
-    */
-    //5520 - 5500
-    drawLine2(1134, 474, 3678, 474);
-    //Wrkst 5544-5545
-    drawLine2(3678, 464, 3678, 720)
-    //5525- wrkst 5545
-    drawLine2(3678, 720, 1150, 720);
-    //5541 - corridor C5001
-    drawLine2(3200, 720, 4428, 1093)
-    //5541 - corridor C5000
-    drawLine2(3220, 720, 3084, 1232)
-    //corridor C5002
-    drawLine2(3515, 818, 3366, 1318)
-    drawLine2(4175, 1021, 4029, 1533);
-    //corridor C5000-C5110 to the back of 5208 and elevator 1-5PE7
-    drawLine2(4029, 1533, 3862, 2099);
-    //C5000 via Elevator lobby Elevator 4 - 11
-    drawLine2(3805, 1474, 3628, 2036);
-    //5580 - coorodor C5560
-    drawLine2(1143, 1463, 2885, 1453);
-    //closet 5404 via corridor C5400 via corridor C5405
-    drawLine2(3021, 1461, 2918, 1847);
-    //corridor C5405 
-    drawLine2(2918, 1847, 3430, 1984);
-    //corridor C5405 - C5100 via elevator 1-5PE7 corridor
-    drawLine2(3430, 1984, 4123, 2182);
-    //Junction of 5208,5108 corridor C5100
-    drawLine2(4123, 2182, 4272, 1624)
-    //C5000 corridor
-    drawLine2(3084, 1232, 4274, 1618);
-    //5201 supply - 5203 corridor
-    drawLine2(4428, 1093, 4274, 1618)
-    //5554 pantry to 5560 corridor
-    drawLine2(1142, 1200, 2888, 1199)
-    //C5560 corridor
-    drawLine2(2888, 1199, 2886, 1461);
-    //C5560 corridor join comm rm, closet
-    // drawLine2(4272, 1624, 3023, 1461);
-    //5404 closet corridor
-    //5209 - 5524 corridor 5405 5510
-    drawLine2(4121.60000038147,2171.800003051758,3532,4321.199951171875);
-    //5407-5424 corridor 5405 5510
-    drawLine2(3414.400001525879,1991.5999755859375,2822,4126);
-    //5307 - corridor 5405 5510
-    drawLine2(2924,1853.5999755859375,2313,3988.5999755859375)
-    //pantry 5020 - coom rm 15 CR-D corridor 5405 5510
-    drawLine2(3868.400001525879, 2113.2000122070312,3270.400001525879,4253.800048828125);
-    //Copy and print 5514 - 5612/5613 corridor C5610
-    drawLine2(1144.400001525879,2755.800048828125,2671.400001525879,2752.800048828125);
-    //Supply 5617-5626 corridor C5620
-    drawLine2(1151,3035.5999755859375,2595,3037.5999755859375);
-    //Corridor C5635
-    drawLine2(1154.400001525879,3492,2463.400001525879,3496);
-    //
-    drawLine2(1164,3764.4000244140625,2374,3767.5999755859375);
-
-    //
-    // drawLine2(1144.400001525879,2755.800048828125,1164,3764.4000244140625)
-    //Corridor C5325,C5225,C5020
-    drawLine2(2323,3988,3536, 4321.5999755859375);
-    //
-    drawLine2(3097,3143.800048828125,3795,3348.800048828125);
-    //
-    drawLine2(2816,4119.199951171875,2163,6439.60009765625);
-    //
-    drawLine2(3267,4247.199951171875,2614,6561.199951171875);
-    //
-    drawLine2(2102,4743.60009765625,1654,6308.60009765625);
-    //
-    drawLine2(1414,5037.60009765625,2009,5041,);
-    //
-    drawLine2(1382,5325.800048828125,1929,5329.60009765625);
-    //
-    drawLine2(1382,5774,1801,5768);
-    //
-    drawLine2(1417,5975.60009765625,1747,5978.60009765625);
-    //
-    drawLine2(3392,4791.199951171875,3529,4318.199951171875);
-    //
-    drawLine2(2681,4596.60009765625,3539,4849);
-    //
-    drawLine2(3017,6676.800048828125,3539,4849);
-    //
-    drawLine2(1651,6298.800048828125,3017,6676.800048828125);
-    // Elevator lobby 2-5PE-3
-    drawLine2(2598,5697.60009765625,2838,5757.60009765625);
-    // Elevator lobby 2-5PE-2
-    drawLine2(3193,3389.5999755859375,3036,3348.5999755859375);
-    //Toilet Corridor 2 C5265
-    drawLine2(2659,5466.60009765625,2896,5556.60009765625);
-
+  // Use a switch statement to handle different cases based on the selected value
+  switch (selectElement.value) {
+    case "point-to-point":
+      pointToPoint();
+      break;
+    case "routes":
+      console.log("routes");
+      pointToRoutes();
+      break;
+    default:
+      console.log("default");
+      break;
+  }
 });
 
+function pointToPoint() {
+    console.log("point to point");
+    drawLine2(4274, 1618, 4123, 2182);
+  }
+
+function pointToRoutes(){
+    // Now you have the shortest route and its length
+    console.log("Shortest Route:", shortestRoute);
+        // Iterate over each segment in the shortest route
+    shortestRoute.forEach(segment => {
+        const [x1, y1, x2, y2] = segment;
+        // Call draw2() with the coordinates of the current segment
+        drawLine2(x1, y1, x2, y2);
+    });
+}
 // Function to draw the path on the canvas
 function drawPath() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous drawings
@@ -381,3 +325,157 @@ if ('serviceWorker' in navigator) {
         });
     });
   }
+  
+  
+// Define the graph as an array of line segments [x1, y1, x2, y2]
+const graph = [
+    [2448, 472, 2457, 715],
+    [3678, 720, 2457, 715],
+    [2454, 715, 1150, 720],
+    [2448, 472, 3678, 474],
+    [2448, 472, 1134, 474],
+    [3230, 720, 3084, 1232],
+    [3678, 474, 3678, 720],
+    [3679, 879, 3678, 720],
+    [679, 879, 3515, 818],
+    [3515, 818, 3230, 720],
+    [4163, 1016, 3679, 879],
+    [4428, 1093, 4163, 1016],
+    [4175, 1021, 4029, 1533],
+    [3515, 818, 3366, 1318],
+    [457, 1454, 2886, 1461],
+    [4428, 1093, 4274, 1618],
+    [3805, 1474, 3628, 2036],
+    [3366, 1318, 4029, 1533],
+    [4029, 1533, 4274, 1618],
+    [3084, 1232, 3366, 1318],
+    [1143, 1463, 2457, 1454],
+    [4175, 1021, 4428, 1093],
+    [2684, 4574.199951171875, 2822, 4126],
+    [2822, 4126, 2684, 4574.199951171875],
+    [2684, 4574.199951171875, 3132, 4704.800048828125],
+    [3868.400001525879, 2113.2000122070312, 4029, 1533],
+    [3132, 4704.800048828125, 2886, 5543.60009765625],
+    [3545, 3259.199951171875, 3868.400001525879, 2113.2000122070312],
+    [3270.400001525879, 4253.800048828125, 3132, 4704.800048828125],
+    [3270.400001525879, 4253.800048828125, 3545, 3259.199951171875],
+    [3392, 4788.60009765625, 3132, 4704.800048828125],
+    [2457, 1454, 2451, 1191.2000122070312],
+    [1881, 5527.800048828125, 2390, 5626.60009765625],
+    [2451, 1191.2000122070312, 2457, 730.8000030517578],
+    [3084, 1232, 3013.5999755859375, 1459.59997558593],
+    [1143, 1463, 3018.5999755859375, 1455.79998779296],
+    [2886, 1461, 3020.5999755859375, 1462.3999633789],
+    [3013.5999755859375, 1459.59997558593, 2924, 1853.5999755859375],
+    [3430, 1984, 3868.400001525879, 2113.2000122070312],
+    [2924, 1853.5999755859375, 2665.5999755859375, 2746.59997558593],
+    [2665.5999755859375, 2746.59997558593, 2567.5999755859375, 3020],
+    [2567.5999755859375, 3020, 2442.199981689453, 3502.19995117187],
+    [1144, 3495.199951171875, 2442.199981689453, 3502.19995117187],
+    [2442.199981689453, 3502.19995117187, 2368.5999755859375, 3770.599853515625],
+    [1142, 3763.39990234375, 2368.5999755859375, 3770.599853515625],
+    [2822, 4126, 3270.400001525879, 4253.800048828125],
+    [2368.5999755859375, 3770.599853515625, 2307, 3988],
+    [3868.400001525879, 2113.2000122070312, 3545, 3259.199951171875],
+    [3545, 3259.199951171875, 3270.400001525879, 4253.800048828125],
+    [3270.400001525879, 4253.800048828125, 3532, 4318.199951171875],
+    [1164, 3764.4000244140625, 2374, 3767.5999755859375],
+    [1144.400001525879, 2755.800048828125, 1164, 3764.4000244140625],
+    [2816, 4119.199951171875, 2684, 4574.199951171875],
+    [2886, 1461, 3013.5999755859375, 1459.59997558593],
+    [2684, 4574.199951171875, 3129, 4711.60009765625],
+    [2390, 5626.60009765625, 2457, 5409.39990234375],
+    [3270.400001525879, 4253.800048828125, 2828, 5742],
+    [2828, 5742, 2604, 6564.60009765625],
+    [2390, 5626.60009765625, 2828, 5742],
+    [2092, 4733.60009765625, 2006, 5044.60009765625],
+    [2006, 5044.60009765625, 1920, 5339.2001953125],
+    [1920, 5339.2001953125, 1881, 5527.800048828125],
+    [1881, 5527.800048828125, 1811, 5767.60009765625],
+    [2390, 5626.60009765625, 1881, 5527.800048828125],
+    [1744, 5985, 1811, 5767.60009765625],
+    [1811, 5767.60009765625, 1376, 5770.60009765625],
+    [1660, 6298.60009765625, 1744, 5985],
+    [2390, 5626.60009765625, 2163, 6429.60009765625],
+    [2163, 6429.60009765625, 1660, 6298.60009765625],
+    [2163, 6429.60009765625, 2601, 6561.60009765625],
+    [3270.400001525879, 4253.800048828125, 3532, 4321.199951171875],
+    [3532, 4321.199951171875, 3392, 4788.60009765625],
+    [3392, 4788.60009765625, 2684, 4574.199951171875],
+    [3392, 4788.60009765625, 3542, 4855.60009765625],
+    [3542, 4855.60009765625, 3318, 5649.60009765625],
+    [2886, 5543.60009765625, 3318, 5649.60009765625],
+    [3318, 5649.60009765625, 3034, 6679.60009765625],
+    [2601, 6561.60009765625, 3034, 6679.60009765625],
+    [3270.400001525879, 4253.800048828125, 2886, 5543.60009765625],
+    [2684, 4574.199951171875, 2457, 5409.39990234375],
+    [2886, 5543.60009765625, 2828, 5742],
+    [2390, 5626.60009765625, 2163, 6439.60009765625],
+    [1414, 5037.60009765625, 2009, 5041],
+    [1382, 5325.800048828125, 1929, 5329.60009765625],
+    [1417, 5975.60009765625, 1747, 5978.60009765625],
+    [3017, 6676.800048828125, 3539, 4849],
+    [2598, 5697.60009765625, 2838, 5757.60009765625],
+    [3193, 3389.5999755859375, 3036, 3348.5999755859375],
+    [2659, 5466.60009765625, 2896, 5556.60009765625],
+    [2451, 1191.2000122070312, 2888, 1199],
+    [2886, 1461, 2457, 1454],
+    [3430, 1984, 2822, 4126],
+    [2457, 1454, 2886, 1461],
+    [2457, 1454, 2448, 472],
+    [2448, 472, 2457, 1454],
+    [2888, 1199, 2886, 1461],
+    [1382, 5774, 1801, 5768],
+    [2307, 3988, 2822, 4126],
+    [3430, 1984, 2822, 4126],
+    [3515, 818, 3678, 720],
+    [4274, 1618, 4123, 2182],
+    // Add other line segments similarly...
+];
+
+function arePointsEqual(point1, point2, tolerance = 0.001) {
+    const [x1, y1] = point1;
+    const [x2, y2] = point2;
+    return Math.abs(x1 - x2) < tolerance && Math.abs(y1 - y2) < tolerance;
+}
+
+function findShortestRoute(graph, start, end) {
+    const visited = new Set();
+    const queue = [[start, []]]; // Queue of [currentPoint, route]
+    
+    while (queue.length > 0) {
+        const [currentPoint, route] = queue.shift();
+        visited.add(JSON.stringify(currentPoint));
+
+        for (const segment of graph) {
+            const [x1, y1, x2, y2] = segment;
+            const nextPoint1 = [x1, y1];
+            const nextPoint2 = [x2, y2];
+            if (arePointsEqual(nextPoint1, currentPoint) && !visited.has(JSON.stringify(nextPoint2))) {
+                const newRoute = [...route, segment];
+                if (arePointsEqual(nextPoint2, end)) {
+                    return newRoute; // Reached the end point
+                }
+                queue.push([nextPoint2, newRoute]);
+                visited.add(JSON.stringify(nextPoint2));
+            }
+            if (arePointsEqual(nextPoint2, currentPoint) && !visited.has(JSON.stringify(nextPoint1))) {
+                const newRoute = [...route, segment];
+                if (arePointsEqual(nextPoint1, end)) {
+                    return newRoute; // Reached the end point
+                }
+                queue.push([nextPoint1, newRoute]);
+                visited.add(JSON.stringify(nextPoint1));
+            }
+        }
+    }
+  
+    return []; // No path found to end point
+}
+
+// Example usage:
+const start =[2888, 1199];
+const end = [2390, 5626.60009765625];
+const shortestRoute = findShortestRoute(graph, start, end);
+console.log(shortestRoute);
+
