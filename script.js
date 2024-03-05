@@ -258,7 +258,7 @@ goBtn.addEventListener("click", (e) => {
     }
 });
 
-
+// 1971, y: 3454.199951171875,
 function pointToPoint() {
     
     console.log("point to point");
