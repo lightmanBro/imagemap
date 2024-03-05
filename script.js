@@ -238,21 +238,26 @@ const selectElement = document.querySelector("select");
 const goBtn = document.getElementById("drawLine");
 
 goBtn.addEventListener("click", (e) => {
-    
-  // Use a switch statement to handle different cases based on the selected value
-  switch (selectElement.value) {
-    case "point-to-point":
-      pointToPoint();
-      break;
-    case "routes":
-      console.log("routes");
-      pointToRoutes();
-      break;
-    default:
-      console.log("default");
-      break;
-  }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Redraw the background image
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+    // Use a switch statement to handle different cases based on the selected value
+    switch (selectElement.value) {
+        case "point-to-point":
+            pointToPoint();
+            break;
+        case "routes":
+            console.log("routes");
+            pointToRoutes();
+            break;
+        default:
+            console.log("default");
+            break;
+    }
 });
+
 
 function pointToPoint() {
     
