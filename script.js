@@ -255,11 +255,15 @@ goBtn.addEventListener("click", (e) => {
 });
 
 function pointToPoint() {
+    // Clear the entire canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     console.log("point to point");
     drawLine2(4274, 1618, 4123, 2182);
   }
 
 function pointToRoutes(){
+    // Clear the entire canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     // Now you have the shortest route and its length
     console.log("Shortest Route:", shortestRoute);
         // Iterate over each segment in the shortest route

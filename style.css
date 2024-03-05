@@ -267,13 +267,17 @@ option{
     }
     select{
         margin: auto;
-        margin-bottom: 1rem;
+        margin-bottom: .25rem;
         padding: .5rem;
+        padding-inline: 1rem;
         border-radius: 2rem;
         font-size: 1rem;
         font-weight: 600;
         text-align: center;
         width: fit-content;
+        border: none;
+        background-color: rgb(236, 236, 236);
+        outline: none;
     }
     option{
         font-size: inherit;
