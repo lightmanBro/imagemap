@@ -16,15 +16,16 @@ html, body {
 }
 .header{
     width: 100%;
-    background-color: rgba(31, 120, 244, 0.753);
+    background-color: rgb(236, 236, 236);
     position: fixed;
     width: 100%;
     /* left: 0; */
     /* padding: 1rem; */
-    color: white;
+    color: black;
     text-align: left;
     margin: auto;
     font-size: 2.5rem;
+    font-weight: 600;
     z-index: 1;
     gap: 1rem;
 }
@@ -91,13 +92,15 @@ button {
     height: inherit;
     width: 100%;
     font-size: 3.5rem;
-    background-color: rgba(31, 120, 244, 0.753);
+    font-weight: 600;
+    background-color: rgb(251, 249, 249);
     border-radius: 5rem;
     outline: none;
     border: none;
-    color: white;
+    color: black;
     font-weight: 600;
     padding: 1.5rem;
+    border: .025rem solid rgb(189, 188, 188);
 }
 button span .material-symbols-outlined{
     font-size: 3.5rem;
@@ -106,7 +109,7 @@ button span .material-symbols-outlined{
     position: absolute;
     width: 100vw;
     height: fit-content;
-    background-color: rgba(31, 120, 244, 0.753);
+    background-color: rgb(236, 236, 236);
     /* right: 1rem; */
     left: -1rem;
     top: 0;
@@ -121,7 +124,7 @@ button span .material-symbols-outlined{
     position: absolute;
     right: 1rem;
     top: 1rem;
-    color: white;
+    color: black;
 }
 .loader-container {
     display: flex;
@@ -130,7 +133,7 @@ button span .material-symbols-outlined{
     align-items: center;
     gap: 1rem;
     font-size: 1.5rem;
-    color: white;
+    color: black;
     margin-bottom: 2rem;
     height: fit-content;
 }
@@ -167,14 +170,7 @@ option{
     padding: 1rem;
     gap: .5rem;
 }
-.alternate{
-    display: inline-block;
-    background-color: rgba(31, 120, 244, 0.753);
-    color: white;
-    font-size: 2.5rem;
-    padding: 1.5rem;
-    border-radius: 2rem;
-}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -187,7 +183,7 @@ option{
         width: 100vw;
         height: 100vh;
         padding: .5rem;
-        background-color: rgba(31, 120, 244, 0.919);
+        background-color: rgb(236, 236, 236);
         margin: auto;
         position: absolute;
         text-align: center;
@@ -199,7 +195,7 @@ option{
     }
     .welcome-text{
         margin-top: 2rem;
-        color: white;
+        color: black;
         font-size: 2rem;
     }
     .welcome-instruction{
@@ -209,10 +205,10 @@ option{
         /* position: absolute; */
         border: .25rem solid white;
         border-radius: .5rem;
-        background-color: rgba(31, 120, 244, 0.979);
+        background-color: rgb(236, 236, 236);
         font-size: 1.2rem;
         padding: .275rem;
-        color: white;
+        color: black;
         bottom: 0;
     }
     .header{
@@ -275,7 +271,7 @@ option{
         font-weight: 600;
         text-align: center;
         width: fit-content;
-        border: none;
+        border: .025rem solid grey;
         background-color: rgb(236, 236, 236);
         outline: none;
     }
