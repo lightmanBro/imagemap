@@ -123,8 +123,8 @@ image.onload = function () {
         const maxWidth = 5400; // Adjust as needed
         const maxHeight = maxWidth / aspectRatio;
         
-        canvas.width = maxWidth;
-        canvas.height = maxHeight;
+        canvas.width = maxWidth || window.innerWidth;
+        canvas.height = maxHeight || window.innerHeight;
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         // canvas.style.border = '2px solid purple'
