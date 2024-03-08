@@ -118,6 +118,7 @@ image.onload = function () {
 
     document.querySelector('canvas').style.display = 'block';
     if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
+        document.querySelector('.devicename').innerHTML = navigator.platform
         // For touch devices, set a fixed size
         const aspectRatio = image.width / image.height;
         const maxWidth = 5400; // Adjust as needed
@@ -127,11 +128,13 @@ image.onload = function () {
         canvas.height = maxHeight || window.innerHeight;
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        if(/iPad|iPhone|iPod/.test(navigator.platform)) document.querySelector('.devicename').innerHTML = navigator.platform;
         // canvas.style.border = '2px solid purple'
         // document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(canvas)
     } else {
+        document.querySelector('.devicename').innerHTML = ` Your device is ${navigator.platform}`
         canvas.width = image.width;
         canvas.height = image.height;
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
