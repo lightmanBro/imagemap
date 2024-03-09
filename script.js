@@ -124,15 +124,19 @@ image.onload = function () {
         const maxWidth = 5400; // Adjust as needed
         const maxHeight = maxWidth / aspectRatio;
         
-        canvas.width = maxWidth || window.innerWidth || document.body.getBoundingClientRect().width || screen.width;
-        canvas.height = maxHeight || window.innerHeight || document.body.getBoundingClientRect().height || screen.height;
+        canvas.width = maxWidth || window.innerWidth || document.body.getBoundingClientRect().width;
+        canvas.height = maxHeight || window.innerHeight || document.body.getBoundingClientRect().height;
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        if(/iPad|iPhone|iPod/.test(navigator.platform)) document.querySelector('.devicename').innerHTML =
+        if(/iPad|iPhone|iPod/.test(navigator.platform)){
+            canvas.width = window.width || screen.width || `70vh`;
+            canvas.height = window.height || screen.height || `100vh`;
+         document.querySelector('.devicename').innerHTML =
          `${navigator.platform}\s
          width ${canvas.width} height: ${canvas.height}\s 
          image height: ${image.height} image width: ${image.width}\s 
          device height: ${window.height || screen.height} width : ${window.width || screen.width}`;
+        }
         // canvas.style.border = '2px solid purple'
         // document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
