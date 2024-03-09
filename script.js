@@ -127,7 +127,7 @@ image.onload = function () {
         canvas.width = maxWidth;
         canvas.height = maxHeight;
 
-        if(/iPad|iPhone|iPod/.test(navigator.platform)){
+        if(/iPad|iPhone|iPod|MacIntel/.test(navigator.platform)){
             canvas.width = document.body.getBoundingClientRect().width || window.width || screen.width;
             canvas.height = document.body.getBoundingClientRect().height || window.height || screen.height;
             document.querySelector('.devicename').innerHTML =
