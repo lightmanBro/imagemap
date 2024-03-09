@@ -134,7 +134,7 @@ image.onload = function () {
             `${navigator.platform}\s
             width ${canvas.width} height: ${canvas.height}\s 
             image height: ${image.height} image width: ${image.width}\s 
-            device height: ${window.height || screen.height} width : ${window.width || screen.width}`;
+            device height: ${window.height || screen.height} width : ${window.width || screen.width} 7:06`;
         }
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
