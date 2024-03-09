@@ -128,7 +128,8 @@ image.onload = function () {
         canvas.height = maxHeight;
 
         if (/iPad|iPhone|iPod|MacIntel/.test(navigator.platform)) {
-            canvas.width = document.body.getBoundingClientRect().width || window.innerWidth || screen.width;
+            const maxWidth = 5400; // Maximum width
+            canvas.width = Math.min(maxWidth, document.body.getBoundingClientRect().width || window.innerWidth || screen.width);
             const aspectRatio = image.width / image.height;
             canvas.height = canvas.width / aspectRatio;
             
@@ -138,6 +139,7 @@ image.onload = function () {
                 image height: ${image.height} image width: ${image.width}\s 
                 device height: ${window.innerHeight || screen.height} width : ${window.innerWidth || screen.width}`;
         }
+        
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
