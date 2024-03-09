@@ -128,8 +128,8 @@ image.onload = function () {
         canvas.height = maxHeight;
 
         if(/iPad|iPhone|iPod/.test(navigator.platform)){
-            canvas.width = document.body.getBoundingClientRect().width || window.width || screen.width;
-            canvas.height = `100vh`;
+            canvas.width = maxWidth || document.body.getBoundingClientRect().width || window.width || screen.width;
+            canvas.height = maxHeight || (30% - document.body.getBoundingClientRect().height);
             document.querySelector('.devicename').innerHTML =
             `${navigator.platform}\s
             width ${canvas.width} height: ${canvas.height}\s 
