@@ -128,13 +128,13 @@ image.onload = function () {
         canvas.height = maxHeight;
 
         if(/iPad|iPhone|iPod/.test(navigator.platform)){
-            canvas.width = maxWidth || document.body.getBoundingClientRect().width || window.width || screen.width;
-            canvas.height = maxHeight || (30% - document.body.getBoundingClientRect().height);
+            canvas.width = document.body.getBoundingClientRect().width || window.width || screen.width;
+            canvas.height = document.body.getBoundingClientRect().height || window.height || screen.height;
             document.querySelector('.devicename').innerHTML =
             `${navigator.platform}\s
             width ${canvas.width} height: ${canvas.height}\s 
             image height: ${image.height} image width: ${image.width}\s 
-            device height: ${window.height || screen.height} width : ${window.width || screen.width} 7:06`;
+            device height: ${window.height || screen.height} width : ${window.width || screen.width}`;
         }
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
