@@ -129,7 +129,7 @@ image.onload = function () {
 
         if(/iPad|iPhone|iPod/.test(navigator.platform)){
             canvas.width = document.body.getBoundingClientRect().width || window.width || screen.width;
-            canvas.height = document.body.getBoundingClientRect().height || window.height || screen.height;
+            canvas.height = `100vh`;
             document.querySelector('.devicename').innerHTML =
             `${navigator.platform}\s
             width ${canvas.width} height: ${canvas.height}\s 
