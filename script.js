@@ -109,7 +109,7 @@ function zoomOut() {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
-image.src = "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
+image.src = "./SP1-2-floor-plan-5th-floor.jpg" || './SP1-2-floor-plan-5th-floor.jpg'; // Replace with your actual image URL
 
 image.onload = function () {
     setTimeout(() => {
@@ -128,7 +128,11 @@ image.onload = function () {
         canvas.height = maxHeight || window.innerHeight;
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        if(/iPad|iPhone|iPod/.test(navigator.platform)) document.querySelector('.devicename').innerHTML = navigator.platform;
+        if(/iPad|iPhone|iPod/.test(navigator.platform)) document.querySelector('.devicename').innerHTML =
+         `${navigator.platform}\s
+         width ${canvas.width} height: ${canvas.height}\s 
+         image height: ${image.height} image width: ${image.width}\s 
+         device height: ${window.height || screen.height} width : ${window.width || screen.width}`;
         // canvas.style.border = '2px solid purple'
         // document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
@@ -488,3 +492,10 @@ const end = [2390, 5626.60009765625];
 const shortestRoute = findShortestRoute(graph, start, end);
 console.log(shortestRoute);
 
+try {
+    console.log('from try')
+} catch (error) {
+    console.log(error)
+}finally{
+    console.log('code runs')
+}
