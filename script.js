@@ -124,8 +124,8 @@ image.onload = function () {
         const maxWidth = 5400; // Adjust as needed
         const maxHeight = maxWidth / aspectRatio;
         
-        canvas.width = maxWidth || window.innerWidth;
-        canvas.height = maxHeight || window.innerHeight;
+        canvas.width = maxWidth || window.innerWidth || document.body.getBoundingClientRect().width;
+        canvas.height = maxHeight || window.innerHeight || document.body.getBoundingClientRect().height;
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         if(/iPad|iPhone|iPod/.test(navigator.platform)) document.querySelector('.devicename').innerHTML =
@@ -136,7 +136,7 @@ image.onload = function () {
         // canvas.style.border = '2px solid purple'
         // document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height} img width css`
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
-        console.log(canvas)
+        console.log(document.body.getBoundingClientRect().width, document.body.getBoundingClientRect().height)
     } else {
         document.querySelector('.devicename').innerHTML = ` Your device is ${navigator.platform}`
         canvas.width = image.width;
