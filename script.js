@@ -124,8 +124,8 @@ image.onload = function () {
         const maxWidth = 5400; // Adjust as needed
         const maxHeight = maxWidth / aspectRatio;
         
-        canvas.width = maxWidth || window.innerWidth || document.body.getBoundingClientRect().width;
-        canvas.height = maxHeight || window.innerHeight || document.body.getBoundingClientRect().height;
+        canvas.width = maxWidth || window.innerWidth || document.body.getBoundingClientRect().width || screen.width;
+        canvas.height = maxHeight || window.innerHeight || document.body.getBoundingClientRect().height || screen.height;
         
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         if(/iPad|iPhone|iPod/.test(navigator.platform)) document.querySelector('.devicename').innerHTML =
