@@ -11,7 +11,7 @@ async function getOffices(startPoint, endPoint) {
   let startAxis, endAxis;
   try {
     const offices = await fetch(outputJson);
-    const graphs = await fetch();
+    const graphs = await fetch(graphJson);
     if (offices.ok && graphs.ok) {
       data = await offices.json();
       graph = await graphs.json();
