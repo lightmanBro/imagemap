@@ -1,5 +1,4 @@
 const coordinatesElement = document.querySelector(".coordinates");
-console.log(output,graphs);
 let start, end;
 let graph;
 let shortestRoute;
