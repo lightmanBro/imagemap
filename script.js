@@ -1,7 +1,11 @@
 
+const coordinatesElement = document.querySelector('.coordinates');
+
 let start,end;
 let graph;
 let shortestRoute
+
+const allKeys = [];
 async function getOffices(startPoint, endPoint) {
     let data;
     let startAxis,endAxis
@@ -13,7 +17,8 @@ async function getOffices(startPoint, endPoint) {
             graph = await graphs.json();
             // Iterate over each office object
             data.forEach(office => {
-                
+                const keys = Object.keys(office);
+                allKeys.push(...keys);
                 // Extract office key and coordinates for start point
                 if (office.hasOwnProperty(startPoint)) {
                     console.log("Office Startpoint Key:", startPoint);
@@ -41,7 +46,10 @@ async function getOffices(startPoint, endPoint) {
 
             }else{
                 pointToPoint(start,end)
-                console.log('No route found please use point to point, thanks')
+                coordinatesElement.classList.add('show');
+                setTimeout(() => {
+                    coordinatesElement.classList.remove('show');
+                }, 3000);
             }
             // console.log("Coordinates:",graph,start,end,shortestRoute);
         }
@@ -56,8 +64,15 @@ function findRoute() {
     const endPoint = document.getElementById("to").value.trim();
     if (startPoint && endPoint) {
         getOffices(startPoint, endPoint);
+        allKeys.forEach(k=> {document.querySelector('.offices').insertAdjacentHTML('afterbegin',`<div class="number">${k}</div>`)});
+       
     } else {
-        console.log("Please provide both start and destination points.");
+        drawLine2(startPoint||endPoint);
+        coordinatesElement.classList.add('show');
+        coordinatesElement.innerHTML = "Please provide both start point and destination.";
+                setTimeout(() => {
+                    coordinatesElement.classList.remove('show');
+                }, 3000);
     }
 }
 
@@ -206,7 +221,7 @@ image.onload = function () {
         console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
         console.log(document.body.getBoundingClientRect().width, document.body.getBoundingClientRect().height)
     } else {
-        document.querySelector('.devicename').innerHTML = ` Your device is ${navigator.platform}`
+        // document.querySelector('.devicename').innerHTML = ` Your device is ${navigator.platform}`
         canvas.width = image.width;
         canvas.height = image.height;
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -311,7 +326,6 @@ function updateHTMLPosition() {
 }
 
 
-const no = document.getElementById('office');
 canvas.addEventListener("mouseup", () => {
    
     isDrawing = false;
@@ -335,10 +349,6 @@ goBtn.addEventListener("click", (e) => {
             pointToPoint();
             break;
         case "save":
-            // console.log("routes");
-            // findRoute()
-            // pointToRoutes();
-            downloadCoordinatesJSON()
             break;
         default:
             console.log("default");
@@ -350,9 +360,7 @@ goBtn.addEventListener("click", (e) => {
 
 // 1971, y: 3454.199951171875,
 function pointToPoint(start, end) {
-   
-
-// "axis":[3430, 1984, 3868.400001525879, 2113.2000122070312]
+ 
     console.log("point to point");
 
     // Draw location icon at start point
