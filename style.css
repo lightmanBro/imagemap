@@ -9,6 +9,7 @@ body {
   /* width: fit-content; */
   /* position: absolute; */
   margin: 0; /*To prevent user agent automatic margin*/
+  -webkit-overflow-scrolling: touch;
 }
 .coordinates {
   position: fixed;

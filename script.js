@@ -213,6 +213,8 @@ image.src =
             canvas.height = maxSize / aspectRatio;
 
             document.querySelector(".devicename").innerHTML = `${navigator.platform} width: ${canvas.width}, height: ${canvas.height}`;
+            drawLine(100,200,100,300);
+            drawLine2(100,200,100,300);
         }
 
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -238,6 +240,23 @@ ctx.strokeStyle = lineColor; // Set default line color
 ctx.lineJoin = "round";
 // Set line width
 const lineWidth = 15; // Adjust as needed
+
+canvas.addEventListener("touchmove", (e) => {
+    if (isDrawing) {
+      e.preventDefault(); // Prevent default touch behavior
+      const touch = e.touches[0];
+      const currentX = touch.clientX + window.scrollX;
+      const currentY = touch.clientY + window.scrollY;
+      drawingPath.push({ x: currentX, y: currentY });
+      drawLine(lastX, lastY, currentX, currentY);
+      lastX = currentX;
+      lastY = currentY;
+    }
+  });
+  
+canvas.addEventListener("touchend", () => {
+isDrawing = false;
+});
 
 canvas.addEventListener("mousedown", (e) => {
   isDrawing = true;
