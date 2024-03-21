@@ -3,14 +3,15 @@ const coordinatesElement = document.querySelector(".coordinates");
 let start, end;
 let graph;
 let shortestRoute;
-
+const outputJson="../output.json" || "/output.json" || "./output.json";
+const graphJson = "../graph.json" || "/graph.json" || "./graph.json";
 const allKeys = [];
 async function getOffices(startPoint, endPoint) {
   let data;
   let startAxis, endAxis;
   try {
-    const offices = await fetch("../output.json");
-    const graphs = await fetch("../graph.json");
+    const offices = await fetch(outputJson);
+    const graphs = await fetch();
     if (offices.ok && graphs.ok) {
       data = await offices.json();
       graph = await graphs.json();
