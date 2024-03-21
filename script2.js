@@ -1,52 +1,54 @@
-const paths = [
-    { name: "path1", coordinates: [{ x1: 1134, y1: 474, x2: 3678, y2: 474 }] },
-    { name: "path2", coordinates: [{ x1: 3678, y1: 464, x2: 3678, y2: 720 }] },
-    // Add more paths as needed
-]
+let start,end;
+let graph;
+let shortestRoute
 
-
-function findPathsToDestination(destinationX, destinationY, currentPath = {}, visitedPaths = [], allPaths = []) {
-    if (!currentPath.hasOwnProperty('coordinates')) return []; // If currentPath doesn't have coordinates property, return an empty array
-
-    visitedPaths.push(currentPath.name);
-
-    const lastCoordinate = currentPath.coordinates[currentPath.coordinates.length - 1];
-
-    if ((lastCoordinate.x1 === destinationX && lastCoordinate.y1 === destinationY) ||
-        (lastCoordinate.x2 === destinationX && lastCoordinate.y2 === destinationY)) {
-        // If the destination is reached, return the current path
-        return [currentPath];
-    }
-
-    const nextPaths = allPaths.filter(path => {
-        const lastCoordinatePath = path.coordinates[path.coordinates.length - 1];
-        return (lastCoordinate.x2 === lastCoordinatePath.x1 && lastCoordinate.y2 === lastCoordinatePath.y1) ||
-            (lastCoordinate.x2 === lastCoordinatePath.x2 && lastCoordinate.y2 === lastCoordinatePath.y2);
-    });
-
-    let connectedPaths = [];
-
-    nextPaths.forEach(path => {
-        if (!visitedPaths.includes(path.name)) {
-            const connected = findPathsToDestination(destinationX, destinationY, path, [...visitedPaths], allPaths);
-            connectedPaths = connectedPaths.concat(connected);
+async function getOffices(startPoint, endPoint) {
+    let data;
+    try {
+        const offices = await fetch("../output.json");
+        const graphs = await fetch("../graph.json");
+        if (offices.ok && graphs.ok) {
+            data = await offices.json();
+            graph = await graphs.json();
+            // Iterate over each office object
+            data.forEach(office => {
+                // Extract office key and coordinates for start point
+                if (office.hasOwnProperty(startPoint)) {
+                    console.log("Office Startpoint Key:", startPoint);
+                    const {x,y}= office[startPoint].coordinates
+                    start = [x,y];
+                    console.log("Coordinates:",start); 
+                   
+                }
+                // Extract office key and coordinates for end point
+                if (office.hasOwnProperty(endPoint)) {
+                    console.log("Office Endpoint Key:", endPoint);
+                    const {x,y}= office[endPoint].coordinates
+                    end = [x,y]
+                    console.log("Coordinates:",end);                   
+                }
+            });
+            shortestRoute = findShortestRoute(graph, start, end);
+            console.log("Coordinates:",graph,start,end,shortestRoute)
         }
-    });
-
-    return connectedPaths;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 
-const destinationX = 3430;
-const destinationY = 1984;
-const currentPath = {}; // Provide an initial empty object for the current path
-const visitedPaths = []; // Provide an initial empty array for visited paths
-const pathsToConnect = findPathsToDestination(destinationX, destinationY, currentPath, visitedPaths, paths);
-console.log("Paths to connect to the destination:");
-console.log(pathsToConnect);
+function findRoute() {
+    const startPoint = document.getElementById("from").value.trim();
+    const endPoint = document.getElementById("to").value.trim();
+    if (startPoint && endPoint) {
+        getOffices(startPoint, endPoint);
+    } else {
+        console.log("Please provide both start and destination points.");
+    }
+}
 
-/*
-
+// import { coordinates } from "../output.js";
+// console.log(coordinates);
 window.addEventListener('DOMContentLoaded',(e)=>{
     // Check if the browser supports the Notification API
     if ("Notification" in window) {
@@ -90,12 +92,15 @@ document.querySelector('.welcome').style.display = 'block';
 const open_welcome = document.querySelector('#open-welcome');
 const close_welcome = document.querySelector('#close-welcome')
 
+
 open_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'block';
     document.querySelector('.logo').style.display = 'none';
     document.querySelector('.loader-container').style.display = 'none';
     document.querySelector('.welcome-text').innerHTML = 'Instructions on how to use this software';
 })
+
+//
 close_welcome.addEventListener('click',(e)=>{
     document.querySelector('.welcome').style.display = 'none';    
 })
@@ -151,57 +156,47 @@ function zoomOut() {
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 const image = new Image();
+image.src = "./SP1-2-floor-plan-5th-floor.jpg" || './SP1-2-floor-plan-5th-floor.jpg'; // Replace with your actual image URL
 
-image.src = "SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
-
-// Disable image smoothing to prevent blurriness
-ctx.imageSmoothingEnabled = false;
-
-// //Viewport fidelity
-// function adjustViewport() {
-//     const currentScale = window.visualViewport.scale;
-//     // Check if the scale is greater than 1 (zoomed in)
-//     if (currentScale > 1) {
-//         // Prevent the browser from scaling beyond the initial scale
-//         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
-//         document.getElementById('header').classList.add('none');
-//     } else {
-//         // Revert to default viewport settings
-//         document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
-//     }
-// }
-
-// // Event listener to detect changes in visual viewport scale (e.g., zooming)
-// window.visualViewport.addEventListener('resize', adjustViewport);
 image.onload = function () {
     setTimeout(() => {
         document.querySelector('.welcome').style.display = 'none';        
     }, 2000);
-    document.querySelector('canvas').style.display = 'block';
-    //Had to shut this down because its cutting the canvas to half.
-    // image.width = '100%';
-    // canvas.height = window.clientY;
-    if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
-        // Touch events are supported
-        canvas.width=screen.width;
-        console.log(navigator.platform,canvas.width)
-        canvas.width =5400;
-        image.width = 5400;
 
-        canvas.height = 7200
-        image.height = 7200;
-        document.querySelector('.dimension').innerHTML = `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height} : ${screen.width} ${screen.height}`
-        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`)
+    document.querySelector('canvas').style.display = 'block';
+    if ('ontouchstart' in window || navigator.maxTouchPoints || /iPad|iPhone|iPod/.test(navigator.platform)) {
+        document.querySelector('.devicename').innerHTML = navigator.platform
+        // For touch devices, set a fixed size
+        const aspectRatio = image.width / image.height;
+        const maxWidth = 5400; // Adjust as needed
+        const maxHeight = maxWidth / aspectRatio;
+        
+        canvas.width = maxWidth;
+        canvas.height = maxHeight;
+
+        if (/iPad|iPhone|iPod|MacIntel/.test(navigator.platform)) {
+            const maxWidth = 5400; // Maximum width
+            canvas.width = Math.min(maxWidth, document.body.getBoundingClientRect().width || window.innerWidth || screen.width);
+            const aspectRatio = image.width / image.height;
+            canvas.height = maxHeight| canvas.width / aspectRatio;
+            
+            document.querySelector('.devicename').innerHTML =
+                `${navigator.platform}\s
+                width ${canvas.width} height: ${canvas.height}\s 
+                image height: ${image.height} image width: ${image.width}\s 
+                device height: ${window.innerHeight || screen.height} width : ${window.innerWidth || screen.width}`;
+        }
+        
+        
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        console.log(`2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`);
+        console.log(document.body.getBoundingClientRect().width, document.body.getBoundingClientRect().height)
     } else {
-        // Touch events are not supported
-        canvas.width = window.innerWidth;
-        console.log(navigator.platform,canvas.width)
+        document.querySelector('.devicename').innerHTML = ` Your device is ${navigator.platform}`
         canvas.width = image.width;
         canvas.height = image.height;
-        console.log(`1 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}`)
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     }
-    centerImage();
-    alert(`${screen.width},${screen.height}`)
 };
 
 image.loading = 'eager';
@@ -226,7 +221,6 @@ canvas.addEventListener("mousedown", (e) => {
 
 canvas.addEventListener("mousemove", (e) => {
     if (isDrawing) {
-        // Calculate the mouse position relative to the document
         const currentX = e.clientX + window.scrollX;
         const currentY = e.clientY + window.scrollY;
         drawingPath.push({ x: currentX, y: currentY });
@@ -236,14 +230,15 @@ canvas.addEventListener("mousemove", (e) => {
     }
 });
 
+// Optimize canvas drawing functions for performance
 function drawLine(x1, y1, x2, y2) {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.lineWidth = lineWidth; // Set line width
     ctx.stroke();
-    ctx.save()
 }
+
 function drawLine2(x1, y1, x2, y2) {
     // Draw the line on the canvas
     ctx.beginPath();
@@ -265,7 +260,7 @@ function drawLine2(x1, y1, x2, y2) {
     ctx.fillStyle = 'orangered';
     ctx.fillRect(x1 - divWidth / 2, y1 - divHeight / 2, divWidth, divHeight);
     ctx.fillStyle = 'black';
-    ctx.fillText('office 204', x1 - divWidth / 2 + 10, y1 + 5);
+    ctx.fillText(`${x1}-${y1}`, x1 - divWidth / 2 + 10, y1 + 5);
 
     // Reset shadow to default
     ctx.shadowColor = 'transparent';
@@ -296,106 +291,52 @@ function updateHTMLPosition() {
 
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
-    console.log(drawingPath);
-    
-    /*
-    To implement the direction on the map we need to use
-     (beginning)-> Where the user wants to move from.
-      (via)-> [arrays of coordinates that the route is on]
-     (End)-> The final destination of the user, either the name of the office or the number of the office.
-    */
-    //5520 - 5500
-    drawLine2(1134, 474, 3678, 474);
-    //Wrkst 5544-5545
-    drawLine2(3678, 464, 3678, 720)
-    //5525- wrkst 5545
-    drawLine2(3678, 720, 1150, 720);
-    //5541 - corridor C5001
-    // drawLine2(3200, 720, 4428, 1093)
-    //5541 - corridor C5000
-    drawLine2(3220, 720, 3084, 1232)
-    //corridor C5002
-    drawLine2(3515, 818, 3366, 1318)
-    drawLine2(4175, 1021, 4029, 1533);
-    //corridor C5000-C5110 to the back of 5208 and elevator 1-5PE7
-    drawLine2(4029, 1533, 3862, 2099);
-    //C5000 via Elevator lobby Elevator 4 - 11
-    drawLine2(3805, 1474, 3628, 2036);
-    //5580 - coorodor C5560
-    drawLine2(1143, 1463, 2885, 1453);
-    //closet 5404 via corridor C5400 via corridor C5405
-    drawLine2(3021, 1461, 2918, 1847);
-    //corridor C5405 
-    drawLine2(2918, 1847, 3430, 1984);
-    //corridor C5405 - C5100 via elevator 1-5PE7 corridor
-    drawLine2(3430, 1984, 4123, 2182);
-    //Junction of 5208,5108 corridor C5100
-    drawLine2(4123, 2182, 4272, 1624)
-    //C5000 corridor
-    // drawLine2(3084, 1232, 4274, 1618);//too long for a route
-    //5201 supply - 5203 corridor
-    drawLine2(4428, 1093, 4274, 1618)
-    //5554 pantry to 5560 corridor
-    // drawLine2(1142, 1200, 2888, 1199)//too long for a route
-    //C5560 corridor
-    drawLine2(2888, 1199, 2886, 1461);
-    //C5560 corridor join comm rm, closet
-    // drawLine2(4272, 1624, 3023, 1461);
-    //5404 closet corridor
-    //5209 - 5524 corridor 5405 5510
-    // drawLine2(4121.60000038147,2171.800003051758,3532,4321.199951171875);//too long for a route
-    //5407-5424 corridor 5405 5510
-    // drawLine2(3414.400001525879,1991.5999755859375,2822,4126);//too long for a route
-    //5307 - corridor 5405 5510
-    // drawLine2(2924,1853.5999755859375,2313,3988.5999755859375)//too long for a route
-    //pantry 5020 - coom rm 15 CR-D corridor 5405 5510
-    // drawLine2(3868.400001525879, 2113.2000122070312,3270.400001525879,4253.800048828125);too long for a route
-    //Copy and print 5514 - 5612/5613 corridor C5610
-    drawLine2(1144.400001525879,2755.800048828125,2671.400001525879,2752.800048828125);
-    //Supply 5617-5626 corridor C5620
-    drawLine2(1151,3035.5999755859375,2595,3037.5999755859375);
-    //Corridor C5635
-    drawLine2(1154.400001525879,3492,2463.400001525879,3496);
-    //
-    // drawLine2(1164,3764.4000244140625,2374,3767.5999755859375);
+    console.log(drawingPath,canvas,image); 
+    });
+// Get the select element
+const selectElement = document.querySelector("select");
 
-    //
-    // drawLine2(1144.400001525879,2755.800048828125,1164,3764.4000244140625)//too long for a route
-    //Corridor C5325,C5225,C5020
-    // drawLine2(2323,3988,3536, 4321.5999755859375);too long for a route
-    //
-    // drawLine2(3097,3143.800048828125,3795,3348.800048828125); too long for a route
-    //
-    // drawLine2(2816,4119.199951171875,2163,6439.60009765625);too long for a route
-    //
-    // drawLine2(3267,4247.199951171875,2614,6561.199951171875);too long for a route
-    //
-    drawLine2(2102,4743.60009765625,1654,6308.60009765625);
-    //
-    drawLine2(1414,5037.60009765625,2009,5041,);
-    //
-    drawLine2(1382,5325.800048828125,1929,5329.60009765625);
-    //
-    drawLine2(1382,5774,1801,5768);
-    //
-    drawLine2(1417,5975.60009765625,1747,5978.60009765625);
-    //
-    drawLine2(3392,4791.199951171875,3529,4318.199951171875);
-    //
-    drawLine2(2681,4596.60009765625,3539,4849);
-    //
-    drawLine2(3017,6676.800048828125,3539,4849);
-    //
-    drawLine2(1651,6298.800048828125,3017,6676.800048828125);
-    // Elevator lobby 2-5PE-3
-    drawLine2(2598,5697.60009765625,2838,5757.60009765625);
-    // Elevator lobby 2-5PE-2
-    drawLine2(3193,3389.5999755859375,3036,3348.5999755859375);
-    //Toilet Corridor 2 C5265
-    drawLine2(2659,5466.60009765625,2896,5556.60009765625);
+const goBtn = document.getElementById("drawLine");
 
+goBtn.addEventListener("click", (e) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Redraw the background image
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+    // Use a switch statement to handle different cases based on the selected value
+    switch (selectElement.value) {
+        case "point-to-point":
+            // findRoute()
+            pointToPoint();
+            break;
+        case "routes":
+            console.log("routes");
+            findRoute()
+            pointToRoutes();
+            break;
+        default:
+            console.log("default");
+            break;
+    }
 });
 
+// 1971, y: 3454.199951171875,
+function pointToPoint() {
+    console.log("point to point");
+    drawLine2(3220, 720, 3084, 1232);
+  }
+
+function pointToRoutes(){
+    // Now you have the shortest route and its length
+    console.log("Shortest Route:", shortestRoute);
+        // Iterate over each segment in the shortest route
+    shortestRoute.forEach(segment => {
+        const [x1, y1, x2, y2] = segment;
+        // Call draw2() with the coordinates of the current segment
+        drawLine2(x1, y1, x2, y2);
+    });
+}
 // Function to draw the path on the canvas
 function drawPath() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous drawings
@@ -417,11 +358,27 @@ drawLineButton.addEventListener("click", () => {
 
 // Center the image inside the canvas
 function centerImage() {
-    const x = (canvas.width - image.width) / 2;
-    const y = (canvas.height - image.height) / 2;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(image, x, y);
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0);
+    console.log('from center Image'," ",canvas.width," ",image.width)
 }
+
+//Viewport fidelity
+function adjustViewport() {
+    const currentScale = window.visualViewport.scale;
+    // Check if the scale is greater than 1 (zoomed in)
+    if (currentScale > 1) {
+        // Prevent the browser from scaling beyond the initial scale
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+        document.getElementById('header').classList.add('none');
+    } else {
+        // Revert to default viewport settings
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
+    }
+}
+
+// Event listener to detect changes in visual viewport scale (e.g., zooming)
+window.visualViewport.addEventListener('resize', adjustViewport);
 
 //sService worker
 
@@ -436,5 +393,47 @@ if ('serviceWorker' in navigator) {
         });
     });
   }
+  
+  
+// Define the graph as an array of line segments [x1, y1, x2, y2]
+function arePointsEqual(point1, point2, tolerance = 0.001) {
+    let [x1, y1] = Array.isArray(point1) ? point1 : [point1.x, point1.y];
+    let [x2, y2] = Array.isArray(point2) ? point2 : [point2.x, point2.y];
+    return Math.abs(x1 - x2) < tolerance && Math.abs(y1 - y2) < tolerance;
+}
 
-*/ 
+
+function findShortestRoute(graph, start, end) {
+    const visited = new Set();
+    const queue = [[start, []]]; // Queue of [currentPoint, route]
+    
+    while (queue.length > 0) {
+        const [currentPoint, route] = queue.shift();
+        visited.add(JSON.stringify(currentPoint));
+
+        for (const segment of graph) {
+            const [x1, y1, x2, y2] = segment;
+            const nextPoint1 = [x1, y1];
+            const nextPoint2 = [x2, y2];
+            if (arePointsEqual(nextPoint1, currentPoint) && !visited.has(JSON.stringify(nextPoint2))) {
+                const newRoute = [...route, segment];
+                if (arePointsEqual(nextPoint2, end)) {
+                    return newRoute; // Reached the end point
+                }
+                queue.push([nextPoint2, newRoute]);
+                visited.add(JSON.stringify(nextPoint2));
+            }
+            if (arePointsEqual(nextPoint2, currentPoint) && !visited.has(JSON.stringify(nextPoint1))) {
+                const newRoute = [...route, segment];
+                if (arePointsEqual(nextPoint1, end)) {
+                    return newRoute; // Reached the end point
+                }
+                queue.push([nextPoint1, newRoute]);
+                visited.add(JSON.stringify(nextPoint1));
+            }
+        }
+    }
+  
+    return []; // No path found to end point
+}
+
