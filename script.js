@@ -183,61 +183,50 @@ const ctx = canvas.getContext("2d");
 const image = new Image();
 image.src =
   "./SP1-2-floor-plan-5th-floor.jpg" || "./SP1-2-floor-plan-5th-floor.jpg"; // Replace with your actual image URL
+  image.onload = function () {
+    setTimeout(() => {
+        document.querySelector(".welcome").style.display = "none";
+    }, 2000);
 
-image.onload = function () {
-  setTimeout(() => {
-    document.querySelector(".welcome").style.display = "none";
-  }, 2000);
+    document.querySelector("canvas").style.display = "block";
+    if (
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints ||
+        /iPad|iPhone|iPod/.test(navigator.platform)
+    ) {
+        document.querySelector(".devicename").innerHTML = navigator.platform;
+        // For touch devices, set a fixed size
+        const aspectRatio = image.width / image.height;
+        const maxWidth = 5400; // Maximum width (adjust as needed)
+        const maxHeight = maxWidth / aspectRatio;
 
-  document.querySelector("canvas").style.display = "block";
-  if (
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints ||
-    /iPad|iPhone|iPod/.test(navigator.platform)
-  ) {
-    document.querySelector(".devicename").innerHTML = navigator.platform;
-    // For touch devices, set a fixed size
-    const aspectRatio = image.width / image.height;
-    const maxWidth = 5400; // Adjust as needed
-    const maxHeight = maxWidth / aspectRatio;
+        canvas.width = maxWidth;
+        canvas.height = maxHeight;
 
-    canvas.width = maxWidth;
-    canvas.height = maxHeight;
+        if (/iPad|iPhone|iPod|MacIntel/.test(navigator.platform)) {
+            // For iOS devices, calculate canvas size based on screen dimensions
+            const screenWidth = window.innerWidth || screen.width;
+            const screenHeight = window.innerHeight || screen.height;
+            const maxSize = Math.min(screenWidth, screenHeight) * 0.9; // Adjust to fit within 90% of screen size
 
-    if (/iPad|iPhone|iPod|MacIntel/.test(navigator.platform)) {
-      const maxWidth = 5400; // Maximum width
-      canvas.width = Math.min(
-        maxWidth,
-        document.body.getBoundingClientRect().width ||
-          window.innerWidth ||
-          screen.width
-      );
-      const aspectRatio = image.width / image.height;
-      canvas.height = maxHeight | (canvas.width / aspectRatio);
+            canvas.width = maxSize;
+            canvas.height = maxSize / aspectRatio;
 
-      document.querySelector(".devicename").innerHTML = `${navigator.platform}\s
-                width ${canvas.width} height: ${canvas.height}\s 
-                image height: ${image.height} image width: ${image.width}\s 
-                device height: ${window.innerHeight || screen.height} width : ${
-        window.innerWidth || screen.width
-      }`;
+            document.querySelector(".devicename").innerHTML = `${navigator.platform} width: ${canvas.width}, height: ${canvas.height}`;
+        }
+
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        console.log(
+            `Image - width: ${image.width}, height: ${image.height} | Canvas - width: ${canvas.width}, height: ${canvas.height}`
+        );
+    } else {
+        // For non-touch devices, use image dimensions
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     }
-
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    console.log(
-      `2 image-width${image.width} : canvas-width ${canvas.width} image-height${image.height} : canvas.height ${canvas.height}, ${screen.width} ${screen.height}`
-    );
-    console.log(
-      document.body.getBoundingClientRect().width,
-      document.body.getBoundingClientRect().height
-    );
-  } else {
-    // document.querySelector('.devicename').innerHTML = ` Your device is ${navigator.platform}`
-    canvas.width = image.width;
-    canvas.height = image.height;
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-  }
 };
+
 
 image.loading = "eager";
 let isDrawing = false;
