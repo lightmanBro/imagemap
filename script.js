@@ -1,22 +1,16 @@
 const coordinatesElement = document.querySelector(".coordinates");
-
+console.log(output,graphs);
 let start, end;
 let graph;
 let shortestRoute;
-const outputJson="../output.json" || "/output.json" || "./output.json";
-const graphJson = "../graph.json" || "/graph.json" || "./graph.json";
 const allKeys = [];
-async function getOffices(startPoint, endPoint) {
-  let data;
+
+function getOffices(startPoint, endPoint) {
   let startAxis, endAxis;
   try {
-    const offices = await fetch(outputJson);
-    const graphs = await fetch(graphJson);
-    if (offices.ok && graphs.ok) {
-      data = await offices.json();
-      graph = await graphs.json();
+   
       // Iterate over each office object
-      data.forEach((office) => {
+      output.forEach((office) => {
         const keys = Object.keys(office);
         allKeys.push(...keys);
         // Extract office key and coordinates for start point
@@ -39,7 +33,7 @@ async function getOffices(startPoint, endPoint) {
       //Find the line that has the start and end offices mapped to it.
       //Use the values found to be the start and end line which will be used to get the appropiate route.
       if (startAxis && endAxis) {
-        shortestRoute = findShortestRoute(graph, startAxis, endAxis);
+        shortestRoute = findShortestRoute(graphs, startAxis, endAxis);
         pointToRoutes(shortestRoute);
         pointToPoint(start, end);
       } else {
@@ -50,7 +44,7 @@ async function getOffices(startPoint, endPoint) {
         }, 3000);
       }
       // console.log("Coordinates:",graph,start,end,shortestRoute);
-    }
+   
   } catch (error) {
     console.log(error);
   }
@@ -88,7 +82,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
         // Create a new notification
         var notification = new Notification("Hello, World!", {
           body: "This is a notification message.",
-          icon: "path/to/icon.png", // Optional icon
+          icon: "/icon.png", // Optional icon
         });
 
         // Handle click events on the notification
