@@ -213,8 +213,6 @@ image.src =
             canvas.height = maxSize / aspectRatio;
 
             document.querySelector(".devicename").innerHTML = `${navigator.platform} width: ${canvas.width}, height: ${canvas.height}`;
-            drawLine(100,200,100,300);
-            drawLine2(100,200,100,300);
         }
 
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);

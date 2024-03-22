@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Document</title>
+    <style>
+
+        /* Define a CSS class for zooming */
+        .zoomed {
+          transform-origin: 0 0;
+          transition: transform 0.3s ease;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 20
+        }
+          
+      </style>
+</head>
+<body>
+    <div class="header" id="header">Floor 5: 5100 - 5594 offices and workplaces <div id="open-welcome"> <span class="material-symbols-outlined">help</span></div>
+        </span>
+    </div>
+    <div class="coordinates">
+        Please use another nearby office as start point
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <!-- Embedding the image -->
+        <image xlink:href="SP1-2-floor-plan-5th-floor.jpg"/>
+    </svg>
+    <div class="none inpt-group" id="inpt-group">
+        <div class="inputs-btns">
+            <div class="flex">
+                <input type="text" id="from" placeholder="Start point" />
+                <input type="text" id="to" placeholder="Destination" />
+            </div>
+            <button id="drawLine">Go</button>
+        </div>
+        <div class="flex">
+            <button id="zoom-in"><span class="material-symbols-outlined">
+                zoom_in
+                </span></button>
+            <button id="zoom-out"><span class="material-symbols-outlined">
+                zoom_out
+                </span></button>
+        </div>
+        
+    </div>
+    <button class="open" id="inpt-group-btn"><span class="material-symbols-outlined"> keyboard </span></button>
+    <div class="welcome">
+        <div id="close-welcome"><span class="material-symbols-outlined">
+            close
+            </span></div>
+        <div class="welcome-text">
+            welcome to office navi
+
+        </div>
+        <div class="logo">
+            <span class="material-symbols-outlined">
+                route
+            </span>
+        </div>
+        <div class="loader-container">
+            <div class="loader"></div>
+            Loading
+        </div>
+        <div class="welcome-instruction">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                 Delectus similique aliquam vitae nam. Necessitatibus mollitia repellendus
+                 a eos nulla voluptates harum sunt maxime dolorem fugit. Excepturi nesciunt sapiente debitis illum fugit exercitationem esse
+                 ducimus voluptate pariatur at autem distinctio, laboriosam id odit quae doloribus recusandae, soluta quia! Sed, facere eum.
+            </p>
+            <div class="devicename"></div>
+            <div class="offices">
+                
+            </div>
+        </div>
+    </div>
+    <script src="./output.js"></script>
+    <script src="./graph.js"></script>
+    <script src="./svg.js" type="module" defer></script>
+</body>
+</html>

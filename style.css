@@ -333,7 +333,7 @@ option {
     padding: 1rem;
     align-self: center;
   }
-  canvas {
+  canvas,svg {
     width: 100vw;
     height: auto;
     /* position: relative; */
