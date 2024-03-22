@@ -344,7 +344,7 @@ option {
     /* will-change: transform; Hint to the browser to use hardware acceleration */
     /* transform: translateZ(0); Force hardware acceleration */
   }
-  canvas image {
+  canvas image,svg image {
     width: 100vw;
     height: auto;
   }

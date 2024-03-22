@@ -160,9 +160,11 @@ document.addEventListener("mouseup", () => {
 });
 
 document.getElementById("drawLine").addEventListener("click", () => {
+    
+    findRoute();
   drawingPath.forEach((line) => svg.removeChild(line)); // Clear previous drawings
-  drawingPath.length = 0;
-  findRoute();
+//   drawingPath.length = 0;
+  
 });
 
 // Center the image inside the SVG
@@ -252,7 +254,7 @@ function zoomOut() {
 }
 function updateHTMLPosition() {
     // Calculate canvas position
-    const canvasRect = canvas.getBoundingClientRect();
+    const canvasRect = svg.getBoundingClientRect();
     const canvasX = canvasRect.left;
     const canvasY = canvasRect.top;
   
@@ -283,7 +285,7 @@ function adjustViewport() {
       .querySelector('meta[name="viewport"]')
       .setAttribute(
         "content",
-        "width=device-width, initial-scale=1.0, user-scalable=no"
+        "width=device-width, initial-scale=1.0"
       );
   }
 }
