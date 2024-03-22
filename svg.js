@@ -233,7 +233,7 @@ function zoomIn() {
   document.querySelector("svg").classList.add("zoomed");
   document.querySelector("svg").style.transform = `scale(${zoomLevel})`;
   console.log("zoom in ", zoomLevel);
-  updateHTMLPosition();//Stopped because the canvas translation is causing the page to zoom in too much
+//   updateHTMLPosition();//Stopped because the canvas translation is causing the page to zoom in too much
 }
 
 function zoomOut() {
@@ -249,7 +249,7 @@ function zoomOut() {
         document.getElementById("header").classList.remove("none");
       }, 500);
     }
-    updateHTMLPosition()//Stopped because the canvas translation is causing the page to zoom out too much
+    // updateHTMLPosition()//Stopped because the canvas translation is causing the page to zoom out too much
   }
 }
 function updateHTMLPosition() {
