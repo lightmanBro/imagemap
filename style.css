@@ -177,6 +177,7 @@ canvas {
   height: auto;
   image-rendering: crisp-edges; 
 }
+
 select {
   margin: auto;
   margin-bottom: 1rem;
@@ -333,7 +334,7 @@ option {
     padding: 1rem;
     align-self: center;
   }
-  canvas,svg {
+  canvas{
     width: 100vw;
     height: auto;
     /* position: relative; */
@@ -345,9 +346,18 @@ option {
     /* transform: translateZ(0); Force hardware acceleration */
   }
   canvas image,svg image {
-    width: 100vw;
-    height: auto;
+    width: 5400;
+    height: 7200;
   }
+  /* svg{
+    position: absolute;
+  } */
+  /* svg image{
+    position: relative;
+    width: inherit;
+    height: inherit;
+    z-index: -1;
+  } */
   .flex {
     margin-top: 0.25rem;
   }

@@ -93,35 +93,19 @@ window.addEventListener("DOMContentLoaded", (e) => {
   }, 2000);
   if (
     "ontouchstart" in window ||
-    navigator.maxTouchPoints ||
-    /iPad|iPhone|iPod/.test(navigator.platform)
+    navigator.maxTouchPoints
   ) {
-    document.querySelector(".devicename").innerHTML = navigator.platform;
-    const screenWidth = window.innerWidth || screen.width;
-    const screenHeight = window.innerHeight || screen.height;
-    const maxSize = Math.min(screenWidth, screenHeight) * 0.9
-    console.log(screenWidth,maxSize);
-    svg.setAttribute("width", `${screenWidth}px`);
-    svg.setAttribute("height", `${maxSize}px`);
+    svg.setAttribute("width", "5400");
+  svg.setAttribute("height", "7200");
+  image.setAttribute('width','100%');
+  image.setAttribute('height','100%');
 
-    if (/iPad|iPhone|iPod|MacIntel/.test(navigator.platform)) {
-      // For iOS devices, calculate canvas size based on screen dimensions
-      const screenWidth = window.innerWidth || screen.width;
-      const screenHeight = window.innerHeight || screen.height;
-      const maxSize = Math.min(screenWidth, screenHeight) * 0.9; // Adjust to fit within 90% of screen size
-
-      svg.setAttribute("width", `${maxSize}px`);
-      svg.setAttribute("height",`${ maxSize / aspectRatio}px`);
-
-      document.querySelector(".devicename").innerHTML = `${
-        navigator.platform
-      } width: ${svg.getAttribute("width")}, height: ${svg.getAttribute(
-        "height"
-      )}`;
-    }
+  // Optionally add preserveAspectRatio for the image
+//   image.setAttribute('preserveAspectRatio', 'xMinYMin meet');
+  }else{
+      svg.setAttribute("width", `${window.innerWidth}px`);
+      svg.setAttribute("height", "7200px");
   }
-    svg.setAttribute("width", `${window.innerWidth}px`);
-    svg.setAttribute("height", "7200px");
 
 });
 
@@ -386,7 +370,3 @@ function pointToPoint(svg, start, end) {
     drawLocationIcon(svg, x2, y2);
     drawTextOnIcon(svg, x2, y2, "End"); // Display end text
 }
-
-// Usage example
-
-pointToPoint(svg, [1971, 3454.199951171875], [/* Coordinates for end point */]);
