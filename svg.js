@@ -8,7 +8,7 @@ let start, end;
 let graph;
 let shortestRoute;
 const allKeys = [];
-console.log(output, graphs);
+// console.log(output, graphs);
 function getOffices(startPoint, endPoint) {
   let startAxis, endAxis;
   try {
@@ -18,19 +18,19 @@ function getOffices(startPoint, endPoint) {
       allKeys.push(...keys);
       // Extract office key and coordinates for start point
       if (office.hasOwnProperty(startPoint)) {
-        console.log("Office Startpoint Key:", startPoint);
+        // console.log("Office Startpoint Key:", startPoint);
         const { x, y } = office[startPoint].coordinates;
         startAxis = office[startPoint].axis;
         start = [x, y];
-        console.log("Coordinates:", start, startAxis);
+        // console.log("Coordinates:", start, startAxis);
       }
       // Extract office key and coordinates for end point
       if (office.hasOwnProperty(endPoint)) {
-        console.log("Office Endpoint Key:", endPoint);
+        // console.log("Office Endpoint Key:", endPoint);
         const { x, y } = office[endPoint].coordinates;
         endAxis = office[endPoint].axis;
         end = [x, y];
-        console.log("Coordinates:", end, endAxis);
+        // console.log("Coordinates:", end, endAxis);
       }
     });
     //Find the line that has the start and end offices mapped to it.
@@ -46,9 +46,9 @@ function getOffices(startPoint, endPoint) {
         coordinatesElement.classList.remove("show");
       }, 3000);
     }
-    // console.log("Coordinates:",graph,start,end,shortestRoute);
+    console.log("Coordinates:",graph,start,end,shortestRoute);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 
@@ -74,7 +74,7 @@ function findRoute() {
 }
 function pointToRoutes(shortestRoute) {
   // Now you have the shortest route and its length
-  console.log("Shortest Route:", shortestRoute);
+//   console.log("Shortest Route:", shortestRoute);
   // Iterate over each segment in the shortest route
   shortestRoute.forEach((segment) => {
     const [x1, y1, x2, y2] = segment;
@@ -216,7 +216,7 @@ function zoomIn() {
   // Apply the zoom level to the content
   document.querySelector("svg").classList.add("zoomed");
   document.querySelector("svg").style.transform = `scale(${zoomLevel})`;
-  console.log("zoom in ", zoomLevel);
+//   console.log("zoom in ", zoomLevel);
 //   updateHTMLPosition();//Stopped because the canvas translation is causing the page to zoom in too much
 }
 
@@ -227,7 +227,7 @@ function zoomOut() {
     // Apply the zoom to the svg
     document.querySelector("svg").classList.add("zoomed");
     document.querySelector("svg").style.transform = `scale(${zoomLevel})`;
-    console.log("zoom out ", zoomLevel);
+    // console.log("zoom out ", zoomLevel);
     if (zoomLevel == 1) {
       setTimeout(() => {
         document.getElementById("header").classList.remove("none");
