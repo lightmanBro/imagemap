@@ -266,29 +266,29 @@ function updateHTMLPosition() {
     element.style.top = htmlY + "px";
     // element.style.transform = `translate(${htmlX}px, ${htmlY}px)`;
   }
-//Viewport fidelity
+// Adjust viewport settings
 function adjustViewport() {
-  const currentScale = window.visualViewport.scale;
-  // Check if the scale is greater than 1 (zoomed in)
-  if (currentScale > 1) {
-    // Prevent the browser from scaling beyond the initial scale
-    document
-      .querySelector('meta[name="viewport"]')
-      .setAttribute(
-        "content",
-        "width=device-width, initial-scale=1.0, maximum-scale=1.0"
-      );
-    document.getElementById("header").classList.add("none");
-  } else {
-    // Revert to default viewport settings
-    document
-      .querySelector('meta[name="viewport"]')
-      .setAttribute(
-        "content",
-        "width=device-width, initial-scale=1.0"
-      );
+    const currentScale = window.visualViewport.scale;
+    // Check if the scale is greater than 1 (zoomed in)
+    if (currentScale > 1) {
+      // Prevent the browser from scaling beyond the initial scale
+      document
+        .querySelector('meta[name="viewport"]')
+        .setAttribute(
+          "content",
+          "width=device-width, initial-scale=1.0, maximum-scale=1.0"
+        );
+      document.getElementById("header").classList.add("none");
+    } else {
+      // Revert to default viewport settings
+      document
+        .querySelector('meta[name="viewport"]')
+        .setAttribute(
+          "content",
+          "width=device-width, initial-scale=1.0"
+        );
+    }
   }
-}
 
 // Event listener to detect changes in visual viewport scale (e.g., zooming)
 window.visualViewport.addEventListener("resize", adjustViewport);
