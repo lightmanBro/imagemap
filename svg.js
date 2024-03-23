@@ -389,4 +389,4 @@ function pointToPoint(svg, start, end) {
 
 // Usage example
 
-// pointToPoint(svg, [1971, 3454.199951171875], [/* Coordinates for end point */]);
+pointToPoint(svg, [1971, 3454.199951171875], [/* Coordinates for end point */]);
