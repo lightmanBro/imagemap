@@ -184,18 +184,21 @@ open_welcome.addEventListener("click", (e) => {
 
 //
 close_welcome.addEventListener("click", (e) => {
-  document.querySelector(".welcome").style.display = "none";
-});
+    document.querySelector(".welcome").style.display = "none";
+    console.log("closed clicked")
+  });
 
 document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
   document.getElementById("inpt-group").classList.toggle("none");
-  document.getElementById(
+    document.getElementById(
     "inpt-group"
   ).style.transition = `transform 0.5s ease`;
+  console.log('inpt btn clicked')
   if (document.getElementById("inpt-group").classList.contains("none")) {
     document.getElementById("inpt-group-btn").innerHTML =
       '<span class="material-symbols-outlined"> keyboard </span>';
-    document.getElementById("inpt-group-btn").style.bottom = `1rem`;
+    document.getElementById("inpt-group-btn").style.bottom = `10rem`;
+    document.getElementById("inpt-group-btn").style.zIndex = 5;
   } else {
     document.getElementById("inpt-group-btn").innerHTML =
       '<span class="material-symbols-outlined">\
