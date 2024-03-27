@@ -2,7 +2,12 @@ const screenWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
-
+// document.body.addEventListener('click',(e)=>{
+//     document.querySelector(".welcome").style.display = "none";
+//     document.getElementById(
+//         "inpt-group"
+//     ).style.display = 'none'
+// })
 
 console.log(graphs);
 const coordinatesElement = document.querySelector(".coordinates");
@@ -218,7 +223,7 @@ document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
             '<span class="material-symbols-outlined">\
         keyboard_hide\
         </span>';
-        document.getElementById("inpt-group-btn").style.bottom = `12rem`;
+        document.getElementById("inpt-group-btn").style.bottom = `15rem`;
     }
 });
 
