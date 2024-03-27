@@ -301,12 +301,16 @@ option {
     position: fixed;
     margin-bottom: 12.5rem;
     right: 5rem;
-    height: fit-content;
     padding: 2rem;
+    text-align: center;
     font-size: 5rem;
     font-weight: 600;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
   input {
     height: 15.5vh;
     width: 50%;
