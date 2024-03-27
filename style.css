@@ -299,15 +299,18 @@ option {
 }
 #inpt-group-btn{
     position: fixed;
-    margin-bottom: 10rem;
+    margin-bottom: 12.5rem;
+    right: 5rem;
     height: fit-content;
-    font-size: 2.5rem;
+    padding: 2rem;
+    font-size: 5rem;
     font-weight: 600;
+    z-index: 10;
 }
   input {
-    height: 10.5vh;
+    height: 15.5vh;
     width: 50%;
-    font-size: 2.5rem;
+    font-size: 5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
     border-radius: 5rem;
