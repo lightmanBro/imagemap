@@ -10,6 +10,14 @@ let start, end;
 let graph;
 let shortestRoute;
 const allKeys = [];
+
+output.forEach((office) => {
+    Object.keys(office).forEach((k) => {
+        document
+            .querySelector(".offices")
+            .insertAdjacentHTML("afterbegin", `<div class="number">${k}</div>`);
+    })
+})
 // console.log(output, graphs);
 function getOffices(startPoint, endPoint) {
     let startAxis, endAxis;
@@ -17,7 +25,7 @@ function getOffices(startPoint, endPoint) {
         // Iterate over each office object
         output.forEach((office) => {
             const keys = Object.keys(office);
-            allKeys.push(...keys);
+            
             // Extract office key and coordinates for start point
             if (office.hasOwnProperty(startPoint)) {
                 // console.log("Office Startpoint Key:", startPoint);
@@ -59,11 +67,6 @@ function findRoute() {
     const endPoint = document.getElementById("to").value.trim();
     if (startPoint && endPoint) {
         getOffices(startPoint, endPoint);
-        allKeys.forEach((k) => {
-            document
-                .querySelector(".offices")
-                .insertAdjacentHTML("afterbegin", `<div class="number">${k}</div>`);
-        });
     } else {
         drawLine2(startPoint || endPoint);
         coordinatesElement.classList.add("show");
@@ -142,18 +145,22 @@ document.addEventListener("mouseup", () => {
 });
 
 document.getElementById("drawLine").addEventListener("click", () => {
-    // Clear previous drawings
-    findRoute();
-    clearDrawings();
-});
-// Function to clear SVG drawings
-function clearDrawings() {
-    const line = svg.querySelectorAll('line')
-    // Remove all child elements from the SVG container
-    while (svg.line) {
-        svg.removeChild(line);
+    const lines = Array.from(svg.querySelectorAll('line')); // Convert NodeList to array
+    lines.forEach(line => line.remove()); // Remove each line element
+    // Clear icons and text
+    const icons = svg.querySelectorAll('g');
+    if (icons) {
+        icons.forEach(icon => svg.removeChild(icon)); // Remove all icons
     }
-}
+
+    const texts = svg.querySelectorAll('text');
+    if (texts) {
+        texts.forEach(text => svg.removeChild(text)); // Remove all text elements
+    }
+    findRoute();
+});
+
+
 
 // Example usage
 // clearDrawings(); // Call this function whenever you want to clear the SVG drawings
