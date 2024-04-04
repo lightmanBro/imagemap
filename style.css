@@ -35,7 +35,7 @@ body {
 }
 .header {
   width: 100%;
-  background-color: rgb(53, 53, 53);
+  background-color: #0866ff;
   position: fixed;
   width: 100%;
   /* left: 0; */
@@ -122,6 +122,9 @@ button {
   font-weight: 600;
   padding: 1.5rem;
   border: 0.025rem solid rgb(189, 188, 188);
+  box-shadow: -1px 0px 8px 0px rgba(59,195,239,0.75);
+-webkit-box-shadow: -1px 0px 8px 0px rgba(59,195,239,0.75);
+-moz-box-shadow: -1px 0px 8px 0px rgba(59,195,239,0.75);
 }
 button:active {
   background-color: rgb(77, 77, 77);
@@ -318,8 +321,11 @@ option {
     font-weight: 600;
     margin-bottom: 0.5rem;
     border-radius: 5rem;
-    border: 0.1rem solid grey;
+    border: none;
     text-align: center;
+    box-shadow: -1px 0px 10px 4px rgba(16,28,32,0.75);
+-webkit-box-shadow: -1px 0px 10px 4px rgba(16,28,32,0.75);
+-moz-box-shadow: -1px 0px 10px 4px rgba(16,28,32,0.75);
   }
   input::placeholder {
     font-size: 2rem;
@@ -348,7 +354,11 @@ option {
     font-size: 2.5rem;
     font-weight: 600;
     border-radius: 5rem;
-    background-color: rgb(53, 53, 53);
+    background-color:   #0866ff;
+    border: none;
+    box-shadow: -1px 0px 10px 4px rgba(16,28,32,0.75);
+-webkit-box-shadow: -1px 0px 10px 4px rgba(16,28,32,0.75);
+-moz-box-shadow: -1px 0px 10px 4px rgba(16,28,32,0.75);
     color: white;
   }
   .inputs-btns {

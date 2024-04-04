@@ -227,7 +227,7 @@ document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
     }
 });
 
-let zoomLevel = 3;
+let zoomLevel = 1;
 document.getElementById("zoom-in").addEventListener("pointerdown", zoomIn);
 document.getElementById("zoom-out").addEventListener("pointerdown", zoomOut);
 
@@ -392,3 +392,8 @@ function pointToPoint(svg, start, end) {
     drawLocationIcon(svg, x2, y2);
     drawTextOnIcon(svg, x2, y2, "End"); // Display end text
 }
+/*
+for(initialization; condition; iteration) {
+    statement
+}
+*/
