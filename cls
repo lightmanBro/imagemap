@@ -1,0 +1,143 @@
+[33mfd78c46[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mtestBranch[m[33m)[m added color
+[33mec9ab1a[m new mapped
+[33mdad8ce8[m ... fixed the button size
+[33ma8112dc[m ...
+[33m0f7fdd2[m ...
+[33m6bfa5ff[m fixed the svg clear
+[33m6839a46[m fixed the button
+[33m08b2996[m responsive toggling button fixed
+[33m6d79dec[m fixing the buttons sizes
+[33m37c1476[m fixing buttons
+[33mada1c2f[m ...
+[33m4e83df4[m svg native testing on mobile
+[33me3085f3[m viewport Adjust
+[33m576a729[m ...
+[33m9d4798f[m fixed display on mobile devices
+[33m5492d95[m started fixing ios svg
+[33m748e8ec[m canvas test on ios with drawline function
+[33ma5605a6[m image blurriness fixing
+[33mf208752[m remove graph and output log
+[33mcab5faa[m fixing ios display
+[33m1f9de48[m removed the fetch and used normal scripts
+[33mbc29e7c[m ...
+[33mc822334[m fixed resource directory
+[33m0f79084[m removed the select
+[33mf7e3b97[m added error display
+[33m399263d[m finished with the routes, working perfectly
+[33md35c87e[m rounding up the map
+[33m7969e4d[m fixed the max width and the canvas height
+[33mf2e1a2e[m fixed aspect ratio
+[33md6b3233[m ...
+[33m119a4e6[m ...
+[33m0e3e982[m returned to the screen width and height
+[33m7df7e6c[m ...
+[33m1b24884[m ....
+[33ma58ec93[m ....
+[33mebc60b2[m ...
+[33m0e8a5b1[m ...
+[33m3f2415a[m ...
+[33mde241a2[m ...
+[33m2c2140a[m ...
+[33m023dafe[m width check
+[33m2e2671b[m checking device name
+[33m6a48316[m fixed ios canvas display
+[33m051b123[m fixed the button press state
+[33m3ac3001[m fixing the ui color
+[33me9c03d8[m clear and draw images when route is changed fixed
+[33mdc49ee0[m ...
+[33mf6dfe81[m canvas clearing before drawing
+[33me27a48d[m ...
+[33me472af0[m trying to fix image
+[33m26e73cc[m fixed photo
+[33mcf25022[m fixed the routing and the go button
+[33m6708639[m fixed the zoomed on larger display
+[33mf004615[m removed purple border
+[33m654d561[m ...
+[33m2a265e2[m canvas and image displaying well now
+[33m0ea2d27[m restructured the image size function
+[33m2cff6c3[m ...
+[33m0149f5a[m ...
+[33m3c584c4[m img width
+[33m8ccc45d[m changed the img width to 5400 and height = 7200
+[33mf2894f2[m ...
+[33m900aaa0[m height
+[33m58b5d1d[m ...
+[33m75a1dcc[m ...
+[33md8c410c[m ...
+[33m36620de[m removed the position on the mobile display
+[33mab781d1[m fixed width and height
+[33m8f2ee29[m reduced the width
+[33m807444c[m image adjustment
+[33m09a4174[m ...
+[33m9aff4d9[m ..
+[33mff52147[m ...
+[33ma36420d[m ....
+[33m61d852c[m ...
+[33mf71f42e[m added js styles
+[33mf208a03[m changed the css width and height in media query
+[33m1aac8be[m ...
+[33m8dfa143[m changed the style of the width
+[33m127d788[m ...
+[33mda85da9[m ...
+[33m4f7cc18[m almost fixed the image and canvas size
+[33mbcabcc5[m set the new size of canvas and image
+[33m45a6b8e[m ...
+[33m2329cb0[m trying to start the fix from the beginning
+[33m0c0db53[m ...
+[33m7239dce[m ....
+[33m77fdcff[m ..
+[33mcb5a5a0[m ...
+[33m5a089f0[m font size changed
+[33m4c9ec0e[m ....still on screen sizes
+[33me0a6a34[m refixed the width
+[33mf4f5cfc[m ... fixing the display
+[33m06ce744[m Added loading animation to the welcome page
+[33mae6a3a6[m reverted the updatePosition function
+[33m5fbb6b7[m trying to fix the zoom problem
+[33m893f57d[m ...
+[33mc51bfc5[m testing the mobile width
+[33mfecafd9[m fixing the blurry canvas
+[33mf2ab79d[m ...
+[33m789fcf2[m fixed the input box roundness
+[33m18b50e0[m fixed some ui
+[33m0e31675[m did some little configurations
+[33m95e9b8e[m ...
+[33m8c9bffd[m ...reverted the display settings
+[33m789f40c[m ....trying to fix the width on diff devices
+[33m25100c1[m ....
+[33m9a1de16[m ....
+[33m7c9546c[m fixing overlapping display
+[33m30a0f5e[m fixed the display
+[33m6b4811b[m ...
+[33mda419d0[m fixed the margin-top
+[33mce451ea[m fixed the margin on the body
+[33m870dc92[m fixed opening and closing of welcome and instruction modal
+[33m14eda5d[m added a know more
+[33mdee22c4[m ...
+[33m9fe7e47[m added service worker for pwa
+[33md3e7c89[m added a splashscreen
+[33md2fbcad[m removed the html
+[33m1c8e31f[m changed color
+[33m36de6ba[m fixing map coordinates
+[33mac74bfd[m fixed header text
+[33m6edf96e[m line animation
+[33me2663c2[m wrap text
+[33mc549740[m fixed the zoom and the header toggle
+[33ma9ca739[m ...fixed buttons
+[33mfd927bf[m toggling input boxes
+[33m335a38f[m fixing the header
+[33m1ed3e6d[m added user-scalable no to the meta tag
+[33me02a500[m ... used js for the scaling
+[33m9fa573e[m fixing scalability
+[33m16554e8[m fixing desktop toggling mode
+[33mf0a60cd[m fixed the canvas position
+[33m1f53dfb[m ...
+[33me3d59a8[m added header
+[33mf2a85d3[m removed the zoom and color buttons
+[33m5d2bdb0[m work in progress
+[33m90496cf[m media query fix
+[33mfd689ba[m added motion sensor
+[33m6caa0a1[m mobile display
+[33ma7342d5[m some little changes
+[33m07d0348[m changed the file name to index
+[33mc1d4567[m office map project
