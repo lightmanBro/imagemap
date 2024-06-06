@@ -2,14 +2,8 @@ const screenWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
-// document.body.addEventListener('click',(e)=>{
-//     document.querySelector(".welcome").style.display = "none";
-//     document.getElementById(
-//         "inpt-group"
-//     ).style.display = 'none'
-// })
 
-console.log(graphs);
+// console.log(graphs);
 const coordinatesElement = document.querySelector(".coordinates");
 let start, end;
 let graph;
@@ -177,6 +171,10 @@ document.getElementById("drawLine").addEventListener("click", () => {
         texts.forEach(text => svg.removeChild(text)); // Remove all text elements
     }
     findRoute();
+    setTimeout(() => {
+        document.getElementById('from').value = ''
+        document.getElementById('to').value = ''
+    }, 500);
 });
 
 
