@@ -214,11 +214,7 @@ open_welcome.addEventListener("click", (e) => {
     document.querySelector(".welcome-text").innerHTML =
         "Offices Number Click to copy";
     });
-    // document.body.addEventListener('click',(e)=>{
-    //     if(document.querySelector(".welcome").style.display = "block"){
-    //         document.querySelector(".welcome").style.display = "none";
-    //     }
-    // })
+   
 
 //
 close_welcome.addEventListener("click", (e) => {

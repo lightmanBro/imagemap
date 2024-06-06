@@ -225,8 +225,8 @@ option {
   /* Adjust styles for mobile devices here */
   .welcome {
     position: fixed;
-    width: 250vw;
-    height: 100%;
+    width: 100%;
+    height: fit-content;
     padding: 0.5rem;
     background-color: rgb(236, 236, 236);
     margin: auto;
@@ -244,7 +244,7 @@ option {
     font-size: 2rem;
   }
   .welcome-instruction {
-    height: auto;
+    height: fit-content;
     width: -moz-fit-content;
     width: 100%;
     /* position: absolute; */
