@@ -20,7 +20,7 @@ output.forEach((office) => {
 
 document.querySelectorAll('.number').forEach(number => {
     number.addEventListener('click', () => {
-        console.log('number clicked')
+        // console.log('number clicked')
       // Copy the content of the clicked element to the clipboard
       const textToCopy = number.textContent;
       navigator.clipboard.writeText(textToCopy).then(() => {
@@ -69,7 +69,7 @@ function getOffices(startPoint, endPoint) {
                 coordinatesElement.classList.remove("show");
             }, 3000);
         }
-        console.log("Coordinates:", graph, start, end, shortestRoute);
+        // console.log("Coordinates:", graph, start, end, shortestRoute);
     } catch (error) {
         // console.log(error);
     }
@@ -217,7 +217,7 @@ open_welcome.addEventListener("click", (e) => {
 //
 close_welcome.addEventListener("click", (e) => {
     document.querySelector(".welcome").style.display = "none";
-    console.log("closed clicked")
+    // console.log("closed clicked")
 });
 
 document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
@@ -225,7 +225,7 @@ document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
     document.getElementById(
         "inpt-group"
     ).style.transition = `transform 0.5s ease`;
-    console.log('inpt btn clicked')
+    // console.log('inpt btn clicked')
     if (document.getElementById("inpt-group").classList.contains("none")) {
         document.getElementById("inpt-group-btn").innerHTML =
             '<span class="material-symbols-outlined"> navigation </span>';
