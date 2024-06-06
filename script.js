@@ -61,18 +61,7 @@ function findRoute() {
     });
 
     // Add event listeners to the newly created .number elements
-    document.querySelectorAll('.number').forEach(number => {
-      number.addEventListener('click', () => {
-        // Copy the content of the clicked element to the clipboard
-        const textToCopy = number.textContent;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          // Change the background color of the element after it has been copied
-          number.style.backgroundColor = 'yellow';
-        }).catch(err => {
-          console.error('Could not copy text: ', err);
-        });
-      });
-    });
+    
   } else {
     drawLine2(startPoint || endPoint);
     coordinatesElement.classList.add("show");
