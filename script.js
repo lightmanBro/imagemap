@@ -148,7 +148,7 @@ document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
   ).style.transition = `transform 0.5s ease`;
   if (document.getElementById("inpt-group").classList.contains("none")) {
     document.getElementById("inpt-group-btn").innerHTML =
-      '<span class="material-symbols-outlined"> keyboard </span>';
+      '<span class="material-symbols-outlined"> navigation </span>';
     document.getElementById("inpt-group-btn").style.bottom = `1rem`;
   } else {
     document.getElementById("inpt-group-btn").innerHTML =

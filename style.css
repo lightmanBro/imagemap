@@ -49,10 +49,6 @@ body {
   gap: 1rem;
 }
 
-.open {
-  /* display: none; */
-}
-
 input {
   border: 0.2rem solid rgba(31, 120, 244, 0.753);
   border-radius: 5rem;
@@ -277,7 +273,7 @@ option {
     bottom: 12rem;
     padding: 1rem;
 
-    border-radius: 0.5rem;
+    border-radius: 50%;
   }
   .none {
     display: none;
