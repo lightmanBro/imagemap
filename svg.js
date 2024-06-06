@@ -26,6 +26,7 @@ output.forEach((office) => {
 
 document.querySelectorAll('.number').forEach(number => {
     number.addEventListener('click', () => {
+        console.log('number clicked')
       // Copy the content of the clicked element to the clipboard
       const textToCopy = number.textContent;
       navigator.clipboard.writeText(textToCopy).then(() => {
