@@ -133,7 +133,7 @@ open_welcome.addEventListener("click", (e) => {
   document.querySelector(".logo").style.display = "none";
   document.querySelector(".loader-container").style.display = "none";
   document.querySelector(".welcome-text").innerHTML =
-    "Instructions on how to use this software";
+    "Office Number Lists";
 });
 
 //
