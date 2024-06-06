@@ -198,7 +198,7 @@ open_welcome.addEventListener("click", (e) => {
     document.querySelector(".logo").style.display = "none";
     document.querySelector(".loader-container").style.display = "none";
     document.querySelector(".welcome-text").innerHTML =
-        "Instructions on how to use this software";
+        "Offices Number";
 });
 
 //
@@ -215,7 +215,7 @@ document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
     console.log('inpt btn clicked')
     if (document.getElementById("inpt-group").classList.contains("none")) {
         document.getElementById("inpt-group-btn").innerHTML =
-            '<span class="material-symbols-outlined"> keyboard </span>';
+            '<span class="material-symbols-outlined"> navigation </span>';
         document.getElementById("inpt-group-btn").style.bottom = `10rem`;
         document.getElementById("inpt-group-btn").style.zIndex = 5;
     } else {
