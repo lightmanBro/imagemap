@@ -212,8 +212,13 @@ open_welcome.addEventListener("click", (e) => {
     document.querySelector(".logo").style.display = "none";
     document.querySelector(".loader-container").style.display = "none";
     document.querySelector(".welcome-text").innerHTML =
-        "Offices Number";
-});
+        "Offices Number Click to copy";
+    });
+    // document.body.addEventListener('click',(e)=>{
+    //     if(document.querySelector(".welcome").style.display = "block"){
+    //         document.querySelector(".welcome").style.display = "none";
+    //     }
+    // })
 
 //
 close_welcome.addEventListener("click", (e) => {
