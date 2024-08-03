@@ -14,7 +14,7 @@ output.forEach((office) => {
     Object.keys(office).forEach((k) => {
         document
             .querySelector(".offices")
-            .insertAdjacentHTML("afterbegin", `<div class="number">${k}</div>`);
+            .insertAdjacentHTML("afterbegin", `<button>${k}</button>`);
     })
 })
 
@@ -102,9 +102,7 @@ const image = document.querySelector("image");
 image.setAttribute('width', '5400');
 image.setAttribute('height', '7200')
 window.addEventListener("DOMContentLoaded", (e) => {
-    setTimeout(() => {
-        document.querySelector(".welcome").style.display = "none";
-    }, 2000);
+    
     if (
         "ontouchstart" in window ||
         navigator.maxTouchPoints
@@ -199,47 +197,6 @@ function pointsToRoute(shortestRoute) {
     shortestRoute.forEach((segment) => drawLine(...segment));
 }
 
-document.getElementById("inpt-group-btn").style.bottom = `1.5rem`;
-// document.querySelector("canvas").style.display = "none";
-document.querySelector(".welcome").style.display = "block";
-const open_welcome = document.querySelector("#open-welcome");
-const close_welcome = document.querySelector("#close-welcome");
-
-open_welcome.addEventListener("click", (e) => {
-    document.querySelector(".welcome").style.display = "block";
-    document.querySelector(".logo").style.display = "none";
-    document.querySelector(".loader-container").style.display = "none";
-    document.querySelector(".welcome-text").innerHTML =
-        "Offices Number Click to copy";
-    });
-   
-
-//
-close_welcome.addEventListener("click", (e) => {
-    document.querySelector(".welcome").style.display = "none";
-    // console.log("closed clicked")
-});
-
-document.getElementById("inpt-group-btn").addEventListener("click", (e) => {
-    document.getElementById("inpt-group").classList.toggle("none");
-    document.getElementById(
-        "inpt-group"
-    ).style.transition = `transform 0.5s ease`;
-    // console.log('inpt btn clicked')
-    if (document.getElementById("inpt-group").classList.contains("none")) {
-        document.getElementById("inpt-group-btn").innerHTML =
-            '<span class="material-symbols-outlined"> navigation </span>';
-        document.getElementById("inpt-group-btn").style.bottom = `10rem`;
-        document.getElementById("inpt-group-btn").style.zIndex = 5;
-    } else {
-        document.getElementById("inpt-group-btn").innerHTML =
-            '<span class="material-symbols-outlined">\
-        keyboard_hide\
-        </span>';
-        document.getElementById("inpt-group-btn").style.bottom = `15rem`;
-    }
-});
-
 let zoomLevel = 1;
 document.getElementById("zoom-in").addEventListener("pointerdown", zoomIn);
 document.getElementById("zoom-out").addEventListener("pointerdown", zoomOut);
@@ -247,7 +204,6 @@ document.getElementById("zoom-out").addEventListener("pointerdown", zoomOut);
 function zoomIn() {
     // Increase the zoom level
     zoomLevel += 0.25;
-    document.getElementById("header").classList.add("none");
     // Apply the zoom level to the content
     document.querySelector("svg").classList.add("zoomed");
     document.querySelector("svg").style.transform = `scale(${zoomLevel})`;

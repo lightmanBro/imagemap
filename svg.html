@@ -3,90 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <title>Document</title>
-    <style>
-
-        /* Define a CSS class for zooming */
-        .zoomed {
-          transform-origin: 0 0;
-          transition: transform 0.3s ease;
-        }
-        
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 20;
-            font-size: 3.5rem;
-        }
-          
-      </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Location</title>
 </head>
 <body>
-    <div class="header" id="header">Floor 5: 5100 - 5594 offices and workplaces <div id="open-welcome"> <span class="material-symbols-outlined">
-        apartment
-        </span></div>
-        </span>
-    </div>
-    <div class="coordinates">
-        Please use another nearby office as start point
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg">
-        <!-- Embedding the image -->
-        <image xlink:href="SP1-2-floor-plan-5th-floor.jpg"  preserveAspectRatio="xMinYMin meet"/>
-    </svg>
-    <div class="none inpt-group" id="inpt-group">
-        <div class="inputs-btns">
-            <div class="flex">
-                <input type="text" id="from" placeholder="Start point" />
-                <input type="text" id="to" placeholder="Destination" />
-            </div>
-            <button id="drawLine">Go</button>
-        </div>
-        <div class="flex">
-            <button id="zoom-in"><span class="material-symbols-outlined">
-                zoom_in
-                </span></button>
-            <button id="zoom-out"><span class="material-symbols-outlined">
-                zoom_out
-                </span></button>
-        </div>
-    </div>
-    
-    <button class="open" id="inpt-group-btn"><span class="material-symbols-outlined">
-        navigation
-        </span></button>
-    <div class="welcome">
-        <div id="close-welcome"><span class="material-symbols-outlined">
-            close
-            </span></div>
-        <div class="welcome-text">
-            welcome to office navi
-
-        </div>
-        <div class="logo">
-            <span class="material-symbols-outlined">
-                route
-            </span>
-        </div>
-        <div class="loader-container">
-            <div class="loader"></div>
-            Loading
-        </div>
-        <div class="welcome-instruction">
-            <div class="devicename"></div>
-            <div class="offices">
-                
+    <div class="map-container">
+        <div class="controls">
+            <button class="hamburger-button material-symbols-outlined">menu</button>
+            <div class="zoom-controls">
+                <button id="zoom-in"><span class="material-symbols-outlined">add</span></button>
+                <button id="zoom-out"><span class="material-symbols-outlined">remove</span></button>
             </div>
         </div>
+        <div class="form-container" id="formContainer">
+            <button class="close-button">&times;</button>
+            <div class="coordinates">Please use another nearby office as start point</div>
+            <div class="inputs-btns">
+                <div class="flex">
+                    <input type="text" id="from" placeholder="From where?" />
+                    <input type="text" id="to" placeholder="Where to?" />
+                </div>
+                <button id="drawLine">Navigate</button>
+            </div>
+            <div>
+                Recent
+                <button id="resetHistory">Reset</button>
+            </div>
+            <ul class="recent-list" id="recentList">
+                <!-- Recent searches will be populated here -->
+            </ul>
+            <div>
+                Room Numbers
+                <div class="offices" id="roomNumbers">
+                    
+                    <!-- Add more room numbers as needed -->
+                </div>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <!-- Embedding the image -->
+            <image xlink:href="SP1-2-floor-plan-5th-floor.jpg" preserveAspectRatio="xMinYMin meet" />
+        </svg>
     </div>
     <script src="./output.js"></script>
     <script src="./graph.js"></script>
     <script src="./svg.js" type="module" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const drawLineButton = document.getElementById('drawLine');
+            const fromInput = document.getElementById('from');
+            const toInput = document.getElementById('to');
+            const recentList = document.getElementById('recentList');
+            const resetHistoryButton = document.getElementById('resetHistory');
+            const roomNumbers = document.getElementById('roomNumbers');
+            const hamburgerButton = document.querySelector('.hamburger-button');
+            const formContainer = document.getElementById('formContainer');
+            const closeButton = document.querySelector('.close-button');
+
+            // Function to find the shortest route
+            // Function to render recent searches from localStorage
+            function renderRecentSearches() {
+                const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
+                recentList.innerHTML = recent.map(search => `<li>${search}</li>`).join('');
+            }
+
+            // Event listener for the reset history button
+            resetHistoryButton.addEventListener('click', function () {
+                localStorage.removeItem('recentSearches');
+                renderRecentSearches();
+            });
+
+            // Initial rendering of recent searches
+            renderRecentSearches();
+
+            // Event listener for the hamburger button
+            hamburgerButton.addEventListener('click', function () {
+                formContainer.classList.toggle('open');
+            });
+
+            // Event listener for the close button
+            closeButton.addEventListener('click', function () {
+                formContainer.classList.remove('open');
+                fromInput.value = '';
+                toInput.value = '';
+            });
+        });
+    </script>
 </body>
 </html>
