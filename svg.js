@@ -122,7 +122,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
 });
 
 const lineColor = "blue"; // Default line color
-const lineWidth = 15; // Adjust as needed
+const lineWidth = 5; // Adjust as needed
 const drawingPath = [];
 let startPoint = {};
 
@@ -219,11 +219,11 @@ function zoomOut() {
         document.querySelector("svg").classList.add("zoomed");
         document.querySelector("svg").style.transform = `scale(${zoomLevel})`;
         // console.log("zoom out ", zoomLevel);
-        if (zoomLevel == 1) {
-            setTimeout(() => {
-                document.getElementById("header").classList.remove("none");
-            }, 500);
-        }
+        // if (zoomLevel == 1) {
+        //     setTimeout(() => {
+        //         document.getElementById("header").classList.remove("none");
+        //     }, 500);
+        // }
         // updateHTMLPosition()//Stopped because the canvas translation is causing the page to zoom out too much
     }
 }
@@ -324,7 +324,7 @@ function drawLocationIcon(svg, x, y) {
     circle.setAttribute("cx", x);
     circle.setAttribute("cy", y);
     circle.setAttribute("r", 50);
-    circle.setAttribute("fill", "orangered");
+    circle.setAttribute("fill", "#ff44003f");
 
     const pin = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     pin.setAttribute("points", `${x},${y - 50} ${x - 10},${y - 40} ${x + 10},${y - 40}`);
