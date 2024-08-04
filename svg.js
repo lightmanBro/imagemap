@@ -253,7 +253,6 @@ function adjustViewport() {
                 "content",
                 "width=device-width, initial-scale=1.0, maximum-scale=1.0"
             );
-        document.getElementById("header").classList.add("none");
     } else {
         // Revert to default viewport settings
         document

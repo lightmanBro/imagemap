@@ -7,6 +7,51 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="style.css">
     <title>Location</title>
+    <style>
+        /* New styles for modal and room numbers toggle */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .modal .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .modal .close:hover,
+        .modal .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .offices {
+            display: none;
+        }
+
+        .offices.open {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="map-container">
@@ -36,9 +81,12 @@
             </ul>
             <div>
                 Room Numbers
+                <button id="toggleRoomNumbers">Toggle Room Numbers</button>
                 <div class="offices" id="roomNumbers">
-                    
                     <!-- Add more room numbers as needed -->
+                    <p>Room 101</p>
+                    <p>Room 102</p>
+                    <p>Room 103</p>
                 </div>
             </div>
         </div>
@@ -46,6 +94,14 @@
             <!-- Embedding the image -->
             <image xlink:href="SP1-2-floor-plan-5th-floor.jpg" preserveAspectRatio="xMinYMin meet" />
         </svg>
+    </div>
+    <div id="clearModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Are you sure you want to clear all recent places?</p>
+            <button id="confirmClear">Yes</button>
+            <button id="cancelClear">No</button>
+        </div>
     </div>
     <script src="./output.js"></script>
     <script src="./graph.js"></script>
@@ -61,18 +117,91 @@
             const hamburgerButton = document.querySelector('.hamburger-button');
             const formContainer = document.getElementById('formContainer');
             const closeButton = document.querySelector('.close-button');
+            const clearModal = document.getElementById('clearModal');
+            const confirmClearButton = document.getElementById('confirmClear');
+            const cancelClearButton = document.getElementById('cancelClear');
+            const toggleRoomNumbersButton = document.getElementById('toggleRoomNumbers');
 
-            // Function to find the shortest route
             // Function to render recent searches from localStorage
             function renderRecentSearches() {
                 const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
-                recentList.innerHTML = recent.map(search => `<li>${search}</li>`).join('');
+                recentList.innerHTML = recent.map((search, index) => `
+                    <li>
+                        ${search.from} to ${search.to}
+                        <button onclick="populatePlace(${index})">Select</button>
+                        <button onclick="returnTrip(${index})">Return</button>
+                    </li>`).join('');
             }
 
-            // Event listener for the reset history button
-            resetHistoryButton.addEventListener('click', function () {
+            // Function to save current trip to localStorage
+            const   saveCurrentTrip = function() {
+                const from = fromInput.value;
+                const to = toInput.value;
+                if (from && to) {
+                    const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
+                    recent.push({ from, to });
+                    localStorage.setItem('recentSearches', JSON.stringify(recent));
+                    renderRecentSearches();
+                    fromInput.value = '';
+                    toInput.value = '';
+                }
+            }
+
+            // Function to populate place
+            const populatePlace = function (index) {
+                const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
+                if (recent[index]) {
+                    console.log(recent)
+                    fromInput.value = recent[index].to;
+                    toInput.value = recent[index].from;
+                }
+            }
+
+            // Function to return trip
+            const returnTrip = function (index) {
+                const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
+                if (recent[index]) {
+                    console.log(recent)
+                    fromInput.value = recent[index].to;
+                    toInput.value = recent[index].from;
+                }
+            }
+
+            // Function to show modal
+            function showModal() {
+                clearModal.style.display = 'block';
+            }
+
+            // Function to hide modal
+            function hideModal() {
+                clearModal.style.display = 'none';
+            }
+
+            // Function to clear recent searches
+            function clearRecentSearches() {
                 localStorage.removeItem('recentSearches');
                 renderRecentSearches();
+                hideModal();
+            }
+
+            // Event listener for save trip button
+            drawLineButton.addEventListener('click', saveCurrentTrip);
+
+            // Event listener for reset history button
+            resetHistoryButton.addEventListener('click', showModal);
+
+            // Event listener for confirm clear button
+            confirmClearButton.addEventListener('click', clearRecentSearches);
+
+            // Event listener for cancel clear button
+            cancelClearButton.addEventListener('click', hideModal);
+
+            // Event listener for modal close button
+            document.querySelector('.modal .close').addEventListener('click', hideModal);
+
+            // Event listener for toggling room numbers
+            toggleRoomNumbersButton.addEventListener('click', function () {
+                roomNumbers.classList.toggle('open');
             });
 
             // Initial rendering of recent searches
@@ -88,6 +217,13 @@
                 formContainer.classList.remove('open');
                 fromInput.value = '';
                 toInput.value = '';
+            });
+
+            // Event listener for clicking outside the modal to close it
+            window.addEventListener('click', function (event) {
+                if (event.target === clearModal) {
+                    hideModal();
+                }
             });
         });
     </script>
