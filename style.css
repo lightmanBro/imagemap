@@ -44,16 +44,11 @@ body {
 .flex {
   display: flex;
   gap: 10px;
-  flex-direction: column;
   margin-bottom: 10px;
 }
 
-.inputs-btns button{
-width: 70%;
-margin: auto;
-}
 input[type="text"] {
- width: 100%;
+  flex: 1;
   padding: var(--input-padding);
   border: 1px solid #DDD;
   border-radius: 5px;
@@ -116,6 +111,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: fit-content;
   z-index: 1;
 }
 
@@ -126,6 +122,7 @@ button {
   background-color: white;
   border: 1px solid gray;
   border-radius: 5px;
+  width: fit-content;
 }
 
 .zoom-controls button {
@@ -137,6 +134,8 @@ button {
   padding: 0;
   border-radius: 5px;
   cursor: pointer;
+  width: fit-content;
+  height: fit-content;
 }
 
 .hamburger-button {
@@ -192,10 +191,6 @@ button {
 }
 
 .offices {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   overflow: scroll;
   height: 100%;
 }
@@ -204,12 +199,10 @@ button {
   margin: 10px;
   width: fit-content;
 }
-
 /* Media Queries */
 @media (max-width: 1024px) {
-  :root {
-    --form-width: 50vw;
-    --font-size: 1.2vw;
+  .form-container {
+    width: 50%;
   }
 
   .hamburger-button,
@@ -224,9 +217,8 @@ button {
 }
 
 @media (max-width: 768px) {
-  :root {
-    --form-width: 75vw;
-    --font-size: 1.5vh;
+  .form-container {
+    width: 75%;
   }
 
   .hamburger-button,
@@ -241,29 +233,19 @@ button {
 }
 
 @media (max-width: 480px) {
-  :root {
-    --form-width: 90vw;
-    --font-size: 2vh;
-  }
-
   .form-container {
+    width: 90%;
     padding: 10px;
   }
 
   .hamburger-button,
   .zoom-controls {
     padding: 3px;
-    font-size: 1.5rem;
+    font-size: 0.5rem;
   }
-  .zoom-controls{
-    display: flex;
-    /* flex-direction: row; */
-    align-items: center;
-    height: fit-content;
-    width: fit-content;
-    border: #6200EA 1px solid;
-  }
+
   .zoom-controls button {
     padding: 3px;
+    font-size: 1vh;
   }
 }
