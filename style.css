@@ -282,10 +282,10 @@ button:hover{
     width: 90%;
     height: 40vh;
     padding: 20px;
-    font-size: 2.5rem;
+    font-size: 5rem;
   }
   .form-container button{
-    font-size: 2.5rem;
+    font-size: 5rem;
   }
   .inputs-btns button{
     padding: 5vw;
@@ -299,7 +299,7 @@ button:hover{
   }
 
   .zoom-controls button {
-    padding: 3vw;
+    padding: 10vw;
     font-size: 1vh;
     height: fit-content;
     
@@ -318,5 +318,10 @@ button:hover{
   .offices{
     font-size: inherit;
     height: 80%;
+  }
+  .office-toggle{
+    font-size: 2.5rem;
+    text-align: center;
+    margin: auto;
   }
 }
