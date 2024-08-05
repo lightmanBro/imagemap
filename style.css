@@ -268,24 +268,20 @@ button:hover{
     width: fit-content;
   }
   .form-container {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     padding: 10px;
   }
   .form-container input{
-    width: 100%;
+    width: 90vw;
     height: 10vh;
     padding: 20px;
   }
   .inputs-btns button{
-    padding: 10px;
+    padding: 5vw;
 
   }
-  /* input{
-    width: 100%;
-    height: 10vh;
-    padding: 20px;
-  } */
+  
   .hamburger-button,
   .zoom-controls {
     padding: 3px;
@@ -293,7 +289,7 @@ button:hover{
   }
 
   .zoom-controls button {
-    padding: 3px;
+    padding: 3vw;
     font-size: 1vh;
     height: fit-content;
     
