@@ -253,6 +253,8 @@ button:hover{
   }
 }
 
+
+
 @media (max-width: 480px) {
   /* :root {
     --form-width: 90vw;
@@ -265,11 +267,15 @@ button:hover{
     left: 10px; /* Adjust this as needed */
     width: fit-content;
   }
-
   .form-container {
-    width: 90vw;
+    width: 100%;
     height: 100%;
     padding: 10px;
+  }
+  .form-container input{
+    width: 100%;
+    height: 10vh;
+    padding: 20px;
   }
   .inputs-btns button{
     padding: 10px;
