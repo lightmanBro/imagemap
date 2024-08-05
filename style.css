@@ -280,12 +280,12 @@ button:hover{
   }
   .form-container input{
     width: 90%;
-    height: 20vh;
+    height: 40vh;
     padding: 20px;
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   .form-container button{
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   .inputs-btns button{
     padding: 5vw;
@@ -303,5 +303,20 @@ button:hover{
     font-size: 1vh;
     height: fit-content;
     
+  }
+  .recent,.recent-list {
+    font-size: 2.5rem;
+  }
+   ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  li{
+    border: 1px solid gray;
+  }
+  .offices{
+    font-size: inherit;
+    height: 80%;
   }
 }
