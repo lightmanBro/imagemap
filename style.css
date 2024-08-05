@@ -267,15 +267,25 @@ button:hover{
     left: 10px; /* Adjust this as needed */
     width: fit-content;
   }
+  .hamburger-button {
+    height: 7.5vh;
+    width: 7.5vh;
+    font-size: 5vh;
+  }
   .form-container {
-    width: 100%;
+    width: 90%;
+    margin: auto;
     height: 100%;
     padding: 10px;
   }
   .form-container input{
-    width: 90vw;
-    height: 10vh;
+    width: 90%;
+    height: 20vh;
     padding: 20px;
+    font-size: 2rem;
+  }
+  .form-container button{
+    font-size: 2rem;
   }
   .inputs-btns button{
     padding: 5vw;
