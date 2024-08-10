@@ -14,7 +14,7 @@ body {
 
 .map-container {
   flex-grow: 1;
-  background-color: #E5E5E5;
+  background-color: #fbfafa;
   position: absolute;
 }
 
@@ -49,25 +49,30 @@ input::placeholder{
 .inputs-btns button{
   width: 100%;
   padding: 2rem;
+  border: #6200EA 1px solid;
+  background-color: transparent;
+  color: #6200EA;
 }
 button {
   /* padding: var(--input-padding); */
-  border: 1px solid #6200EA;
-  color: #6200EA;
+  border: 1px solid gray;
+  color: gray;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 10px;
   font-size: var(--font-size);
 }
 button:hover{
-  background-color: #6200EA;
+  background-color: grey;
   color: white;
 }
 
  
 .recent{
-  display: flex;
+  /* display: flex;
   align-items:center;
-  justify-content: space-around;
+  justify-content: space-around; */
+  display: block;
   padding: 10px;  
   background-color: white;
 }
@@ -82,11 +87,30 @@ button:hover{
 
 .recent-list li {
   /* padding: 10px; */
-  border-bottom: 1px solid #DDD;
+  border: 1px solid #DDD;
   cursor: pointer;
-  font-size: var(--font-size);
+  display: flex;
+  color: grey;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 2.5vh;
+ margin: 1vh;
+ padding: 1vh;
 }
-
+.recent-list li:hover{
+  border: #6200EA 1px solid;
+}
+.recent-list li button{
+  color: grey;
+  background-color: transparent;
+  font-size: 2vh;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+.recent-list li button:hover{
+  color: white;
+  background-color: grey;
+}
 .room-numbers {
   display: flex;
   flex-wrap: wrap;
@@ -143,8 +167,9 @@ button:hover{
 }
 
 .hamburger-button {
-  width: var(--button-size);
-  height: var(--button-size);
+  /* width: var(--button-size);
+  height: var(--button-size); */
+  padding: 1vw;
   background-color: white;
   border: 2px solid gray;
   color: gray;
@@ -160,12 +185,13 @@ button:hover{
   width: var(--form-width);
   height: 120vh;
   z-index: 1;
-  background-color: rgba(225, 223, 223, 0.9);
+  background-color: rgb(234, 233, 233);
   padding: 2vw;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: none;
   flex-direction: column;
   gap: 10px;
+  text-align: center;
 }
 
 .form-container.open {
@@ -268,12 +294,13 @@ button:hover{
     width: fit-content;
   }
   .hamburger-button {
-    height: 7.5vh;
-    width: 7.5vh;
+    /* height: 7.5vh;
+    width: 7.5vh; */
+    padding: 5vh;
     font-size: 5vh;
   }
   .form-container {
-    width: 90%;
+    width: 100%;
     margin: auto;
     height: 100%;
     padding: 10px;
@@ -294,12 +321,12 @@ button:hover{
   
   .hamburger-button,
   .zoom-controls {
-    padding: 3px;
+    /* padding: 3px; */
     font-size: 0.5rem;
   }
 
   .zoom-controls button {
-    padding: 10vw;
+    padding: 5vw;
     font-size: 1vh;
     height: fit-content;
     
@@ -312,8 +339,9 @@ button:hover{
     align-items: center;
     justify-content: center;
   }
-  li{
+  .recent-list ul> li{
     border: 1px solid gray;
+    font-size: 2.5rem;
   }
   .offices{
     font-size: inherit;
