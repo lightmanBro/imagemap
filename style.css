@@ -297,7 +297,7 @@ button:hover{
     --font-size: 2vh;
   } */
   svg {
-    transform: scale(0.25); /* Zoom out to 25% */
+    transform: scale(1); /* Zoom out to 25% */
     transform-origin: 0 0;  /* Ensure the zoom out occurs from the top-left corner */
   }
   .controls {
