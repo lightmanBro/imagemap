@@ -99,8 +99,8 @@ function pointToRoutes(shortestRoute) {
 // Set the SVG width and height attributes
 const svg = document.querySelector("svg");
 const image = document.querySelector("image");
-image.setAttribute('width', '5400');
-image.setAttribute('height', '7200')
+// image.setAttribute('width', '5400');
+// image.setAttribute('height', '7200')
 window.addEventListener("DOMContentLoaded", (e) => {
     
     if (
@@ -113,7 +113,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
         image.setAttribute('height', '100%');
 
         // Optionally add preserveAspectRatio for the image
-        //   image.setAttribute('preserveAspectRatio', 'xMinYMin meet');
+          image.setAttribute('preserveAspectRatio', 'xMinYMin meet');
     } else {
         svg.setAttribute("width", `${window.innerWidth}px`);
         svg.setAttribute("height", "7200px");
