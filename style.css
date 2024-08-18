@@ -340,12 +340,12 @@ button:hover{
 
   .zoom-controls button {
     padding: 5vw;
-    font-size: 1vh;
+    font-size: inherit;
     height: fit-content;
     
   }
   .recent,.recent-list {
-    font-size: 5vw;
+    font-size: inherit;
   }
    ul{
     display: flex;
@@ -354,7 +354,7 @@ button:hover{
   }
   .recent-list ul> li{
     border: 1px solid gray;
-    font-size: 2.5rem;
+    font-size: inherit;
   }
   .offices{
     font-size: inherit;
