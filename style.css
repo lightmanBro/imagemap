@@ -344,8 +344,9 @@ button:hover{
     height: fit-content;
     
   }
-  .recent,.recent-list {
-    font-size: inherit;
+  
+  .recent-list li{
+    font-size: 7.5vh;
   }
    ul{
     display: flex;
