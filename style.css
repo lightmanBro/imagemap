@@ -162,32 +162,37 @@ button:hover{
   gap: 10px;
   background-color: white;
   border: 1px solid gray;
-  border-radius: 5px;
+  border-radius: 1vw;
+  /* padding: 1vw; */
   width: fit-content;
 }
 
 .zoom-controls button {
-  width: var(--button-size);
+  width: 100%;
   height: var(--button-size);
   background-color: transparent;
-  color: gray;
+  color: #6200EA;
   border: none;
-  padding: 0;
-  border-radius: 5px;
+  border-radius: 1vw;
+  padding: 1vw;
   cursor: pointer;
   width: fit-content;
   height: fit-content;
 }
-
+.zoom-controls button:hover{
+  color: white;
+  background-color:#6200EA;
+  width: inherit;
+}
 .hamburger-button {
-  /* width: var(--button-size);
-  height: var(--button-size); */
-  padding: 1vw;
+  width: fit-content;
+  height: auto;
   background-color: white;
   border: 2px solid gray;
   color: gray;
-  border-radius: 5px;
+  border-radius: .5vw;
   cursor: pointer;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.281);
 }
 
 .form-container {
