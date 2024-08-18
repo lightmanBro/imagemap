@@ -34,6 +34,9 @@ svg {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
+.inputs-btns{
+  background-color: #fbfafa;
+}
 .inputs-btns,
 .flex {
   display: flex;
@@ -193,9 +196,9 @@ button:hover{
   left: 0;
   right: 0;
   width: var(--form-width);
-  height: 120vh;
+  height: fit-content;
   z-index: 1;
-  background-color: rgb(234, 233, 233);
+  /* background-color: rgb(234, 233, 233); */
   padding: 2vw;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: none;
@@ -210,6 +213,7 @@ button:hover{
 }
 
 .close-button {
+  position: absolute;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background: none;
   border: none;
@@ -235,6 +239,7 @@ button:hover{
   overflow: scroll;
   height: 50vh;
   scrollbar-width: none;
+  background-color: #fbfafa;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -313,10 +318,11 @@ button:hover{
     font-size: 5vh;
   }
   .form-container {
-    width: 100%;
+    width: 90%;
     margin: auto;
     height: 100%;
     padding: 10px;
+    font-size: 5vh;
   }
   .form-container input{
     width: 90%;
@@ -359,7 +365,7 @@ button:hover{
   }
   .offices{
     font-size: inherit;
-    height: 80%;
+    height: 60vh;
   }
   .office-toggle{
     font-size: 2.5rem;
