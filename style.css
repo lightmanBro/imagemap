@@ -237,7 +237,7 @@ button:hover{
 
 .offices {
   overflow: scroll;
-  height: 50vh;
+  height: 70vh;
   scrollbar-width: none;
   background-color: #fbfafa;
   display: flex;

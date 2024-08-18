@@ -62,6 +62,12 @@ function getOffices(startPoint, endPoint) {
             shortestRoute = findShortestRoute(graphs, startAxis, endAxis);
             pointToRoutes(shortestRoute);
             pointToPoint(svg, start, end);
+            console.log(shortestRoute,start);
+            window.scrollTo({
+                top: shortestRoute[0][0],
+                left: shortestRoute[0][1],
+                behavior: 'smooth'
+            })
         } else {
             pointToPoint(svg, start, end);
             coordinatesElement.classList.add("show");
