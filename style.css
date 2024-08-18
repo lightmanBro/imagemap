@@ -255,7 +255,7 @@ button:hover{
     --font-size: 1.2vw;
   }
   .form-container {
-    width: 50%;
+    width: var(--form-width);
   }
 
   .hamburger-button,
@@ -275,7 +275,7 @@ button:hover{
     --font-size: 1.5vh;
   }
   .form-container {
-    width: 75%;
+    width: var(--form-width);
   }
 
   .hamburger-button,
@@ -292,10 +292,10 @@ button:hover{
 
 
 @media (max-width: 480px) {
-  /* :root {
+  :root {
     --form-width: 90vw;
     --font-size: 2vh;
-  } */
+  }
   svg {
     transform: scale(1); /* Zoom out to 25% */
     transform-origin: 0 0;  /* Ensure the zoom out occurs from the top-left corner */
@@ -345,7 +345,7 @@ button:hover{
     
   }
   .recent,.recent-list {
-    font-size: 2.5rem;
+    font-size: 5vw;
   }
    ul{
     display: flex;
