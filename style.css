@@ -345,6 +345,7 @@ button {
   }
   .more-container button{
     font-size: 5vh;
+   padding: 5vh;
   }
   .form-container input{
     width: 90%;
