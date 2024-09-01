@@ -128,7 +128,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
 });
 
 const lineColor = "blue"; // Default line color
-const lineWidth = 5; // Adjust as needed
+const lineWidth = 7.5; // Adjust as needed
 const drawingPath = [];
 let startPoint = {};
 
@@ -144,18 +144,18 @@ function drawLine(x1, y1, x2, y2) {
     return line;
 }
 
-svg.addEventListener("mousedown", (e) => {
-    startPoint = { x: e.clientX, y: e.clientY };
-});
+// svg.addEventListener("mousedown", (e) => {
+//     startPoint = { x: e.clientX, y: e.clientY };
+// });
 
-svg.addEventListener("mousemove", (e) => {
-    if (e.buttons === 1) {
-        // Only draw when mouse button is pressed
-        const line = drawLine(startPoint.x, startPoint.y, e.clientX, e.clientY);
-        drawingPath.push(line);
-        startPoint = { x: e.clientX, y: e.clientY };
-    }
-});
+// svg.addEventListener("mousemove", (e) => {
+//     if (e.buttons === 1) {
+//         // Only draw when mouse button is pressed
+//         const line = drawLine(startPoint.x, startPoint.y, e.clientX, e.clientY);
+//         drawingPath.push(line);
+//         startPoint = { x: e.clientX, y: e.clientY };
+//     }
+// });
 
 document.addEventListener("mouseup", () => {
     // No need to do anything here for SVG
@@ -186,22 +186,6 @@ document.getElementById("drawLine").addEventListener("click", () => {
 // Example usage
 // clearDrawings(); // Call this function whenever you want to clear the SVG drawings
 
-// Center the image inside the SVG
-function centerImage() {
-    image.setAttribute("x", (svg.clientWidth - image.clientWidth) / 2);
-    image.setAttribute("y", (svg.clientHeight - image.clientHeight) / 2);
-}
-// centerImage(); // Call the function to center the image initially
-
-// Function to draw the path on the SVG canvas
-function drawPath() {
-    drawingPath.forEach((line) => svg.appendChild(line));
-}
-
-// Function to convert points to routes
-function pointsToRoute(shortestRoute) {
-    shortestRoute.forEach((segment) => drawLine(...segment));
-}
 
 let zoomLevel = 1;
 document.getElementById("zoom-in").addEventListener("pointerdown", zoomIn);
@@ -213,8 +197,6 @@ function zoomIn() {
     // Apply the zoom level to the content
     document.querySelector("svg").classList.add("zoomed");
     document.querySelector("svg").style.transform = `scale(${zoomLevel})`;
-    //   console.log("zoom in ", zoomLevel);
-    //   updateHTMLPosition();//Stopped because the canvas translation is causing the page to zoom in too much
 }
 
 function zoomOut() {
@@ -224,29 +206,9 @@ function zoomOut() {
         // Apply the zoom to the svg
         document.querySelector("svg").classList.add("zoomed");
         document.querySelector("svg").style.transform = `scale(${zoomLevel})`;
-        // console.log("zoom out ", zoomLevel);
-        // if (zoomLevel == 1) {
-        //     setTimeout(() => {
-        //         document.getElementById("header").classList.remove("none");
-        //     }, 500);
-        // }
-        // updateHTMLPosition()//Stopped because the canvas translation is causing the page to zoom out too much
     }
 }
-function updateHTMLPosition() {
-    // Calculate canvas position
-    const canvasRect = svg.getBoundingClientRect();
-    const canvasX = canvasRect.left;
-    const canvasY = canvasRect.top;
 
-    // Calculate HTML content position relative to canvas
-    const htmlX = canvasX; /* calculate X position based on zoom level */
-    const htmlY = canvasY; /* calculate Y position based on zoom level */
-    const element = document.getElementById("myCanvas");
-    element.style.left = htmlX + "px";
-    element.style.top = htmlY + "px";
-    // element.style.transform = `translate(${htmlX}px, ${htmlY}px)`;
-}
 // Adjust viewport settings
 function adjustViewport() {
     const currentScale = window.visualViewport.scale;
@@ -321,38 +283,64 @@ function findShortestRoute(graph, start, end) {
     return []; // No path found to end point
 }
 
-// Function to draw location icon
+// Function to draw map location icon with animation
 function drawLocationIcon(svg, x, y) {
     const iconGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", x);
-    circle.setAttribute("cy", y);
-    circle.setAttribute("r", 50);
-    circle.setAttribute("fill", "#ff44003f");
+    // Map pin shape using path
+    const pinPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    const pinRadius = 100; // Radius of the circular part of the pin
+    const pinHeight = 70; // Total height of the pin
+    const pinPathData = `
+        M ${x} ${y} 
+        C ${x - pinRadius} ${y - pinRadius}, ${x + pinRadius} ${y - pinRadius}, ${x} ${y} 
+        L ${x} ${y + pinHeight} 
+        Q ${x - 10} ${y + pinHeight - 10}, ${x} ${y + pinHeight + 10} 
+        Q ${x + 10} ${y + pinHeight - 10}, ${x} ${y + pinHeight} 
+        Z
+    `;
+    pinPath.setAttribute("d", pinPathData);
+    pinPath.setAttribute("fill", "red");
 
-    const pin = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-    pin.setAttribute("points", `${x},${y - 50} ${x - 10},${y - 40} ${x + 10},${y - 40}`);
-    pin.setAttribute("fill", "blue");
+    // Add bounce animation to the pin
+    const animateBounce = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+    animateBounce.setAttribute("attributeName", "transform");
+    animateBounce.setAttribute("attributeType", "XML");
+    animateBounce.setAttribute("type", "translate");
+    animateBounce.setAttribute("values", `0,-10; 0,0; 0,-5; 0,0`); // Creates a bouncing effect
+    animateBounce.setAttribute("dur", "1s");
+    animateBounce.setAttribute("repeatCount", "indefinite");
 
-    iconGroup.appendChild(circle);
-    iconGroup.appendChild(pin);
+    pinPath.appendChild(animateBounce);
+
+    iconGroup.appendChild(pinPath);
 
     svg.appendChild(iconGroup);
 }
 
-// Function to draw text on icon
+// Function to draw text on icon with animation
 function drawTextOnIcon(svg, x, y, text) {
     const textElement = document.createElementNS("http://www.w3.org/2000/svg", "text");
     textElement.setAttribute("x", x);
-    textElement.setAttribute("y", y + 70); // Adjust vertical position of text
+    textElement.setAttribute("y", y - 40); // Adjust vertical position of text above the icon
     textElement.setAttribute("fill", "black");
-    textElement.setAttribute("font-size", "24");
+    textElement.setAttribute("font-size", "16"); // Smaller font size
     textElement.setAttribute("text-anchor", "middle");
     textElement.textContent = text;
 
+    // Add fade-in animation to the text
+    const animateFade = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+    animateFade.setAttribute("attributeName", "opacity");
+    animateFade.setAttribute("from", "0");
+    animateFade.setAttribute("to", "1");
+    animateFade.setAttribute("dur", "2s");
+    animateFade.setAttribute("fill", "freeze"); // Stays at 'to' value after animation ends
+
+    textElement.appendChild(animateFade);
+
     svg.appendChild(textElement);
 }
+
 
 // Function to draw point to point
 function pointToPoint(svg, start, end) {

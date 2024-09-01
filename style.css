@@ -76,7 +76,10 @@ button {
   font-size: var(--font-size);
 }
 
-
+.search{
+  position: relative;
+  z-index: 1;
+}
  
 .recent{
   /* display: flex;
@@ -216,8 +219,9 @@ button {
 }
 
 .close-button {
-  position: absolute;
+  /* position: absolute; */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1vh;
   background: none;
   border: none;
   width: fit-content;
@@ -225,7 +229,7 @@ button {
   margin-right: 0;
   font-size: 2vw;
   cursor: pointer;
-  color: black;
+  color: rgb(76, 76, 76);
 }
 
 .zoomed {
@@ -276,6 +280,11 @@ button {
   .zoom-controls button {
     padding: 5px;
   }
+  .inputs-btns button{
+    padding: 5vw;
+    border-radius: 2vh;
+
+  }
 }
 
 @media (max-width: 768px) {
@@ -296,6 +305,11 @@ button {
 
   .zoom-controls button {
     padding: 5px;
+  }
+  .inputs-btns button{
+    padding: 5vw;
+    border-radius: 2vh;
+
   }
 }
 
@@ -340,6 +354,7 @@ button {
   }
   .inputs-btns button{
     padding: 5vw;
+    border-radius: 2vh;
 
   }
   

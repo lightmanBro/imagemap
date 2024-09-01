@@ -29,7 +29,7 @@
             width: 100%;
             font-size: 3vh;
             max-width: 10vw;
-            text-align:center;
+            text-align: center;
             height: fit-content;
         }
 
@@ -47,25 +47,44 @@
             cursor: pointer;
         }
 
+        .recent,
         .offices {
-            display: none;
+            display: none; /* Hidden by default */
         }
 
-        .offices.open {
-            display: block;
+        .open {
+            display: block; /* Show when open */
+        }
+
+        .more-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .more-container button{
+            font-size: 2vh;
+            padding: 1vh;
+            background-color: #6200EA;
+            border: none;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="map-container">
+        <!-- <div class="search">
+            <input type="text" id="from" placeholder="search for office" />
+        </div> -->
         <div class="controls">
-            <button style="font-size: 5vh;" class="hamburger-button material-symbols-outlined">menu</button>
+            <button style="font-size: 7.5vh;" class="hamburger-button material-symbols-outlined">menu</button>
             <div class="zoom-controls">
                 <button style="font-size: 7.5vh;" id="zoom-in"><span class="material-symbols-outlined">add</span></button>
                 <button style="font-size: 7.5vh;" id="zoom-out"><span class="material-symbols-outlined">remove</span></button>
             </div>
         </div>
+       
         <div class="form-container" id="formContainer">
+           
             <button class="close-button">&times;</button>
             <!-- <div class="coordinates">Please use another nearby office as start point</div> -->
             <div class="inputs-btns">
@@ -75,18 +94,21 @@
                 </div>
                 <button id="drawLine">Navigate</button>
             </div>
+            <div class="more-container">
+                <button id="toggleMore" class="material-symbols-outlined">expand_more</button>
+            </div>
             <div class="recent">
                 <br>
                 <button id="resetHistory">Reset</button>
                 <ul class="recent-list" id="recentList">
                     <!-- Recent searches will be populated here -->
                 </ul>
-            </div>
-            <div style="background-color: #fefefe;">
-               
-                <button class="office-toggle" id="toggleRoomNumbers">Offices</button>
-                <div class="offices" id="roomNumbers">
-                    <!-- Add more room numbers as needed -->
+                <div class="office-container" style="background-color: #fefefe;">
+                   
+                    <button class="office-toggle" id="toggleRoomNumbers">Offices</button>
+                    <div class="offices" id="roomNumbers">
+                        <!-- Add more room numbers as needed -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,13 +129,38 @@
     <script src="./graph.js"></script>
     <script src="./svg.js" type="module" defer></script>
     <script>
+        // Move these function declarations outside the DOMContentLoaded event listener
+        const fromInput = document.getElementById('from');
+        const toInput = document.getElementById('to');
+        const toggleMoreButton = document.getElementById('toggleMore');
+        const recentSection = document.querySelector('.recent');
+        const officeContainer = document.querySelector('.office-container')
+        const roomNumbers = document.getElementById('roomNumbers');
+        
+        // Function to populate place
+        function populatePlace(index) {
+            const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
+            if (recent[index]) {
+                fromInput.value = recent[index].from;
+                toInput.value = recent[index].to;
+            }
+            console.log(recent);
+        }
+    
+        // Function to return trip
+        function returnTrip(index) {
+            const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
+            if (recent[index]) {
+                fromInput.value = recent[index].to;
+                toInput.value = recent[index].from;
+                console.log(recent[index].to, recent[index].from);
+            }
+        }
+    
         document.addEventListener('DOMContentLoaded', function () {
             const drawLineButton = document.getElementById('drawLine');
-            const fromInput = document.getElementById('from');
-            const toInput = document.getElementById('to');
             const recentList = document.getElementById('recentList');
             const resetHistoryButton = document.getElementById('resetHistory');
-            const roomNumbers = document.getElementById('roomNumbers');
             const hamburgerButton = document.querySelector('.hamburger-button');
             const formContainer = document.getElementById('formContainer');
             const closeButton = document.querySelector('.close-button');
@@ -121,7 +168,7 @@
             const confirmClearButton = document.getElementById('confirmClear');
             const cancelClearButton = document.getElementById('cancelClear');
             const toggleRoomNumbersButton = document.getElementById('toggleRoomNumbers');
-
+    
             // Function to render recent searches from localStorage
             function renderRecentSearches() {
                 const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
@@ -132,9 +179,9 @@
                         <button onclick="returnTrip(${index})">Return</button>
                     </li>`).join('');
             }
-
+    
             // Function to save current trip to localStorage
-            const   saveCurrentTrip = function() {
+            const saveCurrentTrip = function() {
                 const from = fromInput.value;
                 const to = toInput.value;
                 if (from && to) {
@@ -146,85 +193,72 @@
                     toInput.value = '';
                 }
             }
-
-            // Function to populate place
-            const populatePlace = function (index) {
-                const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
-                if (recent[index]) {
-                    console.log(recent)
-                    fromInput.value = recent[index].to;
-                    toInput.value = recent[index].from;
-                }
-            }
-
-            // Function to return trip
-            const returnTrip = function (index) {
-                const recent = JSON.parse(localStorage.getItem('recentSearches')) || [];
-                if (recent[index]) {
-                    console.log(recent)
-                    fromInput.value = recent[index].to;
-                    toInput.value = recent[index].from;
-                }
-            }
-
+    
             // Function to show modal
             function showModal() {
                 clearModal.style.display = 'block';
             }
-
+    
             // Function to hide modal
             function hideModal() {
                 clearModal.style.display = 'none';
             }
-
+    
             // Function to clear recent searches
             function clearRecentSearches() {
                 localStorage.removeItem('recentSearches');
                 renderRecentSearches();
                 hideModal();
             }
-
+    
             // Event listener for save trip button
             drawLineButton.addEventListener('click', saveCurrentTrip);
-
+    
             // Event listener for reset history button
             resetHistoryButton.addEventListener('click', showModal);
-
+    
             // Event listener for confirm clear button
             confirmClearButton.addEventListener('click', clearRecentSearches);
-
+    
             // Event listener for cancel clear button
             cancelClearButton.addEventListener('click', hideModal);
-
+    
             // Event listener for modal close button
             document.querySelector('.modal .close').addEventListener('click', hideModal);
-
+    
             // Event listener for toggling room numbers
             toggleRoomNumbersButton.addEventListener('click', function () {
                 roomNumbers.classList.toggle('open');
             });
-
-            // Initial rendering of recent searches
-            renderRecentSearches();
-
+    
             // Event listener for the hamburger button
             hamburgerButton.addEventListener('click', function () {
                 formContainer.classList.toggle('open');
             });
-
+    
             // Event listener for the close button
             closeButton.addEventListener('click', function () {
                 formContainer.classList.remove('open');
                 fromInput.value = '';
                 toInput.value = '';
             });
-
+    
             // Event listener for clicking outside the modal to close it
             window.addEventListener('click', function (event) {
-                if (event.target === clearModal) {
+                if (event.target == clearModal) {
                     hideModal();
                 }
             });
+    
+            // Event listener for toggling the more section
+            toggleMoreButton.addEventListener('click', function () {
+                recentSection.classList.toggle('open');
+                officeContainer.classList.toggle('open');
+                // Toggle the arrow direction
+                toggleMoreButton.textContent = recentSection.classList.contains('open') ? 'expand_less' : 'expand_more';
+            });
+    
+            renderRecentSearches();
         });
     </script>
 </body>

@@ -169,7 +169,7 @@ image.onload = function () {
         // For touch devices, set a fixed size
         const aspectRatio = image.width / image.height;
         const maxWidth = 5400; // Adjust as needed
-        const maxHeight = maxWidth / aspectRatio;
+        const maxHeight = 7200;
         
         canvas.width = maxWidth;
         canvas.height = maxHeight;
@@ -211,6 +211,7 @@ ctx.lineJoin = "round";
 const lineWidth = 15; // Adjust as needed
 
 canvas.addEventListener("mousedown", (e) => {
+    console.log(e.clientX,window.scrollX, e.clientY,window.scrollY)
     isDrawing = true;
     // Calculate the mouse position relative to the document
     lastX = e.clientX + window.scrollX;
@@ -220,6 +221,7 @@ canvas.addEventListener("mousedown", (e) => {
 
 
 canvas.addEventListener("mousemove", (e) => {
+    console.log(e.clientX,window.scrollX, e.clientY,window.scrollY)
     if (isDrawing) {
         const currentX = e.clientX + window.scrollX;
         const currentY = e.clientY + window.scrollY;

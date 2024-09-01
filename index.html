@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas Image Line with User Input</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
@@ -22,7 +22,14 @@
             'GRAD' 0,
             'opsz' 20
         }
-          
+        canvas{
+            padding: 0;
+            margin: 0;
+        }
+          img{
+            width: 5400px;
+            height: 7200px;
+          }
       </style>
 </head>
 <!-- So the map will have a backend where the office space owner or office space name will be enterd,
@@ -77,9 +84,10 @@
             </div>
         </div>
     </div>
-    <script src="./output.js"></script>
+    <!-- <script src="./output.js"></script>
     <script src="./graph.js"></script>
-   <script src="script.js" type="module"></script>
+   <script src="script.js" type="module"></script> -->
+   <script src="./pathfinder.js"></script>
 </body>
 
 </html>

@@ -351,11 +351,11 @@ canvas.addEventListener("mouseup", () => {
 
 const goBtn = document.getElementById("drawLine");
 
-goBtn.addEventListener("click", (e) => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // Redraw the background image
-  ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-})
+// goBtn.addEventListener("click", (e) => {
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   // Redraw the background image
+//   ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+// })
 console.log(newGraph);
 // 1971, y: 3454.199951171875,
 function pointToPoint(start, end) {
