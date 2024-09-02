@@ -204,7 +204,7 @@ button {
   width: var(--form-width);
   height: fit-content;
   z-index: 1;
-  /* background-color: rgb(234, 233, 233); */
+  background-color: rgb(234, 233, 233);
   padding: 2vw;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: none;
@@ -220,13 +220,13 @@ button {
 
 .close-button {
   /* position: absolute; */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
   padding: 1vh;
   background: none;
   border: none;
   width: fit-content;
   align-self: last baseline;
-  margin-right: 0;
+  margin-right: 20px;
   font-size: 2vw;
   cursor: pointer;
   color: rgb(76, 76, 76);
@@ -260,6 +260,13 @@ button {
   font-weight: 100;
 }
 
+.more-container button{
+  font-size: 5rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ padding: var(--font-size);
+}
 /* Media Queries */
 @media (max-width: 1024px) {
   :root {
@@ -342,16 +349,10 @@ button {
     width: 100%;
     margin: auto;
     height: 100%;
-    padding: 10px;
+    /* padding: 5vh; */
     font-size: 5vh;
   }
-  .more-container button{
-    font-size: 5rem;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   padding: 7.5vh;
-  }
+  
   .form-container input{
     width: 90%;
     height: 40vh;
@@ -403,4 +404,17 @@ button {
     text-align: center;
     margin: auto;
   }
+
+  .modal-content {
+    /* background-color: #fefefe; */
+    margin: 15% auto;
+    padding: 2vh;
+    border: 1px solid #888;
+    /* width: 70%; */
+    font-size: 3vh;
+    width: fit-content;
+    text-align: center;
+    height: fit-content;
+}
+
 }
