@@ -337,15 +337,20 @@ button {
     font-size: 5vh;
   }
   .form-container {
-    width: 90%;
+    top: 0;
+    background-color: white;
+    width: 100%;
     margin: auto;
     height: 100%;
     padding: 10px;
     font-size: 5vh;
   }
   .more-container button{
-    font-size: 5vh;
-   padding: 5vh;
+    font-size: 5rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 7.5vh;
   }
   .form-container input{
     width: 90%;
