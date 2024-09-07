@@ -535,7 +535,7 @@ button {
     
   }
   .hamburger-button {
-    height: 10vh;
+    height: 30vh;
     
   }
   .hamburger-button,
@@ -543,13 +543,13 @@ button {
     /* padding: 3px; */
     border-radius: 7vw;
     font-size: 5vh;
-    width: 30vw;
+    width: 30vh;
   }
 
   .zoom-controls button {
     padding: 5vw;
     font-size: inherit;
-    height: 20vh;
+    height: 30vh;
   }
   .form-container {
     top: 0;
