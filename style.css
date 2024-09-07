@@ -536,19 +536,18 @@ button {
   }
   .hamburger-button {
     height: 30vh;
-    
   }
   .hamburger-button,
   .zoom-controls {
     /* padding: 3px; */
     border-radius: 7vw;
-    font-size: 5vh;
+    font-size: 10vh;
     width: 30vh;
   }
 
   .zoom-controls button {
     padding: 5vw;
-    font-size: inherit;
+    font-size: 100px;
     height: 30vh;
   }
   .form-container {
