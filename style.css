@@ -65,7 +65,7 @@ input::placeholder{
   text-align: center;
 }
 .inputs-btns button{
-  width: 100%;
+  width: 70%;
   padding: 2rem;
   border: #6200EA 1px solid;
   background-color: transparent;
@@ -239,13 +239,13 @@ button {
 
 .close-button {
   /* position: absolute; */
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 1vh;
   background: none;
   border: none;
   width: fit-content;
   align-self: last baseline;
-  margin-right: 20px;
+  margin-right: 60px;
   font-size: 2vw;
   cursor: pointer;
   color: rgb(76, 76, 76);
@@ -486,6 +486,10 @@ button {
   }
   .modal{
     width: 20%;
+  }
+  .close-button{
+    right: 100px;
+    /* border: #6200EA 1px solid;*/
   }
   .modal-content {
     /* background-color: #fefefe; */
