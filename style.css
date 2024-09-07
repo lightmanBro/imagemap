@@ -166,8 +166,8 @@ button {
 
 .controls {
   position: sticky;
-  top: 10px;
-  left: 10px;
+  top: 100px;
+  left: 100px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -295,8 +295,8 @@ button {
   
   .controls {
     position: sticky;
-    top: 10px; /* Adjust this as needed */
-    left: 10px; /* Adjust this as needed */
+    top: 100px;
+    left: 100px;
     width: fit-content;
   }
   .hamburger-button {
@@ -407,8 +407,8 @@ button {
 
   .controls {
     position: sticky;
-    top: 10px; /* Adjust this as needed */
-    left: 10px; /* Adjust this as needed */
+    top: 100px; /* Adjust this as needed */
+    left: 100px; /* Adjust this as needed */
     width: fit-content;
   }
   .hamburger-button {
@@ -524,8 +524,8 @@ button {
   }
   .controls {
     position: sticky;
-    top: 10px; /* Adjust this as needed */
-    left: 10px; /* Adjust this as needed */
+    top: 10vw; /* Adjust this as needed */
+    left: 10vh; /* Adjust this as needed */
     width: fit-content;
   }
   .hamburger-button {
