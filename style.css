@@ -41,6 +41,7 @@ svg {
 
 .inputs-btns{
   /* background-color: #fbfafa; */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .inputs-btns,
 .flex {
@@ -223,7 +224,7 @@ button {
   width: var(--form-width);
   height: fit-content;
   z-index: 1;
-  background-color: rgb(234, 233, 233);
+  background-color: rgb(214, 213, 213);
   padding: 2vw;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: none;
@@ -446,6 +447,7 @@ button {
     border-radius: 5vh;
   }
   .zoom-controls {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     /* padding: 3px; */
     border-radius: 7vw;
     font-size: 0.5rem;
@@ -536,6 +538,7 @@ button {
   }
   .hamburger-button {
     height: 30vh;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   .hamburger-button,
   .zoom-controls {
@@ -552,12 +555,13 @@ button {
   }
   .form-container {
     top: 0;
-    background-color: white;
+    background-color: rgb(214, 213, 213);
     width: 100%;
     margin: auto;
     height: 100%;
     /* padding: 5vh; */
     font-size: 5vh;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
   .form-container input{
