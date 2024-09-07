@@ -345,7 +345,7 @@ button {
   .hamburger-button {
     /* height: 7.5vh;
     width: 7.5vh; */
-    padding: 5vh;
+    padding: 2.5vh;
     font-size: 5vh;
   }
   .form-container {
@@ -424,8 +424,8 @@ button {
     text-align: center;
     height: fit-content;
 }
-.more-container button{
-  font-size: 5rem;
+#toggleMore{
+  font-size: 5vh;
  display: flex;
  align-items: center;
  justify-content: center;
