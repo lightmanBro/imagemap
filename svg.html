@@ -95,15 +95,15 @@
                     <input type="text" id="from" placeholder="From where?" />
                     <input type="text" id="to" placeholder="Where to?" />
                 </div>
-                <button id="drawLine">Navigate</button>
+                <button id="drawLine" style="background-color: #6200EA; color: white;">Navigate</button>
             </div>
             <div class="more-container">
                 <button id="toggleMore" class="material-symbols-outlined">expand_more</button>
             </div>
             <div class="recent">
                <div style="display: flex; align-items: center; justify-content:space-around">
-                   <button id="resetHistory">Reset</button>
-                   <button class="office-toggle" id="toggleRoomNumbers">Offices</button>
+                   <button id="resetHistory" style="background-color: #6200EA; color: white;">Reset</button>
+                   <button class="office-toggle" id="toggleRoomNumbers" style="background-color: #6200EA; color: white;">Offices</button>
                </div>
                <h3>History</h3>
                 <ul class="recent-list" id="recentList">
@@ -140,6 +140,7 @@
         const recentSection = document.querySelector('.recent');
         const officeContainer = document.querySelector('.office-container')
         const roomNumbers = document.getElementById('roomNumbers');
+        const formContainer = document.getElementById('formContainer');
         
         // Function to populate place
         function populatePlace(index) {
@@ -166,7 +167,6 @@
             const recentList = document.getElementById('recentList');
             const resetHistoryButton = document.getElementById('resetHistory');
             const hamburgerButton = document.querySelector('.hamburger-button');
-            const formContainer = document.getElementById('formContainer');
             const closeButton = document.querySelector('.close-button');
             const clearModal = document.getElementById('clearModal');
             const confirmClearButton = document.getElementById('confirmClear');
@@ -198,6 +198,16 @@
                 }
             }
     
+            // Function to close form container
+            function closeForm() {
+                formContainer.classList.remove('open');  // Remove 'open' class to hide the form
+            }
+    
+            // Function to open form container
+            function openForm() {
+                formContainer.classList.add('open');  // Add 'open' class to display the form
+            }
+    
             // Function to show modal
             function showModal() {
                 clearModal.style.display = 'block';
@@ -215,8 +225,16 @@
                 hideModal();
             }
     
-            // Event listener for save trip button
-            drawLineButton.addEventListener('click', saveCurrentTrip);
+            // Event listener for save trip button (drawLineButton)
+            drawLineButton.addEventListener('click', function() {
+                saveCurrentTrip();
+                closeForm();  // Close form container after saving the trip
+            });
+    
+            // Event listener for the hamburger button to open the form container
+            hamburgerButton.addEventListener('click', function () {
+                openForm();  // Open form container when the hamburger button is clicked
+            });
     
             // Event listener for reset history button
             resetHistoryButton.addEventListener('click', showModal);
@@ -235,16 +253,9 @@
                 roomNumbers.classList.toggle('open');
             });
     
-            // Event listener for the hamburger button
-            hamburgerButton.addEventListener('click', function () {
-                formContainer.classList.toggle('open');
-            });
-    
-            // Event listener for the close button
+            // Event listener for the close button inside the form container
             closeButton.addEventListener('click', function () {
-                formContainer.classList.remove('open');
-                fromInput.value = '';
-                toInput.value = '';
+                closeForm();  // Close the form container when close button is clicked
             });
     
             // Event listener for clicking outside the modal to close it
@@ -265,5 +276,6 @@
             renderRecentSearches();
         });
     </script>
+    
 </body>
 </html>

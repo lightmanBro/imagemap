@@ -207,9 +207,9 @@ button {
 .hamburger-button {
   width: fit-content;
   height: auto;
-  /* background-color: white; */
+  background-color: white;
   border: 2px solid gray;
-  color: gray;
+  color:#6200EA;
   border-radius: .5vw;
   cursor: pointer;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.281);
@@ -532,7 +532,7 @@ button {
     /* height: 7.5vh;
     width: 7.5vh; */
     padding: 2.5vh;
-    font-size: 5vh;
+    
   }
   .form-container {
     top: 0;
@@ -563,7 +563,7 @@ button {
   .zoom-controls {
     /* padding: 3px; */
     border-radius: 7vw;
-    font-size: 0.5rem;
+    font-size: 5vh;
   }
 
   .zoom-controls button {
