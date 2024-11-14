@@ -127,8 +127,8 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
 });
 
-const lineColor = "blue"; // Default line color
-const lineWidth = 7.5; // Adjust as needed
+const lineColor = "#1b88fceb"; // Default line color
+const lineWidth = 25; // Adjust as needed
 const drawingPath = [];
 let startPoint = {};
 
@@ -144,22 +144,6 @@ function drawLine(x1, y1, x2, y2) {
     return line;
 }
 
-// svg.addEventListener("mousedown", (e) => {
-//     startPoint = { x: e.clientX, y: e.clientY };
-// });
-
-// svg.addEventListener("mousemove", (e) => {
-//     if (e.buttons === 1) {
-//         // Only draw when mouse button is pressed
-//         const line = drawLine(startPoint.x, startPoint.y, e.clientX, e.clientY);
-//         drawingPath.push(line);
-//         startPoint = { x: e.clientX, y: e.clientY };
-//     }
-// });
-
-document.addEventListener("mouseup", () => {
-    // No need to do anything here for SVG
-});
 
 document.getElementById("drawLine").addEventListener("click", () => {
     const lines = Array.from(svg.querySelectorAll('line')); // Convert NodeList to array
@@ -180,11 +164,6 @@ document.getElementById("drawLine").addEventListener("click", () => {
         document.getElementById('to').value = ''
     }, 500);
 });
-
-
-
-// Example usage
-// clearDrawings(); // Call this function whenever you want to clear the SVG drawings
 
 
 let zoomLevel = 1;
@@ -289,7 +268,7 @@ function drawLocationIcon(svg, x, y) {
 
     // Map pin shape using path
     const pinPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    const pinRadius = 100; // Radius of the circular part of the pin
+    const pinRadius = 150; // Radius of the circular part of the pin
     const pinHeight = 70; // Total height of the pin
     const pinPathData = `
         M ${x} ${y} 
@@ -308,7 +287,7 @@ function drawLocationIcon(svg, x, y) {
     animateBounce.setAttribute("attributeType", "XML");
     animateBounce.setAttribute("type", "translate");
     animateBounce.setAttribute("values", `0,-10; 0,0; 0,-5; 0,0`); // Creates a bouncing effect
-    animateBounce.setAttribute("dur", "1s");
+    animateBounce.setAttribute("dur", "1.5s");
     animateBounce.setAttribute("repeatCount", "indefinite");
 
     pinPath.appendChild(animateBounce);
@@ -324,7 +303,9 @@ function drawTextOnIcon(svg, x, y, text) {
     textElement.setAttribute("x", x);
     textElement.setAttribute("y", y - 40); // Adjust vertical position of text above the icon
     textElement.setAttribute("fill", "black");
-    textElement.setAttribute("font-size", "16"); // Smaller font size
+    textElement.setAttribute("font-family", "Arial, sans-serif");
+    textElement.setAttribute("font-weight", "bold");
+    textElement.setAttribute("font-size", "50"); // Smaller font size
     textElement.setAttribute("text-anchor", "middle");
     textElement.textContent = text;
 

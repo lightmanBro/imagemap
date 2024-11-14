@@ -538,6 +538,7 @@ button {
   }
   .hamburger-button {
     height: 30vh;
+    background-color: #1b88fceb;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   .hamburger-button,
