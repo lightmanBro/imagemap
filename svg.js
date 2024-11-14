@@ -335,8 +335,3 @@ function pointToPoint(svg, start, end) {
     drawLocationIcon(svg, x2, y2);
     drawTextOnIcon(svg, x2, y2, "End"); // Display end text
 }
-/*
-for(initialization; condition; iteration) {
-    statement
-}
-*/
